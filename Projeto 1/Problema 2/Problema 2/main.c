@@ -15,6 +15,7 @@ void conta_notas(int *APR, int quantidadeElementosAPR, int *numeroAprovados, int
 int percent_aprov(int numeroAprovados, float *porcentagemAprovados, int numeroReprovados, float *porcentagemReprovados);
 void solicitaNotas(int *NOTAS);
 void mostraResumo(int numeroAprovados, float porcentagemAprovados, int numeroReprovados, float porcentagemReprovados);
+void liberaMemoria(int *NOTAS, int *APR);
 
 int main(int argc, const char * argv[]) {
     int numeroAprovados = 0;
@@ -29,6 +30,7 @@ int main(int argc, const char * argv[]) {
     conta_notas(APR, QUANTIDADENOTAS, &numeroAprovados, &numeroReprovados);
     percent_aprov(numeroAprovados, &porcentagemAprovados, numeroReprovados, &porcentagemReprovados);
     mostraResumo(numeroAprovados, porcentagemAprovados, numeroReprovados, porcentagemReprovados);
+    liberaMemoria(NOTAS, APR);
     
     return 0;
 }
@@ -87,4 +89,10 @@ void mostraResumo(int numeroAprovados, float porcentagemAprovados, int numeroRep
     } else {
         printf("Mais da metade da turma foi REPROVADA!");
     }
+    printf("\n");
+}
+
+void liberaMemoria(int *NOTAS, int *APR) {
+    free(NOTAS);
+    free(APR);
 }
