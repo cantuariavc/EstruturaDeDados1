@@ -5,6 +5,9 @@
 //  Created by Vinícius Cantuária on 29/03/2018.
 //  Copyright © 2018 Vinícius Cantuária. All rights reserved.
 //
+// Mateus de Oliveira Barbosa - 14/0154817
+// Vinícius de Castro Cantuária - 14/0165169
+//
 
 #include <stdio.h>
 #include <stdlib.h>
