@@ -15,8 +15,7 @@ void solicitaEntradas(int *ENTRADAS);
 void solicitaPesos(int *PESOS);
 void solicitaLimiarT(int *T);
 void mostraStatusNeuronio(int *StatusNeuronio);
-
-
+void liberaMemoria(int *ENTRADAS, int *PESOS);
 
 int main(int argc, const char * argv[]) {
     int *ENTRADAS = (int *) malloc(QUANTIDADELIMITE * sizeof(int));
@@ -29,6 +28,7 @@ int main(int argc, const char * argv[]) {
     solicitaLimiarT(&T);
     fneuronio(ENTRADAS, PESOS, &T, QUANTIDADELIMITE, &StatusNeuronio);
     mostraStatusNeuronio(&StatusNeuronio);
+    liberaMemoria(ENTRADAS, PESOS);
     
     return 0;
 }
@@ -67,9 +67,16 @@ void solicitaLimiarT(int *T) {
 }
 
 void mostraStatusNeuronio(int *StatusNeuronio) {
+    printf("\n");
     if (*StatusNeuronio == 1) {
         printf("Neurônio ativado!");
     } else {
         printf("Neurôno inibido!");
     }
+    printf("\n");
+}
+
+void liberaMemoria(int *ENTRADAS, int *PESOS) {
+    free(ENTRADAS);
+    free(PESOS);
 }
