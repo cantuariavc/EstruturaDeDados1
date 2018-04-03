@@ -15,6 +15,7 @@ void solicitaEntradas(int *ENTRADAS);
 void solicitaPesos(int *PESOS);
 void solicitaLimiarT(int *T);
 void mostraStatusNeuronio(int *StatusNeuronio);
+void verificaAlocacao(int *ENTRADAS, int *PESOS);
 void liberaMemoria(int *ENTRADAS, int *PESOS);
 
 int main(int argc, const char * argv[]) {
@@ -23,6 +24,7 @@ int main(int argc, const char * argv[]) {
     int T = 0;
     int StatusNeuronio = 0;
     
+    verificaAlocacao(ENTRADAS, PESOS);
     solicitaEntradas(ENTRADAS);
     solicitaPesos(PESOS);
     solicitaLimiarT(&T);
@@ -74,6 +76,12 @@ void mostraStatusNeuronio(int *StatusNeuronio) {
         printf("Neurôno inibido!");
     }
     printf("\n");
+}
+
+void verificaAlocacao(int *ENTRADAS, int *PESOS) {
+    if (ENTRADAS == NULL || PESOS == NULL) {
+        exit(1);
+    }
 }
 
 void liberaMemoria(int *ENTRADAS, int *PESOS) {
