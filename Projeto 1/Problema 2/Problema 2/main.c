@@ -15,6 +15,7 @@ void conta_notas(int *APR, int quantidadeElementosAPR, int *numeroAprovados, int
 int percent_aprov(int numeroAprovados, float *porcentagemAprovados, int numeroReprovados, float *porcentagemReprovados);
 void solicitaNotas(int *NOTAS);
 void mostraResumo(int numeroAprovados, float porcentagemAprovados, int numeroReprovados, float porcentagemReprovados);
+void verificaAlocacao(int *NOTAS, int *APR);
 void liberaMemoria(int *NOTAS, int *APR);
 
 int main(int argc, const char * argv[]) {
@@ -25,6 +26,7 @@ int main(int argc, const char * argv[]) {
     int *NOTAS = (int *) malloc(QUANTIDADENOTAS * sizeof(int));
     int *APR = (int *) malloc(QUANTIDADENOTAS * sizeof(int));
     
+    verificaAlocacao(NOTAS, APR);
     solicitaNotas(NOTAS);
     APR = recebe_notas(NOTAS, QUANTIDADENOTAS);
     conta_notas(APR, QUANTIDADENOTAS, &numeroAprovados, &numeroReprovados);
@@ -90,6 +92,12 @@ void mostraResumo(int numeroAprovados, float porcentagemAprovados, int numeroRep
         printf("Mais da metade da turma foi REPROVADA!");
     }
     printf("\n");
+}
+
+void verificaAlocacao(int *NOTAS, int *APR) {
+    if (NOTAS == NULL || APR == NULL) {
+        exit(1);
+    }
 }
 
 void liberaMemoria(int *NOTAS, int *APR) {
