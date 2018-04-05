@@ -15,9 +15,9 @@
 
 int *recebe_notas(int *NOTAS, int quantidadeElementosNotas);
 void conta_notas(int *APR, int quantidadeElementosAPR, int *numeroAprovados, int *numeroReprovados);
-int percent_aprov(int numeroAprovados, float *porcentagemAprovados, int numeroReprovados, float *porcentagemReprovados);
+int percent_aprov(float numeroAprovados, float *porcentagemAprovados, float numeroReprovados, float *porcentagemReprovados);
 void solicitaNotas(int *NOTAS);
-void mostraResumo(int numeroAprovados, float porcentagemAprovados, int numeroReprovados, float porcentagemReprovados);
+void mostraResumo(float numeroAprovados, float porcentagemAprovados, float numeroReprovados, float porcentagemReprovados);
 void verificaAlocacao(int *NOTAS, int *APR);
 void liberaMemoria(int *NOTAS, int *APR);
 
@@ -64,9 +64,9 @@ void conta_notas(int *APR, int quantidadeElementosAPR, int *numeroAprovados, int
     }
 }
 
-int percent_aprov(int numeroAprovados, float *porcentagemAprovados, int numeroReprovados, float *porcentagemReprovados) {
-    *porcentagemAprovados = numeroAprovados / (numeroAprovados + numeroReprovados);
-    *porcentagemReprovados = 1 - *porcentagemAprovados;
+int percent_aprov(float numeroAprovados, float *porcentagemAprovados, float numeroReprovados, float *porcentagemReprovados) {
+    *porcentagemAprovados = (numeroAprovados / (numeroAprovados + numeroReprovados)) * 100;
+    *porcentagemReprovados = 100 - *porcentagemAprovados;
     
     if (*porcentagemAprovados > 50) {
         return 1;
@@ -82,17 +82,17 @@ void solicitaNotas(int *NOTAS) {
     }
 }
 
-void mostraResumo(int numeroAprovados, float porcentagemAprovados, int numeroReprovados, float porcentagemReprovados) {
+void mostraResumo(float numeroAprovados, float porcentagemAprovados, float numeroReprovados, float porcentagemReprovados) {
     printf("\n");
-    printf("Quantidade de aprovados: %d\n", numeroAprovados);
-    printf("Percentual de aprovados: %f\n", porcentagemAprovados);
-    printf("Quantidade de reprovados: %d\n", numeroReprovados);
-    printf("Percentual de reprovados: %f\n", porcentagemReprovados);
+    printf("Quantidade de aprovados: %.0f\n", numeroAprovados);
+    printf("Percentual de aprovados: %.1f\n", porcentagemAprovados);
+    printf("Quantidade de reprovados: %.0f\n", numeroReprovados);
+    printf("Percentual de reprovados: %.1f\n", porcentagemReprovados);
     
     if (porcentagemAprovados > 50) {
         printf("Mais da metade da turma foi APROVADA!");
     } else {
-        printf("Mais da metade da turma foi REPROVADA!");
+        printf("Mais da metade da turma não foi APROVADA!");
     }
     printf("\n");
 }
