@@ -17,26 +17,41 @@ void verificaAlocacao(int *vetorAlocado);
 void liberaMemoria(int *vetorAlocado);
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste);
 int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero);
+void verificaImagem(FILE *imagem);
+void contaTamanhoColunas(FILE *imagem, int *quantidadeColunas);
+void contaTamanhoLinhas(FILE *imagem, int *quantidadeLinhas);
 
 int main(int argc, const char * argv[]) {
-    FILE *imagem;
+    char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_50.txt";
+    
+    FILE *imagem = fopen(nomeImagem, "r");
     
     int *vetorNumerosTreinamento = (int *) calloc(25, sizeof(int));
     int *vetorNumerosTeste = (int *) calloc(25, sizeof(int));
+    int quantidadeColunas = 0;
+    int quatidadeLinhas = 0;
     
+    
+    verificaImagem(imagem);
     verificaAlocacao(vetorNumerosTreinamento);
     verificaAlocacao(vetorNumerosTeste);
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
+    contaTamanhoColunas(imagem, &quantidadeColunas);
+    contaTamanhoLinhas(imagem, &quatidadeLinhas);
+    
+    
     
     liberaMemoria(vetorNumerosTreinamento);
     liberaMemoria(vetorNumerosTeste);
+    fclose(imagem);
     
     return 0;
 }
 
 void verificaAlocacao(int *vetorAlocado) {
     if (vetorAlocado == NULL) {
+        printf("Erro na alocação da memória!\n");
         exit(1);
     }
 }
@@ -84,6 +99,41 @@ int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGerad
     }
     
     return existe;
+}
+
+void verificaImagem(FILE *imagem) {
+    if (imagem == NULL) {
+        printf("Erro na abertura da imagem!\n");
+        exit(1);
+    }
+}
+
+void contaTamanhoColunas(FILE *imagem, int *quantidadeColunas) {
+    char caractere = '\0';
+    
+    do {
+        caractere = getc(imagem);
+        
+        if (caractere == ';') {
+            (*quantidadeColunas)++;
+        }
+    } while (caractere != '\n');
+    
+    (*quantidadeColunas)++;
+}
+
+void contaTamanhoLinhas(FILE *imagem, int *quantidadeLinhas) {
+    char caractere = '\0';
+    
+    do {
+        caractere = getc(imagem);
+        
+        if (caractere == ';') {
+            (*quantidadeLinhas)++;
+        }
+    } while (caractere != '\n');
+    
+    (*quantidadeLinhas)++;
 }
 
 
