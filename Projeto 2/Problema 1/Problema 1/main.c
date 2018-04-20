@@ -23,7 +23,7 @@ int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGerad
 void verificaImagem(FILE *imagemTexto);
 void contaTamanhoLinhas(FILE *imagemTexto, int *quantidadeLinhas);
 void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas);
-void transfereImagemTexto(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas);
+void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas);
 
 int main(int argc, const char * argv[]) {
     char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_50.txt";
@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
         *(imagemPrograma + i) = (int *) calloc(quantidadeColunas, sizeof(int));
     }
     verificaAlocacao(*imagemPrograma);
-
+    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quatidadeLinhas, quantidadeColunas);
 
 
 
@@ -165,29 +165,26 @@ void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas) {
     (*quantidadeColunas)++;
 }
 
-void transfereImagemTexto(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas) {
-//    char caractere = '\0';
-//    char *numeroString = (char *) calloc(3, sizeof(char));
-//    if (numeroString == NULL) {
-//        printf("Erro na alocação de memória!\n");
-//        exit(1);
-//    }
-//    int numero = 0;
-//
-//    do {
-//        caractere = getc(imagemTexto);
-//        if (caractere != ';') {
-//            strcat(numeroString, &caractere);
-//        } else {
-//            numero = atoi(numeroString);
-//        }
-//    } while (caractere != '\n');
-//
-//    free(numeroString);
+void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas) {
+    for (int i = 0; i < quantidadeLinhas; i++) {
+        for (int j = 0; j < quantidadeColunas; j++) {
+            char *numeroString = (char *) calloc(quantidadeColunas, 4);
+            char *caractere = (char *) calloc(1, sizeof(char));
+            if (numeroString == NULL || caractere == NULL) {
+                printf("Erro na alocação de memória!\n");
+                exit(1);
+            }
+
+            *caractere = getc(imagemTexto);
+            while (*caractere != ';' && *caractere != '\n') {
+                strcat(numeroString, caractere);
+                *caractere = getc(imagemTexto);
+            }
+            
+            *(*(imagemPrograma + i) + j) = atoi(numeroString);
+            
+            free(numeroString);
+            free(caractere);
+        }
+    }
 }
-
-
-
-
-
-
