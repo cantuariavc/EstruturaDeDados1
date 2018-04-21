@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 
 void verificaAlocacaoInt(int *vetorAlocado);
 void verificaAlocacaoChar(char *vetorAlocado);
@@ -24,8 +25,7 @@ void verificaImagem(FILE *imagemTexto);
 void contaTamanhoLinhas(FILE *imagemTexto, int *quantidadeLinhas);
 void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas);
 void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas);
-
-void converteDecimalBinario(int **matrizDecimal, int *media);
+void converteMatrizDecimalBinario(int **matrizDecimal, int *media);
 void calculaMenorBinario(int **matrizBinaria);
 
 int main(int argc, const char * argv[]) {
@@ -209,6 +209,46 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *media) {
         }
     }
     
+    calculaMenorBinario(matrizBinaria);
+    
     liberaMatriz(matrizBinaria, 3);
+}
+
+void calculaMenorBinario(int **matrizBinaria) {
+    char *binario = (char *) calloc(9, sizeof(char));
+    verificaAlocacaoChar(binario);
+    int indice = 0;
+    int decimal = 0;
+    int menorNumero = 511;
+    
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            *(binario + indice++) = *(*(matrizBinaria + i) + j);
+        }
+    }
+    
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            decimal += atoi(binario + (8 - j)) * pow(2, j);
+        }
+        
+        if (decimal < menorNumero) {
+            menorNumero = decimal;
+        }
+        
+        char *binarioAuxiliar = (char *) calloc(9, sizeof(char));
+        verificaAlocacaoChar(binarioAuxiliar);
+        
+        for (int j = 0; j < 8; j++) {
+            *(binarioAuxiliar + j) = *(binario + (j + 1));
+        }
+        *(binarioAuxiliar + 8) = *(binario);
+        
+        binario = binarioAuxiliar;
+        
+        free(binarioAuxiliar);
+    }
+    
+    free(binario);
 }
 
