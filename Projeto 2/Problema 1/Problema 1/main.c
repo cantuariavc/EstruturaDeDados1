@@ -14,9 +14,9 @@
 #include <string.h>
 #include <time.h>
 
-void verificaAlocacao(int *vetorAlocado);
+void verificaAlocacaoInt(int *vetorAlocado);
+void verificaAlocacaoChar(char *vetorAlocado);
 void verificaAlocacaoMatriz(int **matrizAlocada);
-void liberaMemoria(int *vetorAlocado);
 void liberaMatriz(int **matrizAlocada, int quatidadeLinhas);
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste);
 int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero);
@@ -24,6 +24,9 @@ void verificaImagem(FILE *imagemTexto);
 void contaTamanhoLinhas(FILE *imagemTexto, int *quantidadeLinhas);
 void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas);
 void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas);
+
+void converteDecimalBinario(int **matrizDecimal, int *media);
+void calculaMenorBinario(int **matrizBinaria);
 
 int main(int argc, const char * argv[]) {
     char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_50.txt";
@@ -40,30 +43,35 @@ int main(int argc, const char * argv[]) {
     for (int i = 0; i < quatidadeLinhas; i++) {
         *(imagemPrograma + i) = (int *) calloc(quantidadeColunas, sizeof(int));
     }
-    verificaAlocacao(*imagemPrograma);
+    verificaAlocacaoInt(*imagemPrograma);
     transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quatidadeLinhas, quantidadeColunas);
 
-
-
     int *vetorNumerosTreinamento = (int *) calloc(25, sizeof(int));
-    verificaAlocacao(vetorNumerosTreinamento);
+    verificaAlocacaoInt(vetorNumerosTreinamento);
     int *vetorNumerosTeste = (int *) calloc(25, sizeof(int));
-    verificaAlocacao(vetorNumerosTeste);
+    verificaAlocacaoInt(vetorNumerosTeste);
 
 
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
 
 
 
-    liberaMemoria(vetorNumerosTreinamento);
-    liberaMemoria(vetorNumerosTeste);
+    free(vetorNumerosTreinamento);
+    free(vetorNumerosTeste);
     liberaMatriz(imagemPrograma, quatidadeLinhas);
     fclose(imagemTexto);
 
     return 0;
 }
 
-void verificaAlocacao(int *vetorAlocado) {
+void verificaAlocacaoInt(int *vetorAlocado) {
+    if (vetorAlocado == NULL) {
+        printf("Erro na alocação da memória!\n");
+        exit(1);
+    }
+}
+
+void verificaAlocacaoChar(char *vetorAlocado) {
     if (vetorAlocado == NULL) {
         printf("Erro na alocação da memória!\n");
         exit(1);
@@ -75,10 +83,6 @@ void verificaAlocacaoMatriz(int **matrizAlocada) {
         printf("Erro na alocação da memória!\n");
         exit(1);
     }
-}
-
-void liberaMemoria(int *vetorAlocado) {
-    free(vetorAlocado);
 }
 
 void liberaMatriz(int **matrizAlocada, int quatidadeLinhas) {
@@ -95,7 +99,7 @@ void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste)
     int *vetorNumerosAleatorios = (int *) calloc(50, sizeof(int));
     int numeroGerado = 0;
 
-    verificaAlocacao(vetorNumerosAleatorios);
+    verificaAlocacaoInt(vetorNumerosAleatorios);
 
     for (int i = 0; i < 50; i++) {
         numeroGerado = 1 + (rand() % 50);
@@ -115,7 +119,7 @@ void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste)
         *(vetorNumerosTeste + i) = *(vetorNumerosAleatorios + (i + 25));
     }
 
-    liberaMemoria(vetorNumerosAleatorios);
+    free(vetorNumerosAleatorios);
 }
 
 int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero) {
@@ -170,10 +174,8 @@ void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int q
         for (int j = 0; j < quantidadeColunas; j++) {
             char *numeroString = (char *) calloc(quantidadeColunas, 4);
             char *caractere = (char *) calloc(1, sizeof(char));
-            if (numeroString == NULL || caractere == NULL) {
-                printf("Erro na alocação de memória!\n");
-                exit(1);
-            }
+            verificaAlocacaoChar(numeroString);
+            verificaAlocacaoChar(caractere);
 
             *caractere = getc(imagemTexto);
             while (*caractere != ';' && *caractere != '\n') {
@@ -182,9 +184,31 @@ void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int q
             }
             
             *(*(imagemPrograma + i) + j) = atoi(numeroString);
-            
+
             free(numeroString);
             free(caractere);
         }
     }
 }
+
+void converteMatrizDecimalBinario(int **matrizDecimal, int *media) {
+    int **matrizBinaria = (int **) calloc(3, sizeof(int *));
+    verificaAlocacaoMatriz(matrizBinaria);
+    for (int k = 0; k < 3; k++) {
+        *(matrizBinaria + k) = (int *) calloc(3, sizeof(int));
+    }
+    verificaAlocacaoInt(*matrizBinaria);
+    
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (*(*(matrizDecimal + i) + j) >= *media) {
+                *(*(matrizBinaria + i) + j) = 1;
+            } else {
+                *(*(matrizBinaria + i) + j) = 0;
+            }
+        }
+    }
+    
+    liberaMatriz(matrizBinaria, 3);
+}
+
