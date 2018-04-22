@@ -25,8 +25,10 @@ void verificaImagem(FILE *imagemTexto);
 void contaTamanhoLinhas(FILE *imagemTexto, int *quantidadeLinhas);
 void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas);
 void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas);
-void converteMatrizDecimalBinario(int **matrizDecimal, int *media);
-void calculaMenorBinario(int **matrizBinaria);
+void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP);
+void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP);
+void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP);
+void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
 
 int main(int argc, const char * argv[]) {
     char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_50.txt";
@@ -44,8 +46,13 @@ int main(int argc, const char * argv[]) {
         *(imagemPrograma + i) = (int *) calloc(quantidadeColunas, sizeof(int));
     }
     verificaAlocacaoInt(*imagemPrograma);
-    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quatidadeLinhas, quantidadeColunas);
 
+    int *frequenciaILBP = (int *) calloc(512, sizeof(int));
+    verificaAlocacaoInt(frequenciaILBP);
+    
+//    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quatidadeLinhas, quantidadeColunas);
+//    calculaVizinhancasOito(imagemPrograma, quatidadeLinhas, quantidadeColunas, frequenciaILBP);
+    
     int *vetorNumerosTreinamento = (int *) calloc(25, sizeof(int));
     verificaAlocacaoInt(vetorNumerosTreinamento);
     int *vetorNumerosTeste = (int *) calloc(25, sizeof(int));
@@ -61,6 +68,9 @@ int main(int argc, const char * argv[]) {
     liberaMatriz(imagemPrograma, quatidadeLinhas);
     fclose(imagemTexto);
 
+    
+    free(frequenciaILBP);
+    
     return 0;
 }
 
@@ -191,7 +201,30 @@ void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int q
     }
 }
 
-void converteMatrizDecimalBinario(int **matrizDecimal, int *media) {
+void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP) {
+//    for (int i = 1; i < (quantidadeLinhas - 1); i++) {
+//        for (int j = 1; j < (quantidadeColunas - 1); j++) {
+//            int **matrizDecimal = (int **) calloc(3, sizeof(int *));
+//            verificaAlocacaoMatriz(matrizDecimal);
+//            for (int k = 0; k < 3; k++) {
+//                *(matrizDecimal + k) = (int *) calloc(3, sizeof(int));
+//            }
+//            verificaAlocacaoInt(*matrizDecimal);
+//
+//            for (int k = 0; k < 3; k++) {
+//                for (int l = 0; l < 3; l++) {
+//                    *(*(matrizDecimal + k) + l) = (i + k);
+//                }
+//            }
+//
+//            liberaMatriz(matrizDecimal, 3);
+//        }
+//    }
+}
+
+void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
+    int media = 0;
+    
     int **matrizBinaria = (int **) calloc(3, sizeof(int *));
     verificaAlocacaoMatriz(matrizBinaria);
     for (int k = 0; k < 3; k++) {
@@ -199,9 +232,17 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *media) {
     }
     verificaAlocacaoInt(*matrizBinaria);
     
+    for (int k = 0; k < 3; k++) {
+        for (int l = 0; l < 3; l++) {
+            media += *(*(matrizDecimal + k) + l);
+        }
+    }
+    
+    media /= 9;
+    
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (*(*(matrizDecimal + i) + j) >= *media) {
+            if (*(*(matrizDecimal + i) + j) >= media) {
                 *(*(matrizBinaria + i) + j) = 1;
             } else {
                 *(*(matrizBinaria + i) + j) = 0;
@@ -209,14 +250,15 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *media) {
         }
     }
     
-    calculaMenorBinario(matrizBinaria);
-    
+    calculaMenorBinario(matrizBinaria, frequenciaILBP);
+
     liberaMatriz(matrizBinaria, 3);
 }
 
-void calculaMenorBinario(int **matrizBinaria) {
+void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
     char *binario = (char *) calloc(9, sizeof(char));
     verificaAlocacaoChar(binario);
+
     int indice = 0;
     int decimal = 0;
     int menorNumero = 511;
@@ -248,7 +290,13 @@ void calculaMenorBinario(int **matrizBinaria) {
         
         free(binarioAuxiliar);
     }
-    
+
     free(binario);
+
+    calculaFrequenciaILBP(menorNumero, frequenciaILBP);
+}
+
+void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP) {
+    *(frequenciaILBP + menorNumero) += 1;
 }
 
