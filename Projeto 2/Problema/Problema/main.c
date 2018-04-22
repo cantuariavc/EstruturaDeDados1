@@ -1,6 +1,6 @@
 //
 //  main.c
-//  Problema 1
+//  Problema
 //
 //  Created by Vinícius Cantuária on 17/04/2018.
 //  Copyright © 2018 Vinícius Cantuária. All rights reserved.
@@ -9,55 +9,57 @@
 // Vinícius de Castro Cantuária - 14/0165169
 //
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <math.h>
 
+
+int *alocaInt(int tamanho);
+char *alocaChar(int tamanho);
+int **alocaMatriz(int quantidadeLinhas, int quantidadeColunas);
+
 void verificaAlocacaoInt(int *vetorAlocado);
 void verificaAlocacaoChar(char *vetorAlocado);
 void verificaAlocacaoMatriz(int **matrizAlocada);
+void verificaAlocacaoArquivo(FILE *imagemTexto);
+
 void liberaMatriz(int **matrizAlocada, int quatidadeLinhas);
+
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste);
-int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero);
-void verificaImagem(FILE *imagemTexto);
+int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero);
+
 void contaTamanhoLinhas(FILE *imagemTexto, int *quantidadeLinhas);
 void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas);
+
 void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas);
 void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP);
 void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP);
 void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP);
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
 
+
 int main(int argc, const char * argv[]) {
     char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_50.txt";
     FILE *imagemTexto = fopen(nomeImagem, "r");
-    verificaImagem(imagemTexto);
+    verificaAlocacaoArquivo(imagemTexto);
     
     int quatidadeLinhas = 0;
     contaTamanhoLinhas(imagemTexto, &quatidadeLinhas);
     int quantidadeColunas = 0;
     contaTamanhoColunas(imagemTexto, &quantidadeColunas);
     
-    int **imagemPrograma = (int **) calloc(quatidadeLinhas, sizeof(int *));
-    verificaAlocacaoMatriz(imagemPrograma);
-    for (int i = 0; i < quatidadeLinhas; i++) {
-        *(imagemPrograma + i) = (int *) calloc(quantidadeColunas, sizeof(int));
-    }
-    verificaAlocacaoInt(*imagemPrograma);
-    
-    int *frequenciaILBP = (int *) calloc(512, sizeof(int));
-    verificaAlocacaoInt(frequenciaILBP);
-    
+    int **imagemPrograma = alocaMatriz(quatidadeLinhas, quantidadeColunas);
     //    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quatidadeLinhas, quantidadeColunas);
+    fclose(imagemTexto);
+    
+    int *frequenciaILBP = alocaInt(512);
     //    calculaVizinhancasOito(imagemPrograma, quatidadeLinhas, quantidadeColunas, frequenciaILBP);
     
-    int *vetorNumerosTreinamento = (int *) calloc(25, sizeof(int));
-    verificaAlocacaoInt(vetorNumerosTreinamento);
-    int *vetorNumerosTeste = (int *) calloc(25, sizeof(int));
-    verificaAlocacaoInt(vetorNumerosTeste);
-    
+    int *vetorNumerosTreinamento = alocaInt(25);
+    int *vetorNumerosTeste = alocaInt(25);
     
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
@@ -66,13 +68,38 @@ int main(int argc, const char * argv[]) {
     free(vetorNumerosTreinamento);
     free(vetorNumerosTeste);
     liberaMatriz(imagemPrograma, quatidadeLinhas);
-    fclose(imagemTexto);
-    
     
     free(frequenciaILBP);
     
     return 0;
 }
+
+
+int *alocaInt(int tamanho) {
+    int *vetorInt = (int *) calloc(tamanho, sizeof(int));
+    verificaAlocacaoInt(vetorInt);
+    
+    return vetorInt;
+}
+
+char *alocaChar(int tamanho) {
+    char *vetorChar = (char *) calloc(tamanho, sizeof(char));
+    verificaAlocacaoChar(vetorChar);
+    
+    return vetorChar;
+}
+
+int **alocaMatriz(int quantidadeLinhas, int quantidadeColunas) {
+    int **matriz = (int **) calloc(quantidadeLinhas, sizeof(int *));
+    verificaAlocacaoMatriz(matriz);
+    for (int k = 0; k < quantidadeLinhas; k++) {
+        *(matriz + k) = (int *) calloc(quantidadeColunas, sizeof(int));
+        verificaAlocacaoInt(*(matriz + k));
+    }
+    
+    return matriz;
+}
+
 
 void verificaAlocacaoInt(int *vetorAlocado) {
     if (vetorAlocado == NULL) {
@@ -95,6 +122,14 @@ void verificaAlocacaoMatriz(int **matrizAlocada) {
     }
 }
 
+void verificaAlocacaoArquivo(FILE *nomeArquivo) {
+    if (nomeArquivo == NULL) {
+        printf("Erro na abertura da arquivo!\n");
+        exit(1);
+    }
+}
+
+
 void liberaMatriz(int **matrizAlocada, int quatidadeLinhas) {
     for (int i = 0; i < quatidadeLinhas; i++) {
         free(*(matrizAlocada + i));
@@ -103,18 +138,17 @@ void liberaMatriz(int **matrizAlocada, int quatidadeLinhas) {
     free(matrizAlocada);
 }
 
+
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste) {
     srand((unsigned int)time(NULL));
     
-    int *vetorNumerosAleatorios = (int *) calloc(50, sizeof(int));
+    int *vetorNumerosAleatorios = alocaInt(50);
     int numeroGerado = 0;
-    
-    verificaAlocacaoInt(vetorNumerosAleatorios);
     
     for (int i = 0; i < 50; i++) {
         numeroGerado = 1 + (rand() % 50);
         
-        while (numeroExistente(vetorNumerosAleatorios, i, numeroGerado)) {
+        while (eNumeroExistente(vetorNumerosAleatorios, i, numeroGerado)) {
             numeroGerado = 1 + (rand() % 50);
         }
         
@@ -132,7 +166,7 @@ void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste)
     free(vetorNumerosAleatorios);
 }
 
-int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero) {
+int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero) {
     int existe = 0;
     
     for (int i = 0; i < tamanho; i++) {
@@ -144,12 +178,6 @@ int numeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGerad
     return existe;
 }
 
-void verificaImagem(FILE *imagemTexto) {
-    if (imagemTexto == NULL) {
-        printf("Erro na abertura da imagemTexto!\n");
-        exit(1);
-    }
-}
 
 void contaTamanhoLinhas(FILE *imagemTexto, int *quantidadeLinhas) {
     char caractere = '\0';
@@ -179,13 +207,12 @@ void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas) {
     (*quantidadeColunas)++;
 }
 
+
 void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas) {
     for (int i = 0; i < quantidadeLinhas; i++) {
         for (int j = 0; j < quantidadeColunas; j++) {
-            char *numeroString = (char *) calloc(quantidadeColunas, 4);
-            char *caractere = (char *) calloc(1, sizeof(char));
-            verificaAlocacaoChar(numeroString);
-            verificaAlocacaoChar(caractere);
+            char *numeroString = alocaChar(quantidadeColunas * 4);
+            char *caractere = alocaChar(1);
             
             *caractere = getc(imagemTexto);
             while (*caractere != ';' && *caractere != '\n') {
@@ -202,35 +229,26 @@ void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int q
 }
 
 void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP) {
-    //    for (int i = 1; i < (quantidadeLinhas - 1); i++) {
-    //        for (int j = 1; j < (quantidadeColunas - 1); j++) {
-    //            int **matrizDecimal = (int **) calloc(3, sizeof(int *));
-    //            verificaAlocacaoMatriz(matrizDecimal);
-    //            for (int k = 0; k < 3; k++) {
-    //                *(matrizDecimal + k) = (int *) calloc(3, sizeof(int));
-    //            }
-    //            verificaAlocacaoInt(*matrizDecimal);
-    //
-    //            for (int k = 0; k < 3; k++) {
-    //                for (int l = 0; l < 3; l++) {
-    //                    *(*(matrizDecimal + k) + l) = (i + k);
-    //                }
-    //            }
-    //
-    //            liberaMatriz(matrizDecimal, 3);
-    //        }
-    //    }
+    for (int i = 1; i < (quantidadeLinhas - 1); i++) {
+        for (int j = 1; j < (quantidadeColunas - 1); j++) {
+//            int **matrizDecimal = alocaMatriz(3, 3);
+//
+//            for (int k = 0; k < 3; k++) {
+//                for (int l = 0; l < 3; l++) {
+//                    *(*(matrizDecimal + k) + l) = (i + k);
+//                }
+//            }
+//
+//
+//            liberaMatriz(matrizDecimal, 3);
+        }
+    }
 }
 
 void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
     int media = 0;
     
-    int **matrizBinaria = (int **) calloc(3, sizeof(int *));
-    verificaAlocacaoMatriz(matrizBinaria);
-    for (int k = 0; k < 3; k++) {
-        *(matrizBinaria + k) = (int *) calloc(3, sizeof(int));
-    }
-    verificaAlocacaoInt(*matrizBinaria);
+    int **matrizBinaria = alocaMatriz(3, 3);
     
     for (int k = 0; k < 3; k++) {
         for (int l = 0; l < 3; l++) {
@@ -256,8 +274,7 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
 }
 
 void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
-    char *binario = (char *) calloc(9, sizeof(char));
-    verificaAlocacaoChar(binario);
+    char *binario = alocaChar(9);
     
     int indice = 0;
     int decimal = 0;
@@ -278,8 +295,7 @@ void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
             menorNumero = decimal;
         }
         
-        char *binarioAuxiliar = (char *) calloc(9, sizeof(char));
-        verificaAlocacaoChar(binarioAuxiliar);
+        char *binarioAuxiliar = alocaChar(9);
         
         for (int j = 0; j < 8; j++) {
             *(binarioAuxiliar + j) = *(binario + (j + 1));
