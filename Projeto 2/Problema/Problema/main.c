@@ -26,10 +26,10 @@ void verificaAlocacaoChar(char *vetorAlocado);
 void verificaAlocacaoMatriz(int **matrizAlocada);
 void verificaAlocacaoArquivo(FILE *imagemTexto);
 
-void liberaMatriz(int **matrizAlocada, int quatidadeLinhas);
+void liberaMatriz(int **matrizAlocada, int quantidadeLinhas);
 
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste);
-int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero);
+int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numeroGerado);
 
 void contaTamanhoLinhas(FILE *imagemTexto, int *quantidadeLinhas);
 void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas);
@@ -46,17 +46,17 @@ int main(int argc, const char * argv[]) {
     FILE *imagemTexto = fopen(nomeImagem, "r");
     verificaAlocacaoArquivo(imagemTexto);
     
-    int quatidadeLinhas = 0;
-    contaTamanhoLinhas(imagemTexto, &quatidadeLinhas);
+    int quantidadeLinhas = 0;
+    contaTamanhoLinhas(imagemTexto, &quantidadeLinhas);
     int quantidadeColunas = 0;
     contaTamanhoColunas(imagemTexto, &quantidadeColunas);
     
-    int **imagemPrograma = alocaMatriz(quatidadeLinhas, quantidadeColunas);
-    //    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quatidadeLinhas, quantidadeColunas);
+    int **imagemPrograma = alocaMatriz(quantidadeLinhas, quantidadeColunas);
+    //    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quantidadeLinhas, quantidadeColunas);
     fclose(imagemTexto);
     
     int *frequenciaILBP = alocaInt(512);
-    //    calculaVizinhancasOito(imagemPrograma, quatidadeLinhas, quantidadeColunas, frequenciaILBP);
+    //    calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
     
     int *vetorNumerosTreinamento = alocaInt(25);
     int *vetorNumerosTeste = alocaInt(25);
@@ -67,7 +67,7 @@ int main(int argc, const char * argv[]) {
     
     free(vetorNumerosTreinamento);
     free(vetorNumerosTeste);
-    liberaMatriz(imagemPrograma, quatidadeLinhas);
+    liberaMatriz(imagemPrograma, quantidadeLinhas);
     
     free(frequenciaILBP);
     
@@ -130,8 +130,8 @@ void verificaAlocacaoArquivo(FILE *nomeArquivo) {
 }
 
 
-void liberaMatriz(int **matrizAlocada, int quatidadeLinhas) {
-    for (int i = 0; i < quatidadeLinhas; i++) {
+void liberaMatriz(int **matrizAlocada, int quantidadeLinhas) {
+    for (int i = 0; i < quantidadeLinhas; i++) {
         free(*(matrizAlocada + i));
     }
     
@@ -166,11 +166,11 @@ void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste)
     free(vetorNumerosAleatorios);
 }
 
-int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numnumeroGeradoero) {
+int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numeroGerado) {
     int existe = 0;
     
     for (int i = 0; i < tamanho; i++) {
-        if (*(vetorNumerosAleatorios + i) == numnumeroGeradoero) {
+        if (*(vetorNumerosAleatorios + i) == numeroGerado) {
             existe = 1;
         }
     }
