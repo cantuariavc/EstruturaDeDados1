@@ -42,7 +42,7 @@ void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
 
 
 int main(int argc, const char * argv[]) {
-    char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_50.txt";
+    char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_01.txt";
     FILE *imagemTexto = fopen(nomeImagem, "r");
     verificaAlocacaoArquivo(imagemTexto);
     
@@ -52,7 +52,7 @@ int main(int argc, const char * argv[]) {
     contaTamanhoColunas(imagemTexto, &quantidadeColunas);
     
     int **imagemPrograma = alocaMatriz(quantidadeLinhas, quantidadeColunas);
-    //    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quantidadeLinhas, quantidadeColunas);
+    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quantidadeLinhas, quantidadeColunas);
     fclose(imagemTexto);
     
     int *frequenciaILBP = alocaInt(512);
@@ -211,11 +211,11 @@ void contaTamanhoColunas(FILE *imagemTexto, int *quantidadeColunas) {
 void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas) {
     for (int i = 0; i < quantidadeLinhas; i++) {
         for (int j = 0; j < quantidadeColunas; j++) {
-            char *numeroString = alocaChar(quantidadeColunas * 4);
+            char *numeroString = alocaChar(3);
             char *caractere = alocaChar(1);
             
             *caractere = getc(imagemTexto);
-            while (*caractere != ';' && *caractere != '\n') {
+            while (*caractere != ';' && *caractere != '\n' && *caractere != EOF) {
                 strcat(numeroString, caractere);
                 *caractere = getc(imagemTexto);
             }
