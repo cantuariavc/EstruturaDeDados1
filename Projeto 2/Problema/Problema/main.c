@@ -239,6 +239,16 @@ void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quan
                 }
             }
             
+//
+            for (int k = 0; k < 3; k++) {
+                for (int l = 0; l < 3; l++) {
+                    printf("%d ", *(*(matrizDecimal + k) + l));
+                }
+                printf("\n");
+            }
+            printf("\n\n");
+//
+            
             converteMatrizDecimalBinario(matrizDecimal, frequenciaILBP);
             
             liberaMatriz(matrizDecimal, 3);
@@ -275,42 +285,39 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
 }
 
 void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
-    char *binario = alocaChar(9);
-    
-    int indice = 0;
+    int expoente = 0;
     int decimal = 0;
     int menorNumero = 511;
     
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++, indice++) {
-            *(binario + indice) = *(*(matrizBinaria + i) + j);
-        }
-    }
-    
     for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            decimal += atoi(binario + (8 - j)) * pow(2, j);
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++, expoente++) {
+                decimal += *(*(matrizBinaria + (2 - j)) + (2 - k)) * pow(2, expoente);
+            }
         }
         
         if (decimal < menorNumero) {
             menorNumero = decimal;
         }
         
-        char *binarioAuxiliar = alocaChar(9);
+        int **matrizAuxiliar = alocaMatriz(3, 3);
         
-        for (int j = 0; j < 8; j++) {
-            *(binarioAuxiliar + j) = *(binario + (j + 1));
-        }
-        *(binarioAuxiliar + 8) = *(binario);
+        *(*(matrizAuxiliar + 0) + 0) = *(*(matrizBinaria + 0) + 1);
+        *(*(matrizAuxiliar + 0) + 1) = *(*(matrizBinaria + 0) + 2);
+        *(*(matrizAuxiliar + 0) + 2) = *(*(matrizBinaria + 1) + 0);
+        *(*(matrizAuxiliar + 1) + 0) = *(*(matrizBinaria + 1) + 1);
+        *(*(matrizAuxiliar + 1) + 1) = *(*(matrizBinaria + 1) + 2);
+        *(*(matrizAuxiliar + 1) + 2) = *(*(matrizBinaria + 2) + 0);
+        *(*(matrizAuxiliar + 2) + 0) = *(*(matrizBinaria + 2) + 1);
+        *(*(matrizAuxiliar + 2) + 1) = *(*(matrizBinaria + 2) + 2);
+        *(*(matrizAuxiliar + 2) + 2) = *(*(matrizBinaria + 0) + 0);
         
-        binario = binarioAuxiliar;
+        matrizBinaria = matrizAuxiliar;
         
-        free(binarioAuxiliar);
+        free(matrizAuxiliar);
     }
     
-    free(binario);
-    
-    calculaFrequenciaILBP(menorNumero, frequenciaILBP);
+//    calculaFrequenciaILBP(menorNumero, frequenciaILBP);
 }
 
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP) {
