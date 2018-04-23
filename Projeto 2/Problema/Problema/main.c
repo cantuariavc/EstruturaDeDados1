@@ -56,7 +56,7 @@ int main(int argc, const char * argv[]) {
     fclose(imagemTexto);
     
     int *frequenciaILBP = alocaInt(512);
-    //    calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
+    calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
     
     int *vetorNumerosTreinamento = alocaInt(25);
     int *vetorNumerosTeste = alocaInt(25);
@@ -103,21 +103,21 @@ int **alocaMatriz(int quantidadeLinhas, int quantidadeColunas) {
 
 void verificaAlocacaoInt(int *vetorAlocado) {
     if (vetorAlocado == NULL) {
-        printf("Erro na alocação da memória!\n");
+        printf("Erro na alocação da memória do vetor int!\n");
         exit(1);
     }
 }
 
 void verificaAlocacaoChar(char *vetorAlocado) {
     if (vetorAlocado == NULL) {
-        printf("Erro na alocação da memória!\n");
+        printf("Erro na alocação da memória do vetor char!\n");
         exit(1);
     }
 }
 
 void verificaAlocacaoMatriz(int **matrizAlocada) {
     if (matrizAlocada == NULL) {
-        printf("Erro na alocação da memória!\n");
+        printf("Erro na alocação da memória da matriz!\n");
         exit(1);
     }
 }
@@ -231,16 +231,17 @@ void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int q
 void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP) {
     for (int i = 1; i < (quantidadeLinhas - 1); i++) {
         for (int j = 1; j < (quantidadeColunas - 1); j++) {
-//            int **matrizDecimal = alocaMatriz(3, 3);
-//
-//            for (int k = 0; k < 3; k++) {
-//                for (int l = 0; l < 3; l++) {
-//                    *(*(matrizDecimal + k) + l) = (i + k);
-//                }
-//            }
-//
-//
-//            liberaMatriz(matrizDecimal, 3);
+            int **matrizDecimal = alocaMatriz(3, 3);
+
+            for (int k = 0; k < 3; k++) {
+                for (int l = 0; l < 3; l++) {
+                    *(*(matrizDecimal + k) + l) = *(*(imagemPrograma + (i + (k - 1))) + (j + (l - 1)));
+                }
+            }
+            
+            converteMatrizDecimalBinario(matrizDecimal, frequenciaILBP);
+            
+            liberaMatriz(matrizDecimal, 3);
         }
     }
 }
@@ -281,8 +282,8 @@ void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
     int menorNumero = 511;
     
     for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            *(binario + indice++) = *(*(matrizBinaria + i) + j);
+        for (int j = 0; j < 3; j++, indice++) {
+            *(binario + indice) = *(*(matrizBinaria + i) + j);
         }
     }
     
