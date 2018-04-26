@@ -42,32 +42,72 @@ void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
 
 
 int main(int argc, const char * argv[]) {
-    char nomeImagem[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_01.txt";
-    FILE *imagemTexto = fopen(nomeImagem, "r");
-    verificaAlocacaoArquivo(imagemTexto);
-    
-    int quantidadeLinhas = 0;
-    contaTamanhoLinhas(imagemTexto, &quantidadeLinhas);
-    int quantidadeColunas = 0;
-    contaTamanhoColunas(imagemTexto, &quantidadeColunas);
-    
-    int **imagemPrograma = alocaMatriz(quantidadeLinhas, quantidadeColunas);
-    transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quantidadeLinhas, quantidadeColunas);
-    fclose(imagemTexto);
-    
-    int *frequenciaILBP = alocaInt(512);
-    calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
-    
     int *vetorNumerosTreinamento = alocaInt(25);
     int *vetorNumerosTeste = alocaInt(25);
-    
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
+    
+    char nomeImagemAsfalto[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/asphalt/texts/asphalt_";
+    char nomeImagemGrama[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_";
+
+    for (int i = 0; i < 100; i++) {
+        char *numeroArquivo = alocaChar(7);
+        char *nomeImagem = alocaChar(sizeof(nomeImagemAsfalto) + sizeof(numeroArquivo));
+        
+        if (i < 25 && *(vetorNumerosTreinamento + i) <= 9) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + i), ".txt\0");
+        } else if (i < 25 && *(vetorNumerosTreinamento + i) > 9) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + i), ".txt\0");
+        } else if ((i >= 25 && i < 50) && *(vetorNumerosTreinamento + (i - 25)) <= 9) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + i), ".txt\0");
+        } else if ((i >= 25 && i < 50) && *(vetorNumerosTreinamento + i) > 9) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + (i - 25)), ".txt\0");
+        } else if ((i >= 50 && i < 75) && *(vetorNumerosTeste + i) <= 9) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + (i - 50)), ".txt\0");
+        } else if ((i >= 50 && i < 75) && *(vetorNumerosTeste + i) > 9) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + (i - 50)), ".txt\0");
+        } else if (i >= 75 && *(vetorNumerosTeste + i) <= 9) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + (i - 75)), ".txt\0");
+        } else if (i >= 75 && *(vetorNumerosTeste + i) > 9) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + (i - 75)), ".txt\0");
+        }
+
+        if (i < 25 || (i >= 50 && i < 75)) {
+            strcat(nomeImagem, nomeImagemAsfalto);
+            strcat(nomeImagem, numeroArquivo);
+        } else if ((i >= 25 && i < 50) || i >= 75) {
+            strcat(nomeImagem, nomeImagemGrama);
+            strcat(nomeImagem, numeroArquivo);
+        }
+            
+        FILE *imagemTexto = fopen(nomeImagem, "r");
+        verificaAlocacaoArquivo(imagemTexto);
+        free(nomeImagem);
+        free(numeroArquivo);
+        
+        int quantidadeLinhas = 0;
+        contaTamanhoLinhas(imagemTexto, &quantidadeLinhas);
+        int quantidadeColunas = 0;
+        contaTamanhoColunas(imagemTexto, &quantidadeColunas);
+        
+        int **imagemPrograma = alocaMatriz(quantidadeLinhas, quantidadeColunas);
+        transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quantidadeLinhas, quantidadeColunas);
+        fclose(imagemTexto);
+        
+        int *frequenciaILBP = alocaInt(512);
+        calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
+        
+        
+        
+        
+        
+        
+        liberaMatriz(imagemPrograma, quantidadeLinhas);
+        
+        free(frequenciaILBP);
+    }
     
     free(vetorNumerosTreinamento);
     free(vetorNumerosTeste);
-    liberaMatriz(imagemPrograma, quantidadeLinhas);
-    
-    free(frequenciaILBP);
     
     return 0;
 }
