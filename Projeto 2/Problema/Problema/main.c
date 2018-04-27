@@ -38,7 +38,10 @@ void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int q
 void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP);
 void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP);
 void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP);
+
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
+void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP);
+void calculaMediaILBPGrama(int *frequenciaILBPGrama, int *frequenciaILBP);
 
 
 int main(int argc, const char * argv[]) {
@@ -49,6 +52,9 @@ int main(int argc, const char * argv[]) {
     char nomeImagemAsfalto[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/asphalt/texts/asphalt_";
     char nomeImagemGrama[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_";
 
+    int *frequenciaILBPAsfalto = alocaInt(512);
+    int *frequenciaILBPGrama = alocaInt(512);
+    
     int b = 0;
     for (int a = 0; a < 100; a++) {
         char *numeroArquivo = alocaChar(7);
@@ -98,17 +104,19 @@ int main(int argc, const char * argv[]) {
         
         int *frequenciaILBP = alocaInt(512);
         calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
-        
-        
-        
-        
+        if (a < 25 || (a >= 50 && a < 75)) {
+            calculaMediaILBPAsfalto(frequenciaILBPAsfalto, frequenciaILBP);
+        } else if ((a >= 25 && a < 50) || a >= 75) {
+            calculaMediaILBPGrama(frequenciaILBPGrama, frequenciaILBP);
+        }
+        free(frequenciaILBP);
         
         
         liberaMatriz(imagemPrograma, quantidadeLinhas);
-        
-        free(frequenciaILBP);
     }
     
+    free(frequenciaILBPAsfalto);
+    free(frequenciaILBPGrama);
     free(vetorNumerosTreinamento);
     free(vetorNumerosTeste);
     
@@ -358,7 +366,20 @@ void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
     calculaFrequenciaILBP(menorNumero, frequenciaILBP);
 }
 
+
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP) {
     *(frequenciaILBP + menorNumero) += 1;
+}
+
+void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP) {
+    for (int i = 0; i < 512; i++) {
+        *(frequenciaILBPAsfalto + i) = (*(frequenciaILBPAsfalto + i) + *(frequenciaILBP + i)) / 2;
+    }
+}
+
+void calculaMediaILBPGrama(int *frequenciaILBPGrama, int *frequenciaILBP) {
+    for (int i = 0; i < 512; i++) {
+        *(frequenciaILBPGrama + i) = (*(frequenciaILBPGrama + i) + *(frequenciaILBP + i)) / 2;
+    }
 }
 
