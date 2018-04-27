@@ -460,6 +460,10 @@ void normalizaVetor(int *vetor) {
             maximo = *(vetor + i);
         }
     }
+    
+    for (int i = 0; i < 536; i++) {
+        *(vetor + i) = (*(vetor + i) - minimo) / (maximo - minimo);
+    }
 }
 
 void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP) {
