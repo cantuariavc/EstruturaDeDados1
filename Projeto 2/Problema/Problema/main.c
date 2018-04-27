@@ -49,16 +49,21 @@ int main(int argc, const char * argv[]) {
     int *vetorNumerosTeste = alocaInt(25);
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
-    char nomeImagemAsfalto[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/asphalt/texts/asphalt_";
-    char nomeImagemGrama[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/grass/texts/grass_";
-
+    char caminhoArquivo[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/";
+    char tipoAsfalto[] = "asphalt/texts/asphalt_";
+    char tipoGrama[] = "grass/texts/grass_";
+    
     int *frequenciaILBPAsfalto = alocaInt(512);
     int *frequenciaILBPGrama = alocaInt(512);
     
     int b = 0;
     for (int a = 0; a < 100; a++) {
         char *numeroArquivo = alocaChar(7);
-        char *nomeImagem = alocaChar(sizeof(nomeImagemAsfalto) + sizeof(numeroArquivo));
+        char *nomeImagem = alocaChar(sizeof(caminhoArquivo) + sizeof(tipoAsfalto) + sizeof(numeroArquivo));
+        strcat(nomeImagem, caminhoArquivo);
+
+        int periodoAsfalto = (a < 25 || (a >= 50 && a < 75));
+        int periodoGrama = ((a >= 25 && a < 50) || a >= 75);
         
         if (a < 25) {
             b = a;
@@ -70,21 +75,23 @@ int main(int argc, const char * argv[]) {
             b = (a - 75);
         }
         
-        if ((a < 25 || (a >= 50 && a < 75)) && *(vetorNumerosTreinamento + b) <= 9) {
-            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + b), ".txt\0");
-        } else if ((a < 25 || (a >= 50 && a < 75)) && *(vetorNumerosTreinamento + b) > 9) {
-            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + b), ".txt\0");
-        } else if (((a >= 25 && a < 50) || a >= 75) && *(vetorNumerosTeste + b) <= 9) {
-            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + b), ".txt\0");
-        } else if (((a >= 25 && a < 50) || a >= 75) && *(vetorNumerosTeste + b) > 9) {
-            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + b), ".txt\0");
-        }
-
-        if (a < 25 || (a >= 50 && a < 75)) {
-            strcat(nomeImagem, nomeImagemAsfalto);
+        if (periodoAsfalto) {
+            if (*(vetorNumerosTreinamento + b) <= 9) {
+                sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + b), ".txt\0");
+            } else if (*(vetorNumerosTreinamento + b) > 9) {
+                sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + b), ".txt\0");
+            }
+            
+            strcat(nomeImagem, tipoAsfalto);
             strcat(nomeImagem, numeroArquivo);
-        } else if ((a >= 25 && a < 50) || a >= 75) {
-            strcat(nomeImagem, nomeImagemGrama);
+        } else if (periodoGrama) {
+            if (*(vetorNumerosTeste + b) <= 9) {
+                sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + b), ".txt\0");
+            } else if (*(vetorNumerosTeste + b) > 9) {
+                sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + b), ".txt\0");
+            }
+            
+            strcat(nomeImagem, tipoGrama);
             strcat(nomeImagem, numeroArquivo);
         }
             
@@ -104,9 +111,10 @@ int main(int argc, const char * argv[]) {
         
         int *frequenciaILBP = alocaInt(512);
         calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
-        if (a < 25 || (a >= 50 && a < 75)) {
+        
+        if (periodoAsfalto) {
             calculaMediaILBPAsfalto(frequenciaILBPAsfalto, frequenciaILBP);
-        } else if ((a >= 25 && a < 50) || a >= 75) {
+        } else if (periodoGrama) {
             calculaMediaILBPGrama(frequenciaILBPGrama, frequenciaILBP);
         }
         free(frequenciaILBP);
