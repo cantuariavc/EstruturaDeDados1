@@ -46,8 +46,8 @@ void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
 void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, int **nordeste, int **oeste, int **leste, int **sudoeste, int **sul, int **sudeste);
 
 void normalizaVetor(int *vetor);
-void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP);
-void calculaMediaILBPGrama(int *frequenciaILBPGrama, int *frequenciaILBP);
+void calculaMediaVetorAsfalto(int a, int *frequenciaMediaAsfalto, int *vetorImagem);
+void calculaMediaVetorGrama(int a, int *frequenciaMediaGrama, int *vetorImagem);
 
 
 int main(int argc, const char * argv[]) {
@@ -59,8 +59,8 @@ int main(int argc, const char * argv[]) {
     char tipoAsfalto[] = "asphalt/texts/asphalt_";
     char tipoGrama[] = "grass/texts/grass_";
     
-    int *frequenciaILBPAsfalto = alocaInt(512);
-    int *frequenciaILBPGrama = alocaInt(512);
+    int *frequenciaMediaAsfalto = alocaInt(536);
+    int *frequenciaMediaGrama = alocaInt(536);
     
     for (int a = 0; a < 100; a++) {
         char *numeroArquivo = alocaChar(7);
@@ -92,21 +92,33 @@ int main(int argc, const char * argv[]) {
         fclose(imagemTexto);
         
         int *frequenciaILBP = alocaInt(512);
+        int *metricasGLCM = alocaInt(24);
         calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
         
-        if (periodoAsfaltoTreinamento) {
-            calculaMediaILBPAsfalto(frequenciaILBPAsfalto, frequenciaILBP);
-        } else if (periodoGramaTreinamento) {
-            calculaMediaILBPGrama(frequenciaILBPGrama, frequenciaILBP);
+        int *vetorImagem = alocaInt(sizeof(frequenciaILBP) + sizeof(metricasGLCM));
+        for (int i = 0; i < sizeof(frequenciaILBP); i++) {
+            *(vetorImagem + i) = *(frequenciaILBP + i);
+        }
+        for (int i = sizeof(frequenciaILBP); i < (sizeof(frequenciaILBP) + sizeof(metricasGLCM)); i++) {
+            *(vetorImagem + i) = *(metricasGLCM + i);
         }
         free(frequenciaILBP);
+        free(metricasGLCM);
+        
+        normalizaVetor(vetorImagem);
+        
+        if (periodoAsfaltoTreinamento) {
+            calculaMediaVetorAsfalto(a, frequenciaMediaAsfalto, vetorImagem);
+        } else if (periodoGramaTreinamento) {
+            calculaMediaVetorGrama(a, frequenciaMediaGrama, vetorImagem);
+        }
         
         
         liberaMatriz(imagemPrograma, quantidadeLinhas);
     }
     
-    free(frequenciaILBPAsfalto);
-    free(frequenciaILBPGrama);
+    free(frequenciaMediaAsfalto);
+    free(frequenciaMediaGrama);
     free(vetorNumerosTreinamento);
     free(vetorNumerosTeste);
     
@@ -466,15 +478,27 @@ void normalizaVetor(int *vetor) {
     }
 }
 
-void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP) {
-    for (int i = 0; i < 512; i++) {
-        *(frequenciaILBPAsfalto + i) = (*(frequenciaILBPAsfalto + i) + *(frequenciaILBP + i)) / 2;
+void calculaMediaVetorAsfalto(int a, int *frequenciaMediaAsfalto, int *vetorImagem) {
+    if (a == 0) {
+        for (int i = 0; i < sizeof(frequenciaMediaAsfalto); i++) {
+            *(frequenciaMediaAsfalto + i) = *(vetorImagem + i);
+        }
+    } else {
+        for (int i = 0; i < sizeof(frequenciaMediaAsfalto); i++) {
+            *(frequenciaMediaAsfalto + i) = (*(frequenciaMediaAsfalto + i) + *(vetorImagem + i)) / 2;
+        }
     }
 }
 
-void calculaMediaILBPGrama(int *frequenciaILBPGrama, int *frequenciaILBP) {
-    for (int i = 0; i < 512; i++) {
-        *(frequenciaILBPGrama + i) = (*(frequenciaILBPGrama + i) + *(frequenciaILBP + i)) / 2;
+void calculaMediaVetorGrama(int a, int *frequenciaMediaGrama, int *vetorImagem) {
+    if (a == 25) {
+        for (int i = 0; i < sizeof(frequenciaMediaGrama); i++) {
+            *(frequenciaMediaGrama + i) = *(vetorImagem + i);
+        }
+    } else {
+        for (int i = 0; i < sizeof(frequenciaMediaGrama); i++) {
+            *(frequenciaMediaGrama + i) = (*(frequenciaMediaGrama + i) + *(vetorImagem + i)) / 2;
+        }
     }
 }
 
