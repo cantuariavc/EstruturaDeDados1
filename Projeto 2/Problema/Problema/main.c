@@ -315,14 +315,14 @@ void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quan
         }
     }
     
-    free(noroeste);
-    free(norte);
-    free(nordeste);
-    free(oeste);
-    free(leste);
-    free(sudoeste);
-    free(sul);
-    free(sudeste);
+    liberaMatriz(noroeste, 256);
+    liberaMatriz(norte, 256);
+    liberaMatriz(nordeste, 256);
+    liberaMatriz(oeste, 256);
+    liberaMatriz(leste, 256);
+    liberaMatriz(sudoeste, 256);
+    liberaMatriz(sul, 256);
+    liberaMatriz(sudeste, 256);
 }
 
 void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
