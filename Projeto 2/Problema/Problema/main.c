@@ -28,6 +28,9 @@ void verificaAlocacaoArquivo(FILE *imagemTexto);
 
 void liberaMatriz(int **matrizAlocada, int quantidadeLinhas);
 
+void defineNumeroArquivo(int a, char* numeroArquivo, int *vetorNumerosTreinamento, int *vetorNumerosTeste, int periodoAsfaltoTreinamento, int periodoGramaTreinamento, int periodoAsfaltoTeste, int periodoGramaTeste);
+void defineNomeArquivo(char *nomeImagem, char *tipoAsfalto, char *tipoGrama, char *numeroArquivo, int periodoAsfaltoTreinamento, int periodoGramaTreinamento, int periodoAsfaltoTeste, int periodoGramaTeste);
+
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste);
 int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numeroGerado);
 
@@ -59,7 +62,6 @@ int main(int argc, const char * argv[]) {
     int *frequenciaILBPAsfalto = alocaInt(512);
     int *frequenciaILBPGrama = alocaInt(512);
     
-    int b = 0;
     for (int a = 0; a < 100; a++) {
         char *numeroArquivo = alocaChar(7);
         char *nomeImagem = alocaChar(sizeof(caminhoArquivo) + sizeof(tipoAsfalto) + sizeof(numeroArquivo));
@@ -70,54 +72,8 @@ int main(int argc, const char * argv[]) {
         int periodoAsfaltoTeste = (a >= 50 && a < 75);
         int periodoGramaTeste = (a >= 75);
         
-        if (a < 25) {
-            b = a;
-        } else if (a >= 25 && a < 50){
-            b = (a - 25);
-        } else if (a >= 50 && a < 75) {
-            b = (a - 50);
-        } else if (a > 75) {
-            b = (a - 75);
-        }
-        
-        int numeroUmDigitoTreinamento = (*(vetorNumerosTreinamento + b) <= 9);
-        int numeroDoisDigitosTreinamento = (*(vetorNumerosTreinamento + b) > 9);
-        int numeroUmDigitoTeste = (*(vetorNumerosTeste + b) <= 9);
-        int numeroDoisDigitosTeste = (*(vetorNumerosTeste + b) > 9);
-
-        if (periodoAsfaltoTreinamento) {
-            if (numeroUmDigitoTreinamento) {
-                sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + b), ".txt\0");
-            } else if (numeroDoisDigitosTreinamento) {
-                sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + b), ".txt\0");
-            }
-        } else if (periodoGramaTreinamento) {
-            if (numeroUmDigitoTreinamento) {
-                sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + b), ".txt\0");
-            } else if (numeroDoisDigitosTreinamento) {
-                sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + b), ".txt\0");
-            }
-        } else if (periodoAsfaltoTeste) {
-            if (numeroUmDigitoTeste) {
-                sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + b), ".txt\0");
-            } else if (numeroDoisDigitosTeste) {
-                sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + b), ".txt\0");
-            }
-        } else if (periodoGramaTeste) {
-            if (numeroUmDigitoTeste) {
-                sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + b), ".txt\0");
-            } else if (numeroDoisDigitosTeste) {
-                sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + b), ".txt\0");
-            }
-        }
-        
-        if (periodoAsfaltoTreinamento || periodoAsfaltoTeste) {
-            strcat(nomeImagem, tipoAsfalto);
-            strcat(nomeImagem, numeroArquivo);
-        } else if (periodoGramaTreinamento || periodoGramaTeste) {
-            strcat(nomeImagem, tipoGrama);
-            strcat(nomeImagem, numeroArquivo);
-        }
+        defineNumeroArquivo(a, numeroArquivo, vetorNumerosTreinamento, vetorNumerosTeste, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);
+        defineNomeArquivo(nomeImagem, tipoAsfalto, tipoGrama, numeroArquivo, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);
         
         printf("%s\n\n", nomeImagem);
         
@@ -219,6 +175,62 @@ void liberaMatriz(int **matrizAlocada, int quantidadeLinhas) {
     }
     
     free(matrizAlocada);
+}
+
+
+void defineNumeroArquivo(int a, char* numeroArquivo, int *vetorNumerosTreinamento, int *vetorNumerosTeste, int periodoAsfaltoTreinamento, int periodoGramaTreinamento, int periodoAsfaltoTeste, int periodoGramaTeste) {
+    int b = 0;
+    
+    if (a < 25) {
+        b = a;
+    } else if (a >= 25 && a < 50){
+        b = (a - 25);
+    } else if (a >= 50 && a < 75) {
+        b = (a - 50);
+    } else if (a > 75) {
+        b = (a - 75);
+    }
+    
+    int numeroUmDigitoTreinamento = (*(vetorNumerosTreinamento + b) <= 9);
+    int numeroDoisDigitosTreinamento = (*(vetorNumerosTreinamento + b) > 9);
+    int numeroUmDigitoTeste = (*(vetorNumerosTeste + b) <= 9);
+    int numeroDoisDigitosTeste = (*(vetorNumerosTeste + b) > 9);
+    
+    if (periodoAsfaltoTreinamento) {
+        if (numeroUmDigitoTreinamento) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + b), ".txt\0");
+        } else if (numeroDoisDigitosTreinamento) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + b), ".txt\0");
+        }
+    } else if (periodoGramaTreinamento) {
+        if (numeroUmDigitoTreinamento) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + b), ".txt\0");
+        } else if (numeroDoisDigitosTreinamento) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTreinamento + b), ".txt\0");
+        }
+    } else if (periodoAsfaltoTeste) {
+        if (numeroUmDigitoTeste) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + b), ".txt\0");
+        } else if (numeroDoisDigitosTeste) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + b), ".txt\0");
+        }
+    } else if (periodoGramaTeste) {
+        if (numeroUmDigitoTeste) {
+            sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTeste + b), ".txt\0");
+        } else if (numeroDoisDigitosTeste) {
+            sprintf(numeroArquivo, "%d%s", *(vetorNumerosTeste + b), ".txt\0");
+        }
+    }
+}
+
+void defineNomeArquivo(char *nomeImagem, char *tipoAsfalto, char *tipoGrama, char *numeroArquivo, int periodoAsfaltoTreinamento, int periodoGramaTreinamento, int periodoAsfaltoTeste, int periodoGramaTeste) {
+    if (periodoAsfaltoTreinamento || periodoAsfaltoTeste) {
+        strcat(nomeImagem, tipoAsfalto);
+        strcat(nomeImagem, numeroArquivo);
+    } else if (periodoGramaTreinamento || periodoGramaTeste) {
+        strcat(nomeImagem, tipoGrama);
+        strcat(nomeImagem, numeroArquivo);
+    }
 }
 
 
