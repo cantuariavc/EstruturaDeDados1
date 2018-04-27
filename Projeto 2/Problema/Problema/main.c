@@ -40,6 +40,8 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP);
 void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP);
 
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
+void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, int **nordeste, int **oeste, int **leste, int **sudoeste, int **sul, int **sudeste);
+
 void normalizaVetor(int *vetor);
 void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP);
 void calculaMediaILBPGrama(int *frequenciaILBPGrama, int *frequenciaILBP);
@@ -287,6 +289,15 @@ void transfereImagemTextoPrograma(FILE *imagemTexto, int **imagemPrograma, int q
 }
 
 void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP) {
+    int **noroeste = alocaMatriz(256, 256);
+    int **norte = alocaMatriz(256, 256);
+    int **nordeste = alocaMatriz(256, 256);
+    int **oeste = alocaMatriz(256, 256);
+    int **leste = alocaMatriz(256, 256);
+    int **sudoeste = alocaMatriz(256, 256);
+    int **sul = alocaMatriz(256, 256);
+    int **sudeste = alocaMatriz(256, 256);
+    
     for (int i = 1; i < (quantidadeLinhas - 1); i++) {
         for (int j = 1; j < (quantidadeColunas - 1); j++) {
             int **matrizDecimal = alocaMatriz(3, 3);
@@ -296,12 +307,22 @@ void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quan
                     *(*(matrizDecimal + k) + l) = *(*(imagemPrograma + (i + (k - 1))) + (j + (l - 1)));
                 }
             }
-            
+
             converteMatrizDecimalBinario(matrizDecimal, frequenciaILBP);
-            
+            calculaFrequenciasGLCM(matrizDecimal, noroeste, norte, nordeste, oeste, leste, sudoeste, sul, sudeste);
+
             liberaMatriz(matrizDecimal, 3);
         }
     }
+    
+    free(noroeste);
+    free(norte);
+    free(nordeste);
+    free(oeste);
+    free(leste);
+    free(sudoeste);
+    free(sul);
+    free(sudeste);
 }
 
 void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
@@ -378,6 +399,17 @@ void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
 
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP) {
     *(frequenciaILBP + menorNumero) += 1;
+}
+
+void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, int **nordeste, int **oeste, int **leste, int **sudoeste, int **sul, int **sudeste) {
+    *(*(noroeste + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 0) + 0))) += 1;
+    *(*(norte + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 0) + 1))) += 1;
+    *(*(nordeste + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 0) + 2))) += 1;
+    *(*(oeste + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 1) + 0))) += 1;
+    *(*(leste + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 1) + 2))) += 1;
+    *(*(sudoeste + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 2) + 0))) += 1;
+    *(*(sul + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 2) + 1))) += 1;
+    *(*(sudeste + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 2) + 2))) += 1;
 }
 
 void normalizaVetor(int *vetor) {
