@@ -40,6 +40,7 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP);
 void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP);
 
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP);
+void normalizaVetor(int *vetor);
 void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP);
 void calculaMediaILBPGrama(int *frequenciaILBPGrama, int *frequenciaILBP);
 
@@ -377,6 +378,21 @@ void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
 
 void calculaFrequenciaILBP(int menorNumero, int *frequenciaILBP) {
     *(frequenciaILBP + menorNumero) += 1;
+}
+
+void normalizaVetor(int *vetor) {
+    int minimo = 535;
+    int maximo = 0;
+    
+    for (int i = 0; i < 536; i++) {
+        if (*(vetor + i) < minimo) {
+            minimo = *(vetor + i);
+        }
+        
+        if (*(vetor + i) > maximo) {
+            maximo = *(vetor + i);
+        }
+    }
 }
 
 void calculaMediaILBPAsfalto(int *frequenciaILBPAsfalto, int *frequenciaILBP) {
