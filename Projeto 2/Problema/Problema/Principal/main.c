@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
     
     for (int a = 0; a < 100; a++) {
         char *numeroArquivo = alocaChar(7);
-        char *nomeImagem = alocaChar(sizeof(caminhoArquivo) + sizeof(tipoAsfalto) + sizeof(numeroArquivo));
+        char *nomeImagem = alocaChar(130);
         strcat(nomeImagem, caminhoArquivo);
 
         int periodoAsfaltoTreinamento = (a < 25);
@@ -64,23 +64,23 @@ int main(int argc, const char * argv[]) {
         int **imagemPrograma = alocaMatriz(quantidadeLinhas, quantidadeColunas);
         transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quantidadeLinhas, quantidadeColunas);
         fclose(imagemTexto);
-        
+
         int *frequenciaILBP = alocaInt(512);
         int *metricasGLCM = alocaInt(24);
         calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
-        
-        int *vetorImagem = alocaInt(sizeof(frequenciaILBP) + sizeof(metricasGLCM));
-        for (int i = 0; i < sizeof(frequenciaILBP); i++) {
+
+        int *vetorImagem = alocaInt(536);
+        for (int i = 0; i < 512; i++) {
             *(vetorImagem + i) = *(frequenciaILBP + i);
         }
-        for (int i = sizeof(frequenciaILBP); i < (sizeof(frequenciaILBP) + sizeof(metricasGLCM)); i++) {
+        for (int i = 512; i < 536; i++) {
             *(vetorImagem + i) = *(metricasGLCM + i);
         }
         free(frequenciaILBP);
         free(metricasGLCM);
-        
+
         normalizaVetor(vetorImagem);
-        
+
         if (periodoAsfaltoTreinamento) {
             calculaMediaVetorAsfalto(a, frequenciaMediaAsfalto, vetorImagem);
         } else if (periodoGramaTreinamento) {
