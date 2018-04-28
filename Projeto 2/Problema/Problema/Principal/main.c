@@ -86,6 +86,7 @@ int main(int argc, const char * argv[]) {
         } else if (periodoGramaTreinamento) {
             calculaMediaVetorGrama(a, frequenciaMediaGrama, vetorImagem);
         }
+        free(vetorImagem);
         
         
         liberaMatriz(imagemPrograma, quantidadeLinhas);
