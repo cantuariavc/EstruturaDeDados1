@@ -15,6 +15,7 @@
 		50AEC25A2093E3CC00F4E0B0 /* descritorGLCM.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC2592093E3CC00F4E0B0 /* descritorGLCM.c */; };
 		50AEC25D2093E55100F4E0B0 /* vetorDescritor.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC25C2093E55100F4E0B0 /* vetorDescritor.c */; };
 		50AEC2612094D9C700F4E0B0 /* pixels.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC2602094D9C700F4E0B0 /* pixels.c */; };
+		50B964AB2094DDEF00693471 /* metricas.c in Sources */ = {isa = PBXBuildFile; fileRef = 50B964AA2094DDEF00693471 /* metricas.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,8 @@
 		50AEC25C2093E55100F4E0B0 /* vetorDescritor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vetorDescritor.c; sourceTree = "<group>"; };
 		50AEC25F2094D9C700F4E0B0 /* pixels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pixels.h; sourceTree = "<group>"; };
 		50AEC2602094D9C700F4E0B0 /* pixels.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pixels.c; sourceTree = "<group>"; };
+		50B964A92094DDEF00693471 /* metricas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = metricas.h; sourceTree = "<group>"; };
+		50B964AA2094DDEF00693471 /* metricas.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = metricas.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 				50AEC2502093E1CF00F4E0B0 /* Arquivo */,
 				50AEC2542093E35400F4E0B0 /* Descritores de Imagem */,
 				50AEC2482093DF9D00F4E0B0 /* Memória */,
+				50B964A82094DDC500693471 /* Métricas */,
 				50AEC2492093DFB700F4E0B0 /* Número Aleatório */,
 				50AEC25E2094D99D00F4E0B0 /* Pixels */,
 				50AEC2472093DF8C00F4E0B0 /* Principal */,
@@ -147,6 +151,16 @@
 			path = Pixels;
 			sourceTree = "<group>";
 		};
+		50B964A82094DDC500693471 /* Métricas */ = {
+			isa = PBXGroup;
+			children = (
+				50B964A92094DDEF00693471 /* metricas.h */,
+				50B964AA2094DDEF00693471 /* metricas.c */,
+			);
+			name = "Métricas";
+			path = "Métricas";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,6 +223,7 @@
 				50AEC24C2093DFE700F4E0B0 /* numeroAleatorio.c in Sources */,
 				50AEC2572093E3AF00F4E0B0 /* descritorILBP.c in Sources */,
 				50AEC25D2093E55100F4E0B0 /* vetorDescritor.c in Sources */,
+				50B964AB2094DDEF00693471 /* metricas.c in Sources */,
 				50AEC2612094D9C700F4E0B0 /* pixels.c in Sources */,
 				5082AD00208CC26D00061F48 /* main.c in Sources */,
 			);

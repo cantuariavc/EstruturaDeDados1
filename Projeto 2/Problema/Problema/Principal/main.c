@@ -14,6 +14,7 @@
 #include "descritorGLCM.h"
 #include "vetorDescritor.h"
 #include "memoria.h"
+#include "metricas.h"
 #include "numeroAleatorio.h"
 #include "pixels.h"
 
@@ -79,9 +80,32 @@ int main(int argc, const char * argv[]) {
         } else if (periodoGramaTreinamento) {
             calculaMediaVetorGrama(a, frequenciaMediaGrama, vetorImagem);
         }
+        
+        int acertos = 0;
+        int falsaAceitacao = 0;
+        int falsaRejeicao = 0;
+        int classificacaoImagem = 2;
+        float taxaAcerto = 0.0;
+        float taxaFalsaAceitação = 0.0;
+        float taxaFalsaRejeicao = 0.0;
+        
+        if (periodoAsfaltoTeste) {
+            classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
+            if (classificacaoImagem == 0) {
+                acertos += 1;
+            } else {
+                falsaAceitacao += 1;
+            }
+        } else if (periodoGramaTeste) {
+            classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
+            if (classificacaoImagem == 1) {
+                acertos += 1;
+            } else {
+                falsaRejeicao += 1;
+            }
+        }
+        
         free(vetorImagem);
-        
-        
         liberaMatriz(imagemPrograma, quantidadeLinhas);
     }
     
