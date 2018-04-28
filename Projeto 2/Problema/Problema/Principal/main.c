@@ -9,20 +9,13 @@
 // Vinícius de Castro Cantuária - 14/0165169
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
 #include "arquivo.h"
 #include "descritorILBP.h"
 #include "descritorGLCM.h"
 #include "vetorDescritor.h"
 #include "memoria.h"
 #include "numeroAleatorio.h"
-
-void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP);
-void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP);
-void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP);
+#include "pixels.h"
 
 int main(int argc, const char * argv[]) {
     int *vetorNumerosTreinamento = alocaInt(25);
@@ -98,113 +91,5 @@ int main(int argc, const char * argv[]) {
     free(vetorNumerosTeste);
     
     return 0;
-}
-
-void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP) {
-    int **noroeste = alocaMatriz(256, 256);
-    int **norte = alocaMatriz(256, 256);
-    int **nordeste = alocaMatriz(256, 256);
-    int **oeste = alocaMatriz(256, 256);
-    int **leste = alocaMatriz(256, 256);
-    int **sudoeste = alocaMatriz(256, 256);
-    int **sul = alocaMatriz(256, 256);
-    int **sudeste = alocaMatriz(256, 256);
-    
-    for (int i = 1; i < (quantidadeLinhas - 1); i++) {
-        for (int j = 1; j < (quantidadeColunas - 1); j++) {
-            int **matrizDecimal = alocaMatriz(3, 3);
-
-            for (int k = 0; k < 3; k++) {
-                for (int l = 0; l < 3; l++) {
-                    *(*(matrizDecimal + k) + l) = *(*(imagemPrograma + (i + (k - 1))) + (j + (l - 1)));
-                }
-            }
-
-            converteMatrizDecimalBinario(matrizDecimal, frequenciaILBP);
-            calculaFrequenciasGLCM(matrizDecimal, noroeste, norte, nordeste, oeste, leste, sudoeste, sul, sudeste);
-
-            liberaMatriz(matrizDecimal, 3);
-        }
-    }
-    
-    liberaMatriz(noroeste, 256);
-    liberaMatriz(norte, 256);
-    liberaMatriz(nordeste, 256);
-    liberaMatriz(oeste, 256);
-    liberaMatriz(leste, 256);
-    liberaMatriz(sudoeste, 256);
-    liberaMatriz(sul, 256);
-    liberaMatriz(sudeste, 256);
-}
-
-void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
-    int media = 0;
-    
-    int **matrizBinaria = alocaMatriz(3, 3);
-    
-    for (int k = 0; k < 3; k++) {
-        for (int l = 0; l < 3; l++) {
-            media += *(*(matrizDecimal + k) + l);
-        }
-    }
-    
-    media /= 9;
-    
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            if (*(*(matrizDecimal + i) + j) >= media) {
-                *(*(matrizBinaria + i) + j) = 1;
-            } else {
-                *(*(matrizBinaria + i) + j) = 0;
-            }
-        }
-    }
-    
-    calculaMenorBinario(matrizBinaria, frequenciaILBP);
-    
-    liberaMatriz(matrizBinaria, 3);
-}
-
-void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
-    int *binario = alocaInt(9);
-    int indice = 0;
-    int expoente = 0;
-    int decimal = 0;
-    int menorNumero = 511;
-    
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++, indice++) {
-            *(binario + indice) = *(*(matrizBinaria + i) + j);
-        }
-    }
-    
-    for (int i = 0; i < 9; i++) {
-        expoente = 0;
-        decimal = 0;
-        
-        for (int j = 8; j >= 0; j--, expoente++) {
-            decimal += *(binario + j) * pow(2, expoente);
-        }
-        
-        if (decimal < menorNumero) {
-            menorNumero = decimal;
-        }
-        
-        int *binarioAuxiliar = alocaInt(9);
-
-        for (int j = 0; j < 8; j++) {
-            *(binarioAuxiliar + j) = *(binario + (j + 1));
-        }
-        *(binarioAuxiliar + 8) = *(binario);
-
-        for (int j = 0; j < 9; j++) {
-            *(binario + j) = *(binarioAuxiliar + j);
-        }
-        free(binarioAuxiliar);
-    }
-    
-    free(binario);
-    
-    calculaFrequenciaILBP(menorNumero, frequenciaILBP);
 }
 
