@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5082AD00208CC26D00061F48 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5082ACFF208CC26D00061F48 /* main.c */; };
+		50AEC24C2093DFE700F4E0B0 /* numeroAleatorio.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC24B2093DFE700F4E0B0 /* numeroAleatorio.c */; };
+		50AEC24F2093E0A300F4E0B0 /* memoria.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC24E2093E0A300F4E0B0 /* memoria.c */; };
+		50AEC2532093E1E300F4E0B0 /* arquivo.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC2522093E1E300F4E0B0 /* arquivo.c */; };
+		50AEC2572093E3AF00F4E0B0 /* descritorILBP.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC2562093E3AF00F4E0B0 /* descritorILBP.c */; };
+		50AEC25A2093E3CC00F4E0B0 /* descritorGLCM.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC2592093E3CC00F4E0B0 /* descritorGLCM.c */; };
+		50AEC25D2093E55100F4E0B0 /* vetorDescritor.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AEC25C2093E55100F4E0B0 /* vetorDescritor.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,18 @@
 /* Begin PBXFileReference section */
 		5082ACFC208CC26D00061F48 /* Problema */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Problema; sourceTree = BUILT_PRODUCTS_DIR; };
 		5082ACFF208CC26D00061F48 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		50AEC24A2093DFE700F4E0B0 /* numeroAleatorio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = numeroAleatorio.h; sourceTree = "<group>"; };
+		50AEC24B2093DFE700F4E0B0 /* numeroAleatorio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = numeroAleatorio.c; sourceTree = "<group>"; };
+		50AEC24D2093E0A300F4E0B0 /* memoria.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = memoria.h; sourceTree = "<group>"; };
+		50AEC24E2093E0A300F4E0B0 /* memoria.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = memoria.c; sourceTree = "<group>"; };
+		50AEC2512093E1E300F4E0B0 /* arquivo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arquivo.h; sourceTree = "<group>"; };
+		50AEC2522093E1E300F4E0B0 /* arquivo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = arquivo.c; sourceTree = "<group>"; };
+		50AEC2552093E3AF00F4E0B0 /* descritorILBP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = descritorILBP.h; sourceTree = "<group>"; };
+		50AEC2562093E3AF00F4E0B0 /* descritorILBP.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = descritorILBP.c; sourceTree = "<group>"; };
+		50AEC2582093E3CC00F4E0B0 /* descritorGLCM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = descritorGLCM.h; sourceTree = "<group>"; };
+		50AEC2592093E3CC00F4E0B0 /* descritorGLCM.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = descritorGLCM.c; sourceTree = "<group>"; };
+		50AEC25B2093E55100F4E0B0 /* vetorDescritor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vetorDescritor.h; sourceTree = "<group>"; };
+		50AEC25C2093E55100F4E0B0 /* vetorDescritor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vetorDescritor.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +75,63 @@
 		5082ACFE208CC26D00061F48 /* Problema */ = {
 			isa = PBXGroup;
 			children = (
-				5082ACFF208CC26D00061F48 /* main.c */,
+				50AEC2502093E1CF00F4E0B0 /* Arquivo */,
+				50AEC2542093E35400F4E0B0 /* Descritores de Imagem */,
+				50AEC2482093DF9D00F4E0B0 /* Memória */,
+				50AEC2492093DFB700F4E0B0 /* Número Aleatório */,
+				50AEC2472093DF8C00F4E0B0 /* Principal */,
 			);
 			path = Problema;
+			sourceTree = "<group>";
+		};
+		50AEC2472093DF8C00F4E0B0 /* Principal */ = {
+			isa = PBXGroup;
+			children = (
+				5082ACFF208CC26D00061F48 /* main.c */,
+			);
+			path = Principal;
+			sourceTree = "<group>";
+		};
+		50AEC2482093DF9D00F4E0B0 /* Memória */ = {
+			isa = PBXGroup;
+			children = (
+				50AEC24D2093E0A300F4E0B0 /* memoria.h */,
+				50AEC24E2093E0A300F4E0B0 /* memoria.c */,
+			);
+			name = "Memória";
+			path = "Memória";
+			sourceTree = "<group>";
+		};
+		50AEC2492093DFB700F4E0B0 /* Número Aleatório */ = {
+			isa = PBXGroup;
+			children = (
+				50AEC24A2093DFE700F4E0B0 /* numeroAleatorio.h */,
+				50AEC24B2093DFE700F4E0B0 /* numeroAleatorio.c */,
+			);
+			name = "Número Aleatório";
+			path = "Número Aleatório";
+			sourceTree = "<group>";
+		};
+		50AEC2502093E1CF00F4E0B0 /* Arquivo */ = {
+			isa = PBXGroup;
+			children = (
+				50AEC2512093E1E300F4E0B0 /* arquivo.h */,
+				50AEC2522093E1E300F4E0B0 /* arquivo.c */,
+			);
+			path = Arquivo;
+			sourceTree = "<group>";
+		};
+		50AEC2542093E35400F4E0B0 /* Descritores de Imagem */ = {
+			isa = PBXGroup;
+			children = (
+				50AEC2552093E3AF00F4E0B0 /* descritorILBP.h */,
+				50AEC2562093E3AF00F4E0B0 /* descritorILBP.c */,
+				50AEC2582093E3CC00F4E0B0 /* descritorGLCM.h */,
+				50AEC2592093E3CC00F4E0B0 /* descritorGLCM.c */,
+				50AEC25B2093E55100F4E0B0 /* vetorDescritor.h */,
+				50AEC25C2093E55100F4E0B0 /* vetorDescritor.c */,
+			);
+			path = "Descritores de Imagem";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +190,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AEC24F2093E0A300F4E0B0 /* memoria.c in Sources */,
+				50AEC2532093E1E300F4E0B0 /* arquivo.c in Sources */,
+				50AEC25A2093E3CC00F4E0B0 /* descritorGLCM.c in Sources */,
+				50AEC24C2093DFE700F4E0B0 /* numeroAleatorio.c in Sources */,
+				50AEC2572093E3AF00F4E0B0 /* descritorILBP.c in Sources */,
+				50AEC25D2093E55100F4E0B0 /* vetorDescritor.c in Sources */,
 				5082AD00208CC26D00061F48 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
