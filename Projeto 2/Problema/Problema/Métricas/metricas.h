@@ -9,8 +9,12 @@
 #ifndef metricas_h
 #define metricas_h
 
+#include <stdio.h>
 #include <math.h>
 
 int classificaImagem(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama);
+void calculaMetricas(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao);
+void calculaPorcentagemMetricas(int acertos, int falsaAceitacao, int falsaRejeicao, float *taxaAcerto, float *taxaFalsaAceitacao, float *taxaFalsaRejeicao);
+void mostraMetricas(float taxaAcerto, float taxaFalsaAceitacao, float taxaFalsaRejeicao);
 
 #endif /* metricas_h */

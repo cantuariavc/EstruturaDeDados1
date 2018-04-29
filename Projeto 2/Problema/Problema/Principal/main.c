@@ -30,6 +30,13 @@ int main(int argc, const char * argv[]) {
     int *frequenciaMediaAsfalto = alocaInt(536);
     int *frequenciaMediaGrama = alocaInt(536);
     
+    int acertos = 0;
+    int falsaAceitacao = 0;
+    int falsaRejeicao = 0;
+    float taxaAcerto = 0.0;
+    float taxaFalsaAceitacao = 0.0;
+    float taxaFalsaRejeicao = 0.0;
+    
     for (int a = 0; a < 100; a++) {
         char *numeroArquivo = alocaChar(7);
         char *nomeImagem = alocaChar(130);
@@ -79,30 +86,8 @@ int main(int argc, const char * argv[]) {
             calculaMediaVetorAsfalto(a, frequenciaMediaAsfalto, vetorImagem);
         } else if (periodoGramaTreinamento) {
             calculaMediaVetorGrama(a, frequenciaMediaGrama, vetorImagem);
-        }
-        
-        int acertos = 0;
-        int falsaAceitacao = 0;
-        int falsaRejeicao = 0;
-        int classificacaoImagem = 2;
-        float taxaAcerto = 0.0;
-        float taxaFalsaAceitação = 0.0;
-        float taxaFalsaRejeicao = 0.0;
-        
-        if (periodoAsfaltoTeste) {
-            classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
-            if (classificacaoImagem == 0) {
-                acertos += 1;
-            } else {
-                falsaAceitacao += 1;
-            }
-        } else if (periodoGramaTeste) {
-            classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
-            if (classificacaoImagem == 1) {
-                acertos += 1;
-            } else {
-                falsaRejeicao += 1;
-            }
+        } else if (periodoAsfaltoTeste || periodoGramaTeste) {
+            calculaMetricas(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama, periodoAsfaltoTeste, periodoGramaTeste, &acertos, &falsaAceitacao, &falsaRejeicao);
         }
         
         free(vetorImagem);
@@ -113,6 +98,9 @@ int main(int argc, const char * argv[]) {
     free(frequenciaMediaGrama);
     free(vetorNumerosTreinamento);
     free(vetorNumerosTeste);
+    
+    calculaPorcentagemMetricas(acertos, falsaAceitacao, falsaRejeicao, &taxaAcerto, &taxaFalsaAceitacao, &taxaFalsaRejeicao);
+    mostraMetricas(taxaAcerto, taxaFalsaAceitacao, taxaFalsaRejeicao);
     
     return 0;
 }

@@ -22,9 +22,45 @@ int classificaImagem(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequen
     }
     distanciaImagemComGrama = sqrtf(distanciaImagemComGrama);
     
-    if (distanciaImagemComAsfalto > distanciaImagemComGrama) {
+    if (distanciaImagemComAsfalto < distanciaImagemComGrama) {
         return 0;
     } else {
         return 1;
     }
 }
+
+void calculaMetricas(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao) {
+    int classificacaoImagem = 2;
+
+    if (periodoAsfaltoTeste) {
+        classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
+        if (classificacaoImagem == 0) {
+            acertos += 1;
+        } else {
+            falsaAceitacao += 1;
+        }
+    } else if (periodoGramaTeste) {
+        classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
+        if (classificacaoImagem == 1) {
+            acertos += 1;
+        } else {
+            falsaRejeicao += 1;
+        }
+    }
+}
+
+void calculaPorcentagemMetricas(int acertos, int falsaAceitacao, int falsaRejeicao, float *taxaAcerto, float *taxaFalsaAceitacao, float *taxaFalsaRejeicao) {
+    *taxaAcerto = (acertos / 50) * 100;
+    *taxaFalsaAceitacao = (falsaAceitacao / 25) * 100;
+    *taxaFalsaRejeicao = (falsaRejeicao / 25) * 100;
+}
+
+void mostraMetricas(float taxaAcerto, float taxaFalsaAceitacao, float taxaFalsaRejeicao) {
+    printf("\n\n");
+    printf("Métricas\n");
+    printf("Taxa de acerto: %.2f\n", taxaAcerto);
+    printf("Taxa de falsa aceitação: %.2f\n", taxaFalsaAceitacao);
+    printf("Taxa de falsa rejeição: %.2f\n", taxaFalsaRejeicao);
+    printf("\n");
+}
+
