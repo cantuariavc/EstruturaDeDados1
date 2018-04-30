@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include "numeroAleatorio.h"
 
 int classificaImagem(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama);
 void calculaMetricas(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao);
