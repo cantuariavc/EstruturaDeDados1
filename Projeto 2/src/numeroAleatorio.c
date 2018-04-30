@@ -24,12 +24,12 @@ void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste)
         *(vetorNumerosAleatorios + i) = numeroGerado;
     }
     
-    for (int i = 0; i < (QUANTIDADEIMAGENS / 2); i++) {
+    for (int i = 0; i < QUANTIDADETREINAMENTOS; i++) {
         *(vetorNumerosTreinamento + i) = *(vetorNumerosAleatorios + i);
     }
     
-    for (int i = 0; i < (QUANTIDADEIMAGENS / 2); i++) {
-        *(vetorNumerosTeste + i) = *(vetorNumerosAleatorios + (i + (QUANTIDADEIMAGENS / 2)));
+    for (int i = 0; i < QUANTIDADETESTES; i++) {
+        *(vetorNumerosTeste + i) = *(vetorNumerosAleatorios + (i + QUANTIDADETREINAMENTOS));
     }
     
     free(vetorNumerosAleatorios);

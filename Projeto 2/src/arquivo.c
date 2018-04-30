@@ -11,21 +11,21 @@
 void defineNumeroArquivo(int a, char* numeroArquivo, int *vetorNumerosTreinamento, int *vetorNumerosTeste, int periodoAsfaltoTreinamento, int periodoGramaTreinamento, int periodoAsfaltoTeste, int periodoGramaTeste) {
     int b = 0;
     
-    if (a < 25) {
+    if (periodoAsfaltoTreinamento) {
         b = a;
-    } else if (a >= 25 && a < 50){
-        b = (a - 25);
-    } else if (a >= 50 && a < 75) {
-        b = (a - 50);
-    } else if (a > 75) {
-        b = (a - 75);
+    } else if (periodoGramaTreinamento) {
+        b = (a - QUANTIDADETREINAMENTOS);
+    } else if (periodoAsfaltoTeste) {
+        b = (a - QUANTIDADEIMAGENS);
+    } else if (periodoGramaTeste) {
+        b = (a - (QUANTIDADEIMAGENS + QUANTIDADETESTES));
     }
     
     int numeroUmDigitoTreinamento = (*(vetorNumerosTreinamento + b) <= 9);
     int numeroDoisDigitosTreinamento = (*(vetorNumerosTreinamento + b) > 9);
     int numeroUmDigitoTeste = (*(vetorNumerosTeste + b) <= 9);
     int numeroDoisDigitosTeste = (*(vetorNumerosTeste + b) > 9);
-    
+
     if (periodoAsfaltoTreinamento) {
         if (numeroUmDigitoTreinamento) {
             sprintf(numeroArquivo, "%c%d%s", '0', *(vetorNumerosTreinamento + b), ".txt\0");

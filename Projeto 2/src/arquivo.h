@@ -11,6 +11,7 @@
 
 #include <string.h>
 #include "memoria.h"
+#include "numeroAleatorio.h"
 
 void defineNumeroArquivo(int a, char* numeroArquivo, int *vetorNumerosTreinamento, int *vetorNumerosTeste, int periodoAsfaltoTreinamento, int periodoGramaTreinamento, int periodoAsfaltoTeste, int periodoGramaTeste);
 void defineNomeArquivo(char *nomeImagem, char *tipoAsfalto, char *tipoGrama, char *numeroArquivo, int periodoAsfaltoTreinamento, int periodoGramaTreinamento, int periodoAsfaltoTeste, int periodoGramaTeste);

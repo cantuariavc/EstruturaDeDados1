@@ -17,14 +17,18 @@
 #include "metricas.h"
 #include "numeroAleatorio.h"
 #include "pixels.h"
-#define QUANTIDADEIMAGENS 50
 #define TAMANHOVETOR 536
 #define TAMANHOILBP 512
 #define TAMANHOGLCM 24
 
+// Em numerosAleatorios.h
+// QUANTIDADEIMAGENS 50
+// QUANTIDADETREINAMENTOS 25
+// QUANTIDADETESTES 25
+
 int main(int argc, const char * argv[]) {
-    int *vetorNumerosTreinamento = alocaInt(QUANTIDADEIMAGENS / 2);
-    int *vetorNumerosTeste = alocaInt(QUANTIDADEIMAGENS / 2);
+    int *vetorNumerosTreinamento = alocaInt(QUANTIDADETREINAMENTOS);
+    int *vetorNumerosTeste = alocaInt(QUANTIDADETESTES);
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
     char caminhoArquivo[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/";
@@ -41,15 +45,15 @@ int main(int argc, const char * argv[]) {
     float taxaFalsaAceitacao = 0.0;
     float taxaFalsaRejeicao = 0.0;
     
-    for (int a = 0; a < 100; a++) {
+    for (int a = 0; a < (QUANTIDADEIMAGENS * 2); a++) {
         char *numeroArquivo = alocaChar(7);
         char *nomeImagem = alocaChar(130);
         strcat(nomeImagem, caminhoArquivo);
 
-        int periodoAsfaltoTreinamento = (a < 25);
-        int periodoGramaTreinamento = (a >= 25 && a < 50);
-        int periodoAsfaltoTeste = (a >= 50 && a < 75);
-        int periodoGramaTeste = (a >= 75);
+        int periodoAsfaltoTreinamento = (a < QUANTIDADETREINAMENTOS);  // 0/4 - 1/4
+        int periodoGramaTreinamento = (a >= QUANTIDADETREINAMENTOS && a < QUANTIDADEIMAGENS);  // 1/4 - 2/4
+        int periodoAsfaltoTeste = (a >= QUANTIDADEIMAGENS && a < (QUANTIDADEIMAGENS + QUANTIDADETESTES));   // 2/4 - 3/4
+        int periodoGramaTeste = (a >= (QUANTIDADEIMAGENS + QUANTIDADETESTES)); // 3/4 - 4/4
         
         defineNumeroArquivo(a, numeroArquivo, vetorNumerosTreinamento, vetorNumerosTeste, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);
         defineNomeArquivo(nomeImagem, tipoAsfalto, tipoGrama, numeroArquivo, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);
