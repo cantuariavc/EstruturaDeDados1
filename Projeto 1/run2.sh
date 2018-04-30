@@ -1,1 +1,1 @@
-cd Problema\ 2/Problema\ 2 && gcc main.c -o main.out && ./main.out
+cd src2/ && gcc main.c -o main.out && ./main.out
