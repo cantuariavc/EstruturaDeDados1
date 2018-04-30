@@ -11,25 +11,25 @@
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste) {
     srand((unsigned int)time(NULL));
     
-    int *vetorNumerosAleatorios = alocaInt(50);
+    int *vetorNumerosAleatorios = alocaInt(QUANTIDADEIMAGENS);
     int numeroGerado = 0;
     
-    for (int i = 0; i < 50; i++) {
-        numeroGerado = 1 + (rand() % 50);
+    for (int i = 0; i < QUANTIDADEIMAGENS; i++) {
+        numeroGerado = 1 + (rand() % QUANTIDADEIMAGENS);
         
         while (eNumeroExistente(vetorNumerosAleatorios, i, numeroGerado)) {
-            numeroGerado = 1 + (rand() % 50);
+            numeroGerado = 1 + (rand() % QUANTIDADEIMAGENS);
         }
         
         *(vetorNumerosAleatorios + i) = numeroGerado;
     }
     
-    for (int i = 0; i < 25; i++) {
+    for (int i = 0; i < (QUANTIDADEIMAGENS / 2); i++) {
         *(vetorNumerosTreinamento + i) = *(vetorNumerosAleatorios + i);
     }
     
-    for (int i = 0; i < 25; i++) {
-        *(vetorNumerosTeste + i) = *(vetorNumerosAleatorios + (i + 25));
+    for (int i = 0; i < (QUANTIDADEIMAGENS / 2); i++) {
+        *(vetorNumerosTeste + i) = *(vetorNumerosAleatorios + (i + (QUANTIDADEIMAGENS / 2)));
     }
     
     free(vetorNumerosAleatorios);

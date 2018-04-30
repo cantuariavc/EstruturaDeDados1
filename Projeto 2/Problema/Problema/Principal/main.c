@@ -17,18 +17,22 @@
 #include "metricas.h"
 #include "numeroAleatorio.h"
 #include "pixels.h"
+#define QUANTIDADEIMAGENS 50
+#define TAMANHOVETOR 536
+#define TAMANHOILBP 512
+#define TAMANHOGLCM 24
 
 int main(int argc, const char * argv[]) {
-    int *vetorNumerosTreinamento = alocaInt(25);
-    int *vetorNumerosTeste = alocaInt(25);
+    int *vetorNumerosTreinamento = alocaInt(QUANTIDADEIMAGENS / 2);
+    int *vetorNumerosTeste = alocaInt(QUANTIDADEIMAGENS / 2);
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
     char caminhoArquivo[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/";
     char tipoAsfalto[] = "asphalt/texts/asphalt_";
     char tipoGrama[] = "grass/texts/grass_";
     
-    int *frequenciaMediaAsfalto = alocaInt(536);
-    int *frequenciaMediaGrama = alocaInt(536);
+    int *frequenciaMediaAsfalto = alocaInt(TAMANHOVETOR);
+    int *frequenciaMediaGrama = alocaInt(TAMANHOVETOR);
     
     int acertos = 0;
     int falsaAceitacao = 0;
@@ -50,8 +54,6 @@ int main(int argc, const char * argv[]) {
         defineNumeroArquivo(a, numeroArquivo, vetorNumerosTreinamento, vetorNumerosTeste, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);
         defineNomeArquivo(nomeImagem, tipoAsfalto, tipoGrama, numeroArquivo, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);
         free(numeroArquivo);
-
-        printf("%s\n\n", nomeImagem);
         
         FILE *imagemTexto = fopen(nomeImagem, "r");
         verificaAlocacaoArquivo(imagemTexto);
@@ -66,15 +68,15 @@ int main(int argc, const char * argv[]) {
         transfereImagemTextoPrograma(imagemTexto, imagemPrograma, quantidadeLinhas, quantidadeColunas);
         fclose(imagemTexto);
 
-        int *frequenciaILBP = alocaInt(512);
-        int *metricasGLCM = alocaInt(24);
+        int *frequenciaILBP = alocaInt(TAMANHOILBP);
+        int *metricasGLCM = alocaInt(TAMANHOGLCM);
         calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP, metricasGLCM);
 
-        int *vetorImagem = alocaInt(536);
-        for (int i = 0; i < 512; i++) {
+        int *vetorImagem = alocaInt(TAMANHOVETOR);
+        for (int i = 0; i < TAMANHOILBP; i++) {
             *(vetorImagem + i) = *(frequenciaILBP + i);
         }
-        for (int i = 512; i < 536; i++) {
+        for (int i = TAMANHOILBP; i < TAMANHOVETOR; i++) {
             *(vetorImagem + i) = *(metricasGLCM + i);
         }
         free(frequenciaILBP);

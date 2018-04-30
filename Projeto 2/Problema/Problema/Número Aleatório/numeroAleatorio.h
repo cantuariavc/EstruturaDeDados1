@@ -11,6 +11,7 @@
 
 #include <time.h>
 #include "memoria.h"
+#define QUANTIDADEIMAGENS 50
 
 void geraNumerosAleatorios(int *vetorNumerosTreinamento, int *vetorNumerosTeste);
 int eNumeroExistente(int *vetorNumerosAleatorios, int tamanho, int numeroGerado);
