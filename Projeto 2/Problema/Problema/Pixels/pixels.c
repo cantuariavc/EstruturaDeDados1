@@ -7,8 +7,9 @@
 //
 
 #include "pixels.h"
+#include "descritorGLCM.h"
 
-void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP) {
+void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP, int *metricasGLCM) {
     int **noroeste = alocaMatriz(256, 256);
     int **norte = alocaMatriz(256, 256);
     int **nordeste = alocaMatriz(256, 256);
@@ -34,6 +35,33 @@ void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quan
             liberaMatriz(matrizDecimal, 3);
         }
     }
+    
+    *(metricasGLCM + 0) = calculaContraste(noroeste);
+    *(metricasGLCM + 1) = calculaContraste(norte);
+    *(metricasGLCM + 2) = calculaContraste(nordeste);
+    *(metricasGLCM + 3) = calculaContraste(oeste);
+    *(metricasGLCM + 4) = calculaContraste(leste);
+    *(metricasGLCM + 5) = calculaContraste(sudoeste);
+    *(metricasGLCM + 6) = calculaContraste(sul);
+    *(metricasGLCM + 7) = calculaContraste(sudeste);
+    
+    *(metricasGLCM + 8) = calculaEnergia(noroeste);
+    *(metricasGLCM + 9) = calculaEnergia(norte);
+    *(metricasGLCM + 10) = calculaEnergia(nordeste);
+    *(metricasGLCM + 11) = calculaEnergia(oeste);
+    *(metricasGLCM + 12) = calculaEnergia(leste);
+    *(metricasGLCM + 13) = calculaEnergia(sudoeste);
+    *(metricasGLCM + 14) = calculaEnergia(sul);
+    *(metricasGLCM + 15) = calculaEnergia(sudeste);
+                                           
+    *(metricasGLCM + 16) = calculaHomogeneidade(noroeste);
+    *(metricasGLCM + 17) = calculaHomogeneidade(norte);
+    *(metricasGLCM + 18) = calculaHomogeneidade(nordeste);
+    *(metricasGLCM + 19) = calculaHomogeneidade(oeste);
+    *(metricasGLCM + 20) = calculaHomogeneidade(leste);
+    *(metricasGLCM + 21) = calculaHomogeneidade(sudoeste);
+    *(metricasGLCM + 22) = calculaHomogeneidade(sul);
+    *(metricasGLCM + 23) = calculaHomogeneidade(sudeste);
     
     liberaMatriz(noroeste, 256);
     liberaMatriz(norte, 256);

@@ -9,6 +9,12 @@
 #ifndef descritorGLCM_h
 #define descritorGLCM_h
 
+#include <stdlib.h>
+#include <math.h>
+
 void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, int **nordeste, int **oeste, int **leste, int **sudoeste, int **sul, int **sudeste);
+int calculaContraste(int **matriz);
+int calculaEnergia(int **matriz);
+int calculaHomogeneidade(int **matriz);
 
 #endif /* descritorGLCM_h */

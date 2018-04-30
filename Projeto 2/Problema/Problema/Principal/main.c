@@ -68,7 +68,7 @@ int main(int argc, const char * argv[]) {
 
         int *frequenciaILBP = alocaInt(512);
         int *metricasGLCM = alocaInt(24);
-        calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP);
+        calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP, metricasGLCM);
 
         int *vetorImagem = alocaInt(536);
         for (int i = 0; i < 512; i++) {
