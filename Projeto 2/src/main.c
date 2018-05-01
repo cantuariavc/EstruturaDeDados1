@@ -31,7 +31,7 @@ int main(int argc, const char * argv[]) {
     int *vetorNumerosTeste = alocaInt(QUANTIDADETESTES);
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
-    char caminhoArquivo[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/";
+    char caminhoArquivo[] = "../DataSet/";
     char tipoAsfalto[] = "asphalt/asphalt_";
     char tipoGrama[] = "grass/grass_";
     
