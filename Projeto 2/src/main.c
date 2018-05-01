@@ -32,8 +32,8 @@ int main(int argc, const char * argv[]) {
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
     char caminhoArquivo[] = "/Users/cantuariavc/Desktop/Estrutura de Dados 1/GitHub/EstruturaDeDados1/Projeto 2/DataSet/";
-    char tipoAsfalto[] = "asphalt/texts/asphalt_";
-    char tipoGrama[] = "grass/texts/grass_";
+    char tipoAsfalto[] = "asphalt/asphalt_";
+    char tipoGrama[] = "grass/grass_";
     
     int *frequenciaMediaAsfalto = alocaInt(TAMANHOVETOR);
     int *frequenciaMediaGrama = alocaInt(TAMANHOVETOR);
@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
     
     for (int a = 0; a < (QUANTIDADEIMAGENS * 2); a++) {
         char *numeroArquivo = alocaChar(7);
-        char *nomeImagem = alocaChar(130);
+        char *nomeImagem = alocaChar(sizeof(caminhoArquivo) + sizeof(tipoAsfalto) + 7);
         strcat(nomeImagem, caminhoArquivo);
 
         int periodoAsfaltoTreinamento = (a < QUANTIDADETREINAMENTOS);  // 0/4 - 1/4
