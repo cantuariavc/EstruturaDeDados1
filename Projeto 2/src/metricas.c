@@ -9,8 +9,8 @@
 #include "metricas.h"
 
 int classificaImagem(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama) {
-    float distanciaImagemComAsfalto = 0.0;
-    float distanciaImagemComGrama = 0.0;
+    double distanciaImagemComAsfalto = 0.0;
+    double distanciaImagemComGrama = 0.0;
     
     for (int i = 0; i < 536; i++) {
         distanciaImagemComAsfalto += pow((*(vetorImagem + i) - *(frequenciaMediaAsfalto + i)), 2);
@@ -22,10 +22,10 @@ int classificaImagem(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequen
     }
     distanciaImagemComGrama = sqrtf(distanciaImagemComGrama);
     
-    if (distanciaImagemComAsfalto < distanciaImagemComGrama) {
-        return 0;
-    } else {
+    if (distanciaImagemComGrama < distanciaImagemComAsfalto) {
         return 1;
+    } else {
+        return 0;
     }
 }
 
@@ -36,14 +36,14 @@ void calculaMetricas(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequen
         classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
         if (classificacaoImagem == 0) {
             *acertos += 1;
-        } else {
+        } else if (classificacaoImagem == 1) {
             *falsaAceitacao += 1;
         }
     } else if (periodoGramaTeste) {
         classificacaoImagem = classificaImagem(vetorImagem, frequenciaMediaAsfalto, frequenciaMediaGrama);
         if (classificacaoImagem == 1) {
             *acertos += 1;
-        } else {
+        } else if (classificacaoImagem == 0) {
             *falsaRejeicao += 1;
         }
     }
@@ -56,7 +56,6 @@ void calculaPorcentagemMetricas(int acertos, int falsaAceitacao, int falsaRejeic
 }
 
 void mostraMetricas(float taxaAcerto, float taxaFalsaAceitacao, float taxaFalsaRejeicao) {
-    printf("\n\n");
     printf("Métricas\n");
     printf("Taxa de acerto: %.2f\n", taxaAcerto);
     printf("Taxa de falsa aceitação: %.2f\n", taxaFalsaAceitacao);
