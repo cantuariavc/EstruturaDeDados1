@@ -29,10 +29,14 @@ void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quan
                 }
             }
             
-            converteMatrizDecimalBinario(matrizDecimal, frequenciaILBP);
+            int **matrizBinaria = converteMatrizDecimalBinario(matrizDecimal);
+            int menorNumero = calculaMenorNumero(matrizBinaria);
+
+            calculaFrequenciaILBP(menorNumero, frequenciaILBP);
             calculaFrequenciasGLCM(matrizDecimal, noroeste, norte, nordeste, oeste, leste, sudoeste, sul, sudeste);
             
             liberaMatriz(matrizDecimal, 3);
+            liberaMatriz(matrizBinaria, 3);
         }
     }
     

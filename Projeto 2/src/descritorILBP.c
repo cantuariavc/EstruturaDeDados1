@@ -8,7 +8,7 @@
 
 #include "descritorILBP.h"
 
-void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
+int **converteMatrizDecimalBinario(int **matrizDecimal) {
     int media = 0;
     
     int **matrizBinaria = alocaMatriz(3, 3);
@@ -31,12 +31,10 @@ void converteMatrizDecimalBinario(int **matrizDecimal, int *frequenciaILBP) {
         }
     }
     
-    calculaMenorBinario(matrizBinaria, frequenciaILBP);
-    
-    liberaMatriz(matrizBinaria, 3);
+    return matrizBinaria;
 }
 
-void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
+int calculaMenorNumero(int **matrizBinaria) {
     int *binario = alocaInt(9);
     int indice = 0;
     int expoente = 0;
@@ -73,10 +71,10 @@ void calculaMenorBinario(int **matrizBinaria, int *frequenciaILBP) {
         }
         free(binarioAuxiliar);
     }
-    
+
     free(binario);
     
-    calculaFrequenciaILBP(menorNumero, frequenciaILBP);
+    return menorNumero;
 }
 
 

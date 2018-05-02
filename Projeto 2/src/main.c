@@ -12,20 +12,13 @@
 #include "arquivo.h"
 #include "descritorILBP.h"
 #include "descritorGLCM.h"
-#include "vetorDescritor.h"
+#include "vetorDescritor.h"     // TAMANHOVETOR 536
 #include "memoria.h"
 #include "metricas.h"
-#include "numeroAleatorio.h"
+#include "numeroAleatorio.h"    // QUANTIDADEIMAGENS 50     QUANTIDADETREINAMENTOSTESTES 25
 #include "pixels.h"
 #define TAMANHOILBP 512
 #define TAMANHOGLCM 24
-
-// Em vetorDescritor.h
-// TAMANHOVETOR 536
-
-// Em numerosAleatorios.h
-// QUANTIDADEIMAGENS 50
-// QUANTIDADETREINAMENTOSTESTES 25
 
 int main(int argc, const char * argv[]) {
     int *vetorNumerosTreinamento = alocaInt(QUANTIDADETREINAMENTOSTESTES);
