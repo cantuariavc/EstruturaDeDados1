@@ -7,7 +7,6 @@
 //
 
 #include "pixels.h"
-#include "descritorGLCM.h"
 
 void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP, int *metricasGLCM) {
     int **noroeste = alocaMatriz(256, 256);
@@ -41,30 +40,35 @@ void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quan
     }
     
     *(metricasGLCM + 0) = calculaContraste(noroeste);
-    *(metricasGLCM + 1) = calculaContraste(norte);
-    *(metricasGLCM + 2) = calculaContraste(nordeste);
-    *(metricasGLCM + 3) = calculaContraste(oeste);
-    *(metricasGLCM + 4) = calculaContraste(leste);
-    *(metricasGLCM + 5) = calculaContraste(sudoeste);
-    *(metricasGLCM + 6) = calculaContraste(sul);
-    *(metricasGLCM + 7) = calculaContraste(sudeste);
-    
-    *(metricasGLCM + 8) = calculaEnergia(noroeste);
-    *(metricasGLCM + 9) = calculaEnergia(norte);
-    *(metricasGLCM + 10) = calculaEnergia(nordeste);
-    *(metricasGLCM + 11) = calculaEnergia(oeste);
-    *(metricasGLCM + 12) = calculaEnergia(leste);
-    *(metricasGLCM + 13) = calculaEnergia(sudoeste);
-    *(metricasGLCM + 14) = calculaEnergia(sul);
-    *(metricasGLCM + 15) = calculaEnergia(sudeste);
-                                           
-    *(metricasGLCM + 16) = calculaHomogeneidade(noroeste);
-    *(metricasGLCM + 17) = calculaHomogeneidade(norte);
-    *(metricasGLCM + 18) = calculaHomogeneidade(nordeste);
-    *(metricasGLCM + 19) = calculaHomogeneidade(oeste);
-    *(metricasGLCM + 20) = calculaHomogeneidade(leste);
-    *(metricasGLCM + 21) = calculaHomogeneidade(sudoeste);
-    *(metricasGLCM + 22) = calculaHomogeneidade(sul);
+    *(metricasGLCM + 1) = calculaEnergia(noroeste);
+    *(metricasGLCM + 2) = calculaHomogeneidade(noroeste);
+
+    *(metricasGLCM + 3) = calculaContraste(norte);
+    *(metricasGLCM + 4) = calculaEnergia(norte);
+    *(metricasGLCM + 5) = calculaHomogeneidade(norte);
+
+    *(metricasGLCM + 6) = calculaContraste(nordeste);
+    *(metricasGLCM + 7) = calculaEnergia(nordeste);
+    *(metricasGLCM + 8) = calculaHomogeneidade(nordeste);
+
+    *(metricasGLCM + 9) = calculaContraste(oeste);
+    *(metricasGLCM + 10) = calculaEnergia(oeste);
+    *(metricasGLCM + 11) = calculaHomogeneidade(oeste);
+
+    *(metricasGLCM + 12) = calculaContraste(leste);
+    *(metricasGLCM + 13) = calculaEnergia(leste);
+    *(metricasGLCM + 14) = calculaHomogeneidade(leste);
+
+    *(metricasGLCM + 15) = calculaContraste(sudoeste);
+    *(metricasGLCM + 16) = calculaEnergia(sudoeste);
+    *(metricasGLCM + 17) = calculaHomogeneidade(sudoeste);
+
+    *(metricasGLCM + 18) = calculaContraste(sul);
+    *(metricasGLCM + 19) = calculaEnergia(sul);
+    *(metricasGLCM + 20) = calculaHomogeneidade(sul);
+
+    *(metricasGLCM + 21) = calculaContraste(sudeste);
+    *(metricasGLCM + 22) = calculaEnergia(sudeste);
     *(metricasGLCM + 23) = calculaHomogeneidade(sudeste);
     
     liberaMatriz(noroeste, 256);
