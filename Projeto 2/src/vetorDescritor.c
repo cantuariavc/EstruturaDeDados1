@@ -41,7 +41,7 @@ void calculaMediaVetorAsfalto(int a, double *frequenciaMediaAsfalto, int *vetorI
 }
 
 void calculaMediaVetorGrama(int a, double *frequenciaMediaGrama, int *vetorImagem) {
-    if (a == 25) {
+    if (a == QUANTIDADETREINAMENTOSTESTES) {
         for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaGrama + i) = *(vetorImagem + i);
         }

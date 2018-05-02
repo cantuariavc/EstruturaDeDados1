@@ -25,12 +25,11 @@
 
 // Em numerosAleatorios.h
 // QUANTIDADEIMAGENS 50
-// QUANTIDADETREINAMENTOS 25
-// QUANTIDADETESTES 25
+// QUANTIDADETREINAMENTOSTESTES 25
 
 int main(int argc, const char * argv[]) {
-    int *vetorNumerosTreinamento = alocaInt(QUANTIDADETREINAMENTOS);
-    int *vetorNumerosTeste = alocaInt(QUANTIDADETESTES);
+    int *vetorNumerosTreinamento = alocaInt(QUANTIDADETREINAMENTOSTESTES);
+    int *vetorNumerosTeste = alocaInt(QUANTIDADETREINAMENTOSTESTES);
     geraNumerosAleatorios(vetorNumerosTreinamento, vetorNumerosTeste);
     
     char caminhoArquivo[] = "../DataSet/";
@@ -52,10 +51,10 @@ int main(int argc, const char * argv[]) {
         char *nomeImagem = alocaChar(sizeof(caminhoArquivo) + sizeof(tipoAsfalto) + 7);
         strcat(nomeImagem, caminhoArquivo);
 
-        int periodoAsfaltoTreinamento = (a < QUANTIDADETREINAMENTOS);  // 0/4 - 1/4
-        int periodoGramaTreinamento = (a >= QUANTIDADETREINAMENTOS && a < QUANTIDADEIMAGENS);  // 1/4 - 2/4
-        int periodoAsfaltoTeste = (a >= QUANTIDADEIMAGENS && a < (QUANTIDADEIMAGENS + QUANTIDADETESTES));   // 2/4 - 3/4
-        int periodoGramaTeste = (a >= (QUANTIDADEIMAGENS + QUANTIDADETESTES)); // 3/4 - 4/4
+        int periodoAsfaltoTreinamento = (a < QUANTIDADETREINAMENTOSTESTES);  // 0/4 - 1/4
+        int periodoGramaTreinamento = (a >= QUANTIDADETREINAMENTOSTESTES && a < QUANTIDADEIMAGENS);  // 1/4 - 2/4
+        int periodoAsfaltoTeste = (a >= QUANTIDADEIMAGENS && a < (QUANTIDADEIMAGENS + QUANTIDADETREINAMENTOSTESTES));   // 2/4 - 3/4
+        int periodoGramaTeste = (a >= (QUANTIDADEIMAGENS + QUANTIDADETREINAMENTOSTESTES)); // 3/4 - 4/4
         
         defineNumeroArquivo(a, numeroArquivo, vetorNumerosTreinamento, vetorNumerosTeste, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);
         defineNomeArquivo(nomeImagem, tipoAsfalto, tipoGrama, numeroArquivo, periodoAsfaltoTreinamento, periodoGramaTreinamento, periodoAsfaltoTeste, periodoGramaTeste);

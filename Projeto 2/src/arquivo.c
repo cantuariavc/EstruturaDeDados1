@@ -14,11 +14,11 @@ void defineNumeroArquivo(int a, char* numeroArquivo, int *vetorNumerosTreinament
     if (periodoAsfaltoTreinamento) {
         b = a;
     } else if (periodoGramaTreinamento) {
-        b = (a - QUANTIDADETREINAMENTOS);
+        b = (a - QUANTIDADETREINAMENTOSTESTES);
     } else if (periodoAsfaltoTeste) {
         b = (a - QUANTIDADEIMAGENS);
     } else if (periodoGramaTeste) {
-        b = (a - (QUANTIDADEIMAGENS + QUANTIDADETESTES));
+        b = (a - (QUANTIDADEIMAGENS + QUANTIDADETREINAMENTOSTESTES));
     }
     
     int numeroUmDigitoTreinamento = (*(vetorNumerosTreinamento + b) <= 9);

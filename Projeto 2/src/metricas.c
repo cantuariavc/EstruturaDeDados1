@@ -51,8 +51,8 @@ void calculaMetricas(int *vetorImagem, double *frequenciaMediaAsfalto, double *f
 
 void calculaPorcentagemMetricas(int acertos, int falsaAceitacao, int falsaRejeicao, float *taxaAcerto, float *taxaFalsaAceitacao, float *taxaFalsaRejeicao) {
     *taxaAcerto = ((float) acertos / QUANTIDADEIMAGENS) * 100;
-    *taxaFalsaAceitacao = ((float) falsaAceitacao / QUANTIDADETESTES) * 100;
-    *taxaFalsaRejeicao = ((float) falsaRejeicao / QUANTIDADETESTES) * 100;
+    *taxaFalsaAceitacao = ((float) falsaAceitacao / QUANTIDADETREINAMENTOSTESTES) * 100;
+    *taxaFalsaRejeicao = ((float) falsaRejeicao / QUANTIDADETREINAMENTOSTESTES) * 100;
 }
 
 void mostraMetricas(float taxaAcerto, float taxaFalsaAceitacao, float taxaFalsaRejeicao) {

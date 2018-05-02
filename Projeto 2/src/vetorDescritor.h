@@ -9,6 +9,7 @@
 #ifndef vetorDescritor_h
 #define vetorDescritor_h
 
+#include "numeroAleatorio.h"
 #define TAMANHOVETOR 536
 
 void normalizaVetor(int *vetor);
