@@ -17,9 +17,11 @@
 #include "metricas.h"
 #include "numeroAleatorio.h"
 #include "pixels.h"
-#define TAMANHOVETOR 536
 #define TAMANHOILBP 512
 #define TAMANHOGLCM 24
+
+// Em vetorDescritor.h
+// TAMANHOVETOR 536
 
 // Em numerosAleatorios.h
 // QUANTIDADEIMAGENS 50
@@ -35,8 +37,8 @@ int main(int argc, const char * argv[]) {
     char tipoAsfalto[] = "asphalt/asphalt_";
     char tipoGrama[] = "grass/grass_";
     
-    int *frequenciaMediaAsfalto = alocaInt(TAMANHOVETOR);
-    int *frequenciaMediaGrama = alocaInt(TAMANHOVETOR);
+    double *frequenciaMediaAsfalto = alocaDouble(TAMANHOVETOR);
+    double *frequenciaMediaGrama = alocaDouble(TAMANHOVETOR);
     
     int acertos = 0;
     int falsaAceitacao = 0;

@@ -9,8 +9,10 @@
 #ifndef vetorDescritor_h
 #define vetorDescritor_h
 
+#define TAMANHOVETOR 536
+
 void normalizaVetor(int *vetor);
-void calculaMediaVetorAsfalto(int a, int *frequenciaMediaAsfalto, int *vetorImagem);
-void calculaMediaVetorGrama(int a, int *frequenciaMediaGrama, int *vetorImagem);
+void calculaMediaVetorAsfalto(int a, double *frequenciaMediaAsfalto, int *vetorImagem);
+void calculaMediaVetorGrama(int a, double *frequenciaMediaGrama, int *vetorImagem);
 
 #endif /* vetorDescritor_h */

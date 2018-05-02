@@ -15,6 +15,13 @@ int *alocaInt(int tamanho) {
     return vetorInt;
 }
 
+double *alocaDouble(int tamanho) {
+    double *vetorDouble = (double *) calloc(tamanho, sizeof(double));
+    verificaAlocacaoDouble(vetorDouble);
+    
+    return vetorDouble;
+}
+
 char *alocaChar(int tamanho) {
     char *vetorChar = (char *) calloc(tamanho, sizeof(char));
     verificaAlocacaoChar(vetorChar);
@@ -37,6 +44,13 @@ int **alocaMatriz(int quantidadeLinhas, int quantidadeColunas) {
 void verificaAlocacaoInt(int *vetorAlocado) {
     if (vetorAlocado == NULL) {
         printf("Erro na alocação da memória do vetor int!\n");
+        exit(1);
+    }
+}
+
+void verificaAlocacaoDouble(double *vetorAlocado) {
+    if (vetorAlocado == NULL) {
+        printf("Erro na alocação da memória do vetor double!\n");
         exit(1);
     }
 }

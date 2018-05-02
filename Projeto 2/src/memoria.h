@@ -13,10 +13,12 @@
 #include <stdlib.h>
 
 int *alocaInt(int tamanho);
+double *alocaDouble(int tamanho);
 char *alocaChar(int tamanho);
 int **alocaMatriz(int quantidadeLinhas, int quantidadeColunas);
 
 void verificaAlocacaoInt(int *vetorAlocado);
+void verificaAlocacaoDouble(double *vetorAlocado);
 void verificaAlocacaoChar(char *vetorAlocado);
 void verificaAlocacaoMatriz(int **matrizAlocada);
 void verificaAlocacaoArquivo(FILE *imagemTexto);

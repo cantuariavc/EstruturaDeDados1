@@ -9,43 +9,44 @@
 #include "vetorDescritor.h"
 
 void normalizaVetor(int *vetor) {
-    int minimo = 535;
+    int minimo = 0;
     int maximo = 0;
     
-    for (int i = 0; i < 536; i++) {
-        if (*(vetor + i) < minimo) {
-            minimo = *(vetor + i);
-        }
-        
+    for (int i = 0; i < TAMANHOVETOR; i++) {
         if (*(vetor + i) > maximo) {
             maximo = *(vetor + i);
         }
+        
+        minimo = maximo;
+        if (*(vetor + i) < minimo) {
+            minimo = *(vetor + i);
+        }
     }
     
-    for (int i = 0; i < 536; i++) {
+    for (int i = 0; i < TAMANHOVETOR; i++) {
         *(vetor + i) = (*(vetor + i) - minimo) / (maximo - minimo);
     }
 }
 
-void calculaMediaVetorAsfalto(int a, int *frequenciaMediaAsfalto, int *vetorImagem) {
+void calculaMediaVetorAsfalto(int a, double *frequenciaMediaAsfalto, int *vetorImagem) {
     if (a == 0) {
-        for (int i = 0; i < sizeof(frequenciaMediaAsfalto); i++) {
+        for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaAsfalto + i) = *(vetorImagem + i);
         }
     } else {
-        for (int i = 0; i < sizeof(frequenciaMediaAsfalto); i++) {
+        for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaAsfalto + i) = (*(frequenciaMediaAsfalto + i) + *(vetorImagem + i)) / 2;
         }
     }
 }
 
-void calculaMediaVetorGrama(int a, int *frequenciaMediaGrama, int *vetorImagem) {
+void calculaMediaVetorGrama(int a, double *frequenciaMediaGrama, int *vetorImagem) {
     if (a == 25) {
-        for (int i = 0; i < sizeof(frequenciaMediaGrama); i++) {
+        for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaGrama + i) = *(vetorImagem + i);
         }
     } else {
-        for (int i = 0; i < sizeof(frequenciaMediaGrama); i++) {
+        for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaGrama + i) = (*(frequenciaMediaGrama + i) + *(vetorImagem + i)) / 2;
         }
     }

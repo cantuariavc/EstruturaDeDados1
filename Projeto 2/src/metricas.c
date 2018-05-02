@@ -8,7 +8,7 @@
 
 #include "metricas.h"
 
-int classificaImagem(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama) {
+int classificaImagem(int *vetorImagem, double *frequenciaMediaAsfalto, double *frequenciaMediaGrama) {
     double distanciaImagemComAsfalto = 0.0;
     double distanciaImagemComGrama = 0.0;
     
@@ -29,7 +29,7 @@ int classificaImagem(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequen
     }
 }
 
-void calculaMetricas(int *vetorImagem, int *frequenciaMediaAsfalto, int *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao) {
+void calculaMetricas(int *vetorImagem, double *frequenciaMediaAsfalto, double *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao) {
     int classificacaoImagem = 2;
 
     if (periodoAsfaltoTeste) {
