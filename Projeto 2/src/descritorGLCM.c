@@ -23,14 +23,14 @@ float calculaContraste(int **matriz) {
     int somaValores = 0;
     float contraste = 0.0;
     
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < TAMANHOMATRIZGLCM; i++) {
+        for (int j = 0; j < TAMANHOMATRIZGLCM; j++) {
             somaValores += *(*(matriz + i) + j);
         }
     }
     
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < TAMANHOMATRIZGLCM; i++) {
+        for (int j = 0; j < TAMANHOMATRIZGLCM; j++) {
             contraste += pow((i - j), 2) * ((float) *(*(matriz + i) + j) / somaValores);
         }
     }
@@ -38,12 +38,19 @@ float calculaContraste(int **matriz) {
     return contraste;
 }
 
-int calculaEnergia(int **matriz) {
-    int energia = 0;
+float calculaEnergia(int **matriz) {
+    int somaValores = 0;
+    float energia = 0.0;
+
+    for (int i = 0; i < TAMANHOMATRIZGLCM; i++) {
+        for (int j = 0; j < TAMANHOMATRIZGLCM; j++) {
+            somaValores += *(*(matriz + i) + j);
+        }
+    }
     
-    for (int i = 0; i < 256; i++) {
-        for (int j = 0; j < 256; j++) {
-            energia += pow(*(*(matriz + i) + j), 2);
+    for (int i = 0; i < TAMANHOMATRIZGLCM; i++) {
+        for (int j = 0; j < TAMANHOMATRIZGLCM; j++) {
+            energia += pow(((float) *(*(matriz + i) + j) / somaValores), 2);
         }
     }
     
@@ -53,8 +60,8 @@ int calculaEnergia(int **matriz) {
 int calculaHomogeneidade(int **matriz) {
     int homogeneidade = 0;
     
-    for (int i = 0; i < 256; i++) {
-        for (int j = 0; j < 256; j++) {
+    for (int i = 0; i < TAMANHOMATRIZGLCM; i++) {
+        for (int j = 0; j < TAMANHOMATRIZGLCM; j++) {
             homogeneidade += (*(*(matriz + i) + j)) / (1 + abs(i - j));
         }
     }

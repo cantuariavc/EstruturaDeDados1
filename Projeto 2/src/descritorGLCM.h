@@ -11,10 +11,11 @@
 
 #include <stdlib.h>
 #include <math.h>
+#define TAMANHOMATRIZGLCM 256
 
 void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, int **nordeste, int **oeste, int **leste, int **sudoeste, int **sul, int **sudeste);
 float calculaContraste(int **matriz);
-int calculaEnergia(int **matriz);
+float calculaEnergia(int **matriz);
 int calculaHomogeneidade(int **matriz);
 
 #endif /* descritorGLCM_h */
