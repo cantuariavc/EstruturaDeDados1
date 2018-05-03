@@ -67,12 +67,12 @@ int main(int argc, const char * argv[]) {
         fclose(imagemTexto);
 
         int *frequenciaILBP = alocaInt(TAMANHOILBP);
-        int *metricasGLCM = alocaInt(TAMANHOGLCM);
+        float *metricasGLCM = alocaFloat(TAMANHOGLCM);
         calculaVizinhancasOito(imagemPrograma, quantidadeLinhas, quantidadeColunas, frequenciaILBP, metricasGLCM);
 
-        int *vetorImagem = alocaInt(TAMANHOVETOR);
+        float *vetorImagem = alocaFloat(TAMANHOVETOR);
         for (int i = 0; i < TAMANHOILBP; i++) {
-            *(vetorImagem + i) = *(frequenciaILBP + i);
+            *(vetorImagem + i) = (float) *(frequenciaILBP + i);
         }
         for (int i = TAMANHOILBP; i < TAMANHOVETOR; i++) {
             *(vetorImagem + i) = *(metricasGLCM + i);

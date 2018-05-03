@@ -8,9 +8,9 @@
 
 #include "vetorDescritor.h"
 
-void normalizaVetor(int *vetor) {
-    int minimo = 0;
-    int maximo = 0;
+void normalizaVetor(float *vetor) {
+    float minimo = 0.0;
+    float maximo = 0.0;
     
     for (int i = 0; i < TAMANHOVETOR; i++) {
         if (*(vetor + i) > maximo) {
@@ -24,11 +24,11 @@ void normalizaVetor(int *vetor) {
     }
     
     for (int i = 0; i < TAMANHOVETOR; i++) {
-        *(vetor + i) = (*(vetor + i) - minimo) / (maximo - minimo);
+        *(vetor + i) = (float) (*(vetor + i) - minimo) / (maximo - minimo);
     }
 }
 
-void calculaMediaVetorAsfalto(int a, float *frequenciaMediaAsfalto, int *vetorImagem) {
+void calculaMediaVetorAsfalto(int a, float *frequenciaMediaAsfalto, float *vetorImagem) {
     if (a == 0) {
         for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaAsfalto + i) = *(vetorImagem + i);
@@ -40,7 +40,7 @@ void calculaMediaVetorAsfalto(int a, float *frequenciaMediaAsfalto, int *vetorIm
     }
 }
 
-void calculaMediaVetorGrama(int a, float *frequenciaMediaGrama, int *vetorImagem) {
+void calculaMediaVetorGrama(int a, float *frequenciaMediaGrama, float *vetorImagem) {
     if (a == QUANTIDADETREINAMENTOSTESTES) {
         for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaGrama + i) = *(vetorImagem + i);

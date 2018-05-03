@@ -8,7 +8,7 @@
 
 #include "pixels.h"
 
-void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP, int *metricasGLCM) {
+void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP, float *metricasGLCM) {
     int **noroeste = alocaMatriz(256, 256);
     int **norte = alocaMatriz(256, 256);
     int **nordeste = alocaMatriz(256, 256);

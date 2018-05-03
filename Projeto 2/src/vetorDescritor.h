@@ -12,8 +12,8 @@
 #include "numeroAleatorio.h"
 #define TAMANHOVETOR 536
 
-void normalizaVetor(int *vetor);
-void calculaMediaVetorAsfalto(int a, float *frequenciaMediaAsfalto, int *vetorImagem);
-void calculaMediaVetorGrama(int a, float *frequenciaMediaGrama, int *vetorImagem);
+void normalizaVetor(float *vetor);
+void calculaMediaVetorAsfalto(int a, float *frequenciaMediaAsfalto, float *vetorImagem);
+void calculaMediaVetorGrama(int a, float *frequenciaMediaGrama, float *vetorImagem);
 
 #endif /* vetorDescritor_h */

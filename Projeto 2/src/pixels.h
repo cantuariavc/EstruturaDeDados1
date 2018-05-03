@@ -13,6 +13,6 @@
 #include "descritorILBP.h"
 #include "descritorGLCM.h"
 
-void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP, int *metricasGLCM);
+void calculaVizinhancasOito(int **imagemPrograma, int quantidadeLinhas, int quantidadeColunas, int *frequenciaILBP, float *metricasGLCM);
 
 #endif /* pixels_h */
