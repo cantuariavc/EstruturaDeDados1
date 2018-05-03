@@ -19,12 +19,19 @@ void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, in
     *(*(sudeste + (*(*(matrizDecimal + 1) + 1))) + (*(*(matrizDecimal + 2) + 2))) += 1;
 }
 
-int calculaContraste(int **matriz) {
-    int contraste = 0;
+double calculaContraste(int **matriz) {
+    int somaValores = 0;
+    double contraste = 0.0;
     
-    for (int i = 0; i < 256; i++) {
-        for (int j = 0; j < 256; j++) {
-            contraste += pow(abs(i - j), 2) * *(*(matriz + i) + j);
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            somaValores += *(*(matriz + i) + j);
+        }
+    }
+    
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            contraste += pow((i - j), 2) * ((double) *(*(matriz + i) + j) / somaValores);
         }
     }
     
