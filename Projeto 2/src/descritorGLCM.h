@@ -16,6 +16,6 @@
 void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, int **nordeste, int **oeste, int **leste, int **sudoeste, int **sul, int **sudeste);
 float calculaContraste(int **matriz);
 float calculaEnergia(int **matriz);
-int calculaHomogeneidade(int **matriz);
+float calculaHomogeneidade(int **matriz);
 
 #endif /* descritorGLCM_h */

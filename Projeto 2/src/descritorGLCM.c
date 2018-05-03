@@ -57,12 +57,19 @@ float calculaEnergia(int **matriz) {
     return energia;
 }
 
-int calculaHomogeneidade(int **matriz) {
-    int homogeneidade = 0;
+float calculaHomogeneidade(int **matriz) {
+    int somaValores = 0;
+    float homogeneidade = 0.0;
     
     for (int i = 0; i < TAMANHOMATRIZGLCM; i++) {
         for (int j = 0; j < TAMANHOMATRIZGLCM; j++) {
-            homogeneidade += (*(*(matriz + i) + j)) / (1 + abs(i - j));
+            somaValores += *(*(matriz + i) + j);
+        }
+    }
+    
+    for (int i = 0; i < TAMANHOMATRIZGLCM; i++) {
+        for (int j = 0; j < TAMANHOMATRIZGLCM; j++) {
+            homogeneidade += ((float) *(*(matriz + i) + j) / somaValores) / (1 + abs(i - j));
         }
     }
     
