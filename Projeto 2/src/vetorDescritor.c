@@ -16,15 +16,17 @@ void normalizaVetor(float *vetor) {
         if (*(vetor + i) > maximo) {
             maximo = *(vetor + i);
         }
-        
-        minimo = maximo;
+    }
+    
+    minimo = maximo;
+    for (int i = 0; i < TAMANHOVETOR; i++) {
         if (*(vetor + i) < minimo) {
             minimo = *(vetor + i);
         }
     }
     
     for (int i = 0; i < TAMANHOVETOR; i++) {
-        *(vetor + i) = (float) (*(vetor + i) - minimo) / (maximo - minimo);
+        *(vetor + i) = (*(vetor + i) - minimo) / (maximo - minimo);
     }
 }
 

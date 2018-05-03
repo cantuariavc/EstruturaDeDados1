@@ -75,13 +75,13 @@ int main(int argc, const char * argv[]) {
             *(vetorImagem + i) = (float) *(frequenciaILBP + i);
         }
         for (int i = TAMANHOILBP; i < TAMANHOVETOR; i++) {
-            *(vetorImagem + i) = *(metricasGLCM + i);
+            *(vetorImagem + i) = *(metricasGLCM + (i - TAMANHOILBP));
         }
         free(frequenciaILBP);
         free(metricasGLCM);
 
         normalizaVetor(vetorImagem);
-
+        
         if (periodoAsfaltoTreinamento) {
             calculaMediaVetorAsfalto(a, frequenciaMediaAsfalto, vetorImagem);
         } else if (periodoGramaTreinamento) {
