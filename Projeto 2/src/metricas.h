@@ -13,8 +13,8 @@
 #include <math.h>
 #include "numeroAleatorio.h"
 
-int classificaImagem(int *vetorImagem, double *frequenciaMediaAsfalto, double *frequenciaMediaGrama);
-void calculaMetricas(int *vetorImagem, double *frequenciaMediaAsfalto, double *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao);
+int classificaImagem(int *vetorImagem, float *frequenciaMediaAsfalto, float *frequenciaMediaGrama);
+void calculaMetricas(int *vetorImagem, float *frequenciaMediaAsfalto, float *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao);
 void calculaPorcentagemMetricas(int acertos, int falsaAceitacao, int falsaRejeicao, float *taxaAcerto, float *taxaFalsaAceitacao, float *taxaFalsaRejeicao);
 void mostraMetricas(float taxaAcerto, float taxaFalsaAceitacao, float taxaFalsaRejeicao);
 

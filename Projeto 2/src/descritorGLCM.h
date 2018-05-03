@@ -13,7 +13,7 @@
 #include <math.h>
 
 void calculaFrequenciasGLCM(int **matrizDecimal, int **noroeste, int **norte, int **nordeste, int **oeste, int **leste, int **sudoeste, int **sul, int **sudeste);
-double calculaContraste(int **matriz);
+float calculaContraste(int **matriz);
 int calculaEnergia(int **matriz);
 int calculaHomogeneidade(int **matriz);
 

@@ -28,7 +28,7 @@ void normalizaVetor(int *vetor) {
     }
 }
 
-void calculaMediaVetorAsfalto(int a, double *frequenciaMediaAsfalto, int *vetorImagem) {
+void calculaMediaVetorAsfalto(int a, float *frequenciaMediaAsfalto, int *vetorImagem) {
     if (a == 0) {
         for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaAsfalto + i) = *(vetorImagem + i);
@@ -40,7 +40,7 @@ void calculaMediaVetorAsfalto(int a, double *frequenciaMediaAsfalto, int *vetorI
     }
 }
 
-void calculaMediaVetorGrama(int a, double *frequenciaMediaGrama, int *vetorImagem) {
+void calculaMediaVetorGrama(int a, float *frequenciaMediaGrama, int *vetorImagem) {
     if (a == QUANTIDADETREINAMENTOSTESTES) {
         for (int i = 0; i < TAMANHOVETOR; i++) {
             *(frequenciaMediaGrama + i) = *(vetorImagem + i);

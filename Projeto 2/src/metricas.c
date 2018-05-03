@@ -8,9 +8,9 @@
 
 #include "metricas.h"
 
-int classificaImagem(int *vetorImagem, double *frequenciaMediaAsfalto, double *frequenciaMediaGrama) {
-    double distanciaImagemComAsfalto = 0.0;
-    double distanciaImagemComGrama = 0.0;
+int classificaImagem(int *vetorImagem, float *frequenciaMediaAsfalto, float *frequenciaMediaGrama) {
+    float distanciaImagemComAsfalto = 0.0;
+    float distanciaImagemComGrama = 0.0;
     
     for (int i = 0; i < 536; i++) {
         distanciaImagemComAsfalto += pow((*(vetorImagem + i) - *(frequenciaMediaAsfalto + i)), 2);
@@ -29,7 +29,7 @@ int classificaImagem(int *vetorImagem, double *frequenciaMediaAsfalto, double *f
     }
 }
 
-void calculaMetricas(int *vetorImagem, double *frequenciaMediaAsfalto, double *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao) {
+void calculaMetricas(int *vetorImagem, float *frequenciaMediaAsfalto, float *frequenciaMediaGrama, int periodoAsfaltoTeste, int periodoGramaTeste, int *acertos, int *falsaAceitacao, int *falsaRejeicao) {
     int classificacaoImagem = 2;
 
     if (periodoAsfaltoTeste) {

@@ -29,8 +29,8 @@ int main(int argc, const char * argv[]) {
     char tipoAsfalto[] = "asphalt/asphalt_";
     char tipoGrama[] = "grass/grass_";
     
-    double *frequenciaMediaAsfalto = alocaDouble(TAMANHOVETOR);
-    double *frequenciaMediaGrama = alocaDouble(TAMANHOVETOR);
+    float *frequenciaMediaAsfalto = alocaFloat(TAMANHOVETOR);
+    float *frequenciaMediaGrama = alocaFloat(TAMANHOVETOR);
     
     int acertos = 0;
     int falsaAceitacao = 0;

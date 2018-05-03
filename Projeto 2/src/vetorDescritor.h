@@ -13,7 +13,7 @@
 #define TAMANHOVETOR 536
 
 void normalizaVetor(int *vetor);
-void calculaMediaVetorAsfalto(int a, double *frequenciaMediaAsfalto, int *vetorImagem);
-void calculaMediaVetorGrama(int a, double *frequenciaMediaGrama, int *vetorImagem);
+void calculaMediaVetorAsfalto(int a, float *frequenciaMediaAsfalto, int *vetorImagem);
+void calculaMediaVetorGrama(int a, float *frequenciaMediaGrama, int *vetorImagem);
 
 #endif /* vetorDescritor_h */
