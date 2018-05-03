@@ -12,12 +12,12 @@ int classificaImagem(float *vetorImagem, float *frequenciaMediaAsfalto, float *f
     float distanciaImagemComAsfalto = 0.0;
     float distanciaImagemComGrama = 0.0;
     
-    for (int i = 0; i < 536; i++) {
+    for (int i = 0; i < TAMANHOVETOR; i++) {
         distanciaImagemComAsfalto += pow((*(vetorImagem + i) - *(frequenciaMediaAsfalto + i)), 2);
     }
     distanciaImagemComAsfalto = sqrtf(distanciaImagemComAsfalto);
     
-    for (int i = 0; i < 536; i++) {
+    for (int i = 0; i < TAMANHOVETOR; i++) {
         distanciaImagemComGrama += pow((*(vetorImagem + i) - *(frequenciaMediaGrama + i)), 2);
     }
     distanciaImagemComGrama = sqrtf(distanciaImagemComGrama);

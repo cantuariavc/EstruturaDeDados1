@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "vetorDescritor.h"
 
 int *alocaInt(int tamanho);
 float *alocaFloat(int tamanho);
