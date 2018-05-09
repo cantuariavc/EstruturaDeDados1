@@ -13,9 +13,9 @@
 #include <stdlib.h>
 
 typedef struct no No;
-No *criaNo(char *nome, int idade, No *anterior);
+No *criaNo(char *nome, int idade, No *anterior, No *proximo);
 No *criaLista(void);
-void insereNo(No *no, char *nome, int idade, int posicao);
+void insereNo(No *no, int posicao, char *nome, int idade);
 void imprimeLista(No *no);
 void excluiLista(No *no);
 

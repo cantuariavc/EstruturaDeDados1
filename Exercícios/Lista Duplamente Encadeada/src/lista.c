@@ -16,7 +16,7 @@ struct no {
     struct no *proximo;
 };
 
-No *criaNo(char *nome, int idade, No *anterior) {
+No *criaNo(char *nome, int idade, No *anterior, No *proximo) {
     No *novoNo = (No *) calloc(1, sizeof(No));
     if (novoNo == NULL) {
         printf("Erro na alocação de memória No");
@@ -26,28 +26,42 @@ No *criaNo(char *nome, int idade, No *anterior) {
     novoNo->nome = nome;
     novoNo->idade = idade;
     novoNo->anterior = anterior;
-    novoNo->proximo = NULL;
+    novoNo->proximo = proximo;
     
     return novoNo;
 }
 
 No *criaLista(void) {
-    No *novaLista = criaNo(NULL, 0, NULL);
+    No *novaLista = criaNo(NULL, 0, NULL, NULL);
     
     return novaLista;
 }
 
-void insereNo(No *no, char *nome, int idade, int posicao) {
-    No *novoNo = criaNo(nome, idade, no);
-    No *aux = no;
+void insereNo(No *no, int posicao, char *nome, int idade) {
+    No *novoNo = criaNo(nome, idade, NULL, NULL);
     
-    if (posicao != 0) {
-        for (int i = 1; (i != posicao || aux != NULL); i++) {
-            aux = no->proximo;
+    if (no != NULL) {
+        No *aux = no;
+        
+        if (posicao == 1) {
+            novoNo->proximo = aux;
+            aux->anterior = novoNo;
+        } else if (posicao != 0) {
+            for (int i = 1; i != posicao; i++) {
+                aux = aux->proximo;
+            }
+        
+            aux->proximo->anterior = novoNo;
+            novoNo->proximo = aux->proximo;
+            aux->proximo = novoNo;
+            novoNo->anterior = aux;
+        } else if (posicao == 0) {
+            aux->proximo = novoNo;
+            novoNo->anterior = aux;
         }
+    } else {
+        no = novoNo;
     }
-    
-    aux->proximo = novoNo;
 }
 
 void imprimeNo(No *no) {
