@@ -80,6 +80,28 @@ void imprimeNo(No *no) {
     }
 }
 
+void excluiNo(No *no, int posicao, int tamanho) {
+    if (no != NULL) {
+        No *aux = no;
+        
+        if (posicao == 1) {
+            aux->proximo->anterior = NULL;
+            free(aux);
+        } else if (posicao != tamanho) {
+            for (int i = 1; i != posicao; i++) {
+                aux = aux->proximo;
+            }
+            aux->anterior->proximo = aux->proximo;
+            aux->proximo = aux->anterior;
+            free(aux);
+        } else if (posicao == tamanho) {
+            for (; aux->proximo != NULL; aux = aux->proximo);
+            aux->anterior->proximo = NULL;
+            free(aux);
+        }
+    }
+}
+
 void excluiLista(No *no) {
     if (no != NULL) {
         No *aux;

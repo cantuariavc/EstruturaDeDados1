@@ -17,6 +17,7 @@ No *criaNo(char *nome, int idade, No *anterior, No *proximo);
 No *criaLista(void);
 void insereNo(No *no, int posicao, char *nome, int idade);
 void imprimeLista(No *no);
+void excluiNo(No *no, int posicao, int tamanho);
 void excluiLista(No *no);
 
 #endif /* lista_h */
