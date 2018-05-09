@@ -32,7 +32,7 @@ No *criaNo(char *nome, int idade, No *anterior, No *proximo) {
 }
 
 No *criaLista(void) {
-    No *novaLista = criaNo(NULL, 0, NULL, NULL);
+    No *novaLista = NULL;
     
     return novaLista;
 }
