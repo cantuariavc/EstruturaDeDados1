@@ -16,35 +16,15 @@ void verificaAlocacaoArquivo(FILE *nomeArquivo) {
 }
 
 void transfereContatosParaLista(FILE *contatos, No *lista) {
-    No *aux = lista;
-    int cifrao = 0;
+    char nomeCompleto[TAMANHONOMECOMPLETO];
+    char telefoneCelular[TAMANHOTELEFONECELULAR];
+    char endereco[TAMANHOENDERECO];
+    int cep = 0;
+    char dataDeNascimento[TAMANHODATADENASCIMENTO];
+    char cifrao = '\0';
     
-    while (1) {
-        char *nomeCompleto = alocaChar(TAMANHONOMECOMPLETO);
-        
-        if (*(nomeCompleto + 0) == EOF) {
-            break;
-        }
-        
-        char *telefoneCelular = alocaChar(TAMANHOTELEFONECELULAR);
-        char *endereco = alocaChar(TAMANHOENDERECO);
-        char *cep = alocaChar(TAMANHOCEP);
-        char *dataDeNascimento = alocaChar(TAMANHODATADENASCIMENTO);
-        
-        fgets(nomeCompleto, TAMANHONOMECOMPLETO, contatos);
-        fgets(telefoneCelular, TAMANHOTELEFONECELULAR, contatos);
-        fgets(endereco, TAMANHOENDERECO, contatos);
-        fgets(cep, TAMANHOCEP, contatos);
-        fgets(dataDeNascimento, TAMANHODATADENASCIMENTO, contatos);
-        cifrao = fgetc(contatos);
-        
-        realocaChar(nomeCompleto, sizeof(nomeCompleto));
-        realocaChar(telefoneCelular, sizeof(telefoneCelular));
-        realocaChar(endereco, sizeof(endereco));
-        realocaChar(cep, sizeof(cep));
-        realocaChar(dataDeNascimento, sizeof(dataDeNascimento));
-        
-        insereNo(aux, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+    while (fscanf(contatos, "%s\n%s\n%s\n%d\n%s\n%c", &nomeCompleto[0], &telefoneCelular[0], &endereco[0], &cep, &dataDeNascimento[0], &cifrao) != EOF) {
+        insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
     }
 }
 

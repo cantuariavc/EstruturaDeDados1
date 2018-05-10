@@ -12,19 +12,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define TAMANHONOMECOMPLETO 100
+#define TAMANHOTELEFONECELULAR 11
+#define TAMANHOENDERECO 100
+#define TAMANHODATADENASCIMENTO 11
+
 typedef struct no {
-    char *nomeCompleto;
-    char *telefoneCelular;
-    char *endereco;
-    char *cep;
-    char *dataDeNascimento;
+    char nomeCompleto[TAMANHONOMECOMPLETO];
+    char telefoneCelular[TAMANHOTELEFONECELULAR];
+    char endereco[TAMANHOENDERECO];
+    int cep;
+    char dataDeNascimento[TAMANHODATADENASCIMENTO];
     struct no *anterior;
     struct no *proximo;
 } No;
 
 No *criaLista(void);
-No *criaNo(char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento, No *anterior, No *proximo);
-void insereNo(No *lista, char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento);
+No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[], No *anterior, No *proximo);
+void insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]);
 void imprimeLista(No *lista);
 
 #endif /* lista_h */

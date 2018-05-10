@@ -12,11 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista.h"
-#define TAMANHONOMECOMPLETO 101
-#define TAMANHOTELEFONECELULAR 11
-#define TAMANHOENDERECO 101
-#define TAMANHOCEP 6
-#define TAMANHODATADENASCIMENTO 11
 
 void verificaAlocacaoArquivo(FILE *nomeArquivo);
 void transfereContatosParaLista(FILE *contatos, No *lista);

@@ -14,25 +14,30 @@ No *criaLista(void) {
     return novaLista;
 }
 
-No *criaNo(char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento, No *anterior, No *proximo) {
+No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[], No *anterior, No *proximo) {
     No *novoNo = (No *) calloc(1, sizeof(No));
     if (novoNo == NULL) {
         printf("Erro na alocação de memória do Nó!");
         exit(1);
     }
     
-    novoNo->nomeCompleto = nomeCompleto;
-    novoNo->telefoneCelular = telefoneCelular;
-    novoNo->endereco = endereco;
+    for (int i = 0; i < 100; i++) {
+        novoNo->nomeCompleto[i] = nomeCompleto[i];
+        novoNo->endereco[i] = endereco[i];
+    }
+    for (int i = 0; i < 11; i++) {
+        novoNo->telefoneCelular[i] = telefoneCelular[i];
+        novoNo->dataDeNascimento[i] = dataDeNascimento[i];
+    }
     novoNo->cep = cep;
-    novoNo->dataDeNascimento = dataDeNascimento;
+    
     novoNo->anterior = anterior;
     novoNo->proximo = proximo;
     
     return novoNo;
 }
 
-void insereNo(No *lista, char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento) {
+void insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]) {
     No *novoNo = criaNo(nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento, NULL, NULL);
     
     if (lista != NULL) {
@@ -51,15 +56,15 @@ void imprimeLista(No *lista) {
     printf("\n");
     if (lista != NULL) {
         for (No *aux = lista; aux != NULL; aux = aux->proximo) {
-            printf("Nome completo: %s", *(aux->nomeCompleto));
+            printf("Nome completo: %s", aux->nomeCompleto);
             printf("\n");
-            printf("Telefone celular: %s", *(aux->telefoneCelular));
+            printf("Telefone celular: %s", aux->telefoneCelular);
             printf("\n");
-            printf("Endereço: %s", *(aux->endereco));
+            printf("Endereço: %s", aux->endereco);
             printf("\n");
-            printf("CEP: %s", *(aux->cep));
+            printf("CEP: %d", aux->cep);
             printf("\n");
-            printf("Data de nascimento: %s", *(aux->dataDeNascimento));
+            printf("Data de nascimento: %s", aux->dataDeNascimento);
             printf("\n");
             printf("\n");
         }
@@ -68,4 +73,3 @@ void imprimeLista(No *lista) {
         printf("\n");
     }
 }
-
