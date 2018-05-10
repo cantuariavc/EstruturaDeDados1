@@ -42,3 +42,17 @@ No *criaNo(char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep,
     return novoNo;
 }
 
+void insereNo(No *lista, char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento) {
+    No *novoNo = criaNo(nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento, NULL, NULL);
+    
+    if (lista != NULL) {
+        No *aux;
+        for (aux = lista; aux->proximo != NULL; aux = aux->proximo);
+        
+        aux->proximo = novoNo;
+        novoNo->anterior = aux;
+    } else {
+        lista = novoNo;
+    }
+}
+
