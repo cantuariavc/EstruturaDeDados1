@@ -93,6 +93,7 @@ void excluiNo(No *no, int posicao, int tamanho) {
             }
             aux->anterior->proximo = aux->proximo;
             aux->proximo = aux->anterior;
+            free(aux->nome);
             free(aux);
         } else if (posicao == tamanho) {
             for (; aux->proximo != NULL; aux = aux->proximo);
@@ -107,6 +108,7 @@ void excluiLista(No *no) {
         No *aux;
         while (no != NULL) {
             aux = no->proximo;
+            free(no->nome);
             free(no);
             no = aux;
         }
