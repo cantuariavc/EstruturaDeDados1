@@ -13,5 +13,6 @@
 #include <stdlib.h>
 
 typedef struct no No;
+No *criaLista(void);
 
 #endif /* lista_h */

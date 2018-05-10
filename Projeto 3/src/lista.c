@@ -18,3 +18,9 @@ struct no {
     struct no *proximo;
 };
 
+No *criaLista(void) {
+    No *novaLista = NULL;
+    
+    return novaLista;
+}
+
