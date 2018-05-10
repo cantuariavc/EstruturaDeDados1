@@ -56,3 +56,26 @@ void insereNo(No *lista, char *nomeCompleto, char *telefoneCelular, char *endere
     }
 }
 
+void imprimeLista(No *lista) {
+    printf("Lista");
+    printf("\n");
+    if (lista != NULL) {
+        for (No *aux = lista; aux != NULL; aux = aux->proximo) {
+            printf("Nome completo: %s", *(aux->nomeCompleto));
+            printf("\n");
+            printf("Telefone celular: %s", *(aux->telefoneCelular));
+            printf("\n");
+            printf("Endereço: %s", *(aux->endereco));
+            printf("\n");
+            printf("CEP: %s", *(aux->cep));
+            printf("\n");
+            printf("Data de nascimento: %s", *(aux->dataDeNascimento));
+            printf("\n");
+            printf("\n");
+        }
+    } else {
+        printf("Lista vazia!");
+        printf("\n");
+    }
+}
+
