@@ -7,6 +7,7 @@ Projeto | Tema
 -- | --
 1 | Ponteiros
 2 | Alocação dinâmica
+3 | Listas duplamente encadeadas
  
 ### Execução do programa:
 Selecione o projeto desejado e execute o comando no terminal:
