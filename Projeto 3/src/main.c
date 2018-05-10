@@ -9,11 +9,19 @@
 // Vinícius de Castro Cantuária - 14/0165169
 //
 
+#include "lista.h"
 #include "servicos.h"
 
 int main(int argc, const char * argv[]) {
-    int opcao = 5;
+    char caminhoArquivo[] = "../contatos.txt\0";
+    FILE *contatos = fopen(caminhoArquivo, "r");
+    verificaAlocacaoArquivo(contatos);
     
+    No *lista = criaLista();
+    
+    transfereContatosParaLista(contatos, lista);
+    
+    int opcao = 5;
     do {
         while (opcao < 0 || opcao > 4) {
             imprimeMenu();

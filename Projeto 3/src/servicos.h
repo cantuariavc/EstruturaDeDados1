@@ -11,9 +11,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "lista.c"
+#define TAMANHONOMECOMPLETO 101
+#define TAMANHOTELEFONECELULAR 11
+#define TAMANHOENDERECO 101
+#define TAMANHOCEP 6
+#define TAMANHODATADENASCIMENTO 11
 
+void verificaAlocacaoArquivo(FILE *nomeArquivo);
+void transfereContatosParaLista(FILE *contatos, No *lista);
 void imprimeMenu(void);
 char *alocaChar(int tamanho);
+void realocaChar(char *vetorChar, int tamanho);
 void verificaAlocacaoChar(char *vetorAlocado);
 
 #endif /* servicos_h */
