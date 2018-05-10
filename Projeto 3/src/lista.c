@@ -21,11 +21,11 @@ No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep
         exit(1);
     }
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
         novoNo->nomeCompleto[i] = nomeCompleto[i];
         novoNo->endereco[i] = endereco[i];
     }
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < TAMANHOTELEFONECELULAR; i++) {
         novoNo->telefoneCelular[i] = telefoneCelular[i];
         novoNo->dataDeNascimento[i] = dataDeNascimento[i];
     }

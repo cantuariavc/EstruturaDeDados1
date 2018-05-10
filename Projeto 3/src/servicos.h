@@ -9,8 +9,6 @@
 #ifndef servicos_h
 #define servicos_h
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "lista.h"
 
 void verificaAlocacaoArquivo(FILE *nomeArquivo);
