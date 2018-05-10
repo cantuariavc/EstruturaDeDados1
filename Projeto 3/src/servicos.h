@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista.c"
+#include "lista.h"
 #define TAMANHONOMECOMPLETO 101
 #define TAMANHOTELEFONECELULAR 11
 #define TAMANHOENDERECO 101
