@@ -120,22 +120,3 @@ int validaAno(int ano) {
     
     return eValido;
 }
-
-char *alocaChar(int tamanho) {
-    char *vetorChar = (char *) calloc(tamanho, sizeof(char));
-    verificaAlocacaoChar(vetorChar);
-    
-    return vetorChar;
-}
-
-void realocaChar(char *vetorChar, int tamanho) {
-    vetorChar = (char *) realloc(vetorChar, tamanho);
-    verificaAlocacaoChar(vetorChar);
-}
-
-void verificaAlocacaoChar(char *vetorAlocado) {
-    if (vetorAlocado == NULL) {
-        printf("Erro na alocação da memória do vetor char!\n");
-        exit(1);
-    }
-}

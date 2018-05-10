@@ -20,8 +20,5 @@ int validaFormato(char dataDeNascimento[]);
 int validaDia(int dia);
 int validaMes(int mes);
 int validaAno(int ano);
-char *alocaChar(int tamanho);
-void realocaChar(char *vetorChar, int tamanho);
-void verificaAlocacaoChar(char *vetorAlocado);
 
 #endif /* servicos_h */
