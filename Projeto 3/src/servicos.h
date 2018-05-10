@@ -10,7 +10,10 @@
 #define servicos_h
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void imprimeMenu(void);
+char *alocaChar(int tamanho);
+void verificaAlocacaoChar(char *vetorAlocado);
 
 #endif /* servicos_h */

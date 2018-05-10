@@ -23,3 +23,17 @@ void imprimeMenu(void) {
     printf("\n");
     printf("Opção: ");
 }
+
+char *alocaChar(int tamanho) {
+    char *vetorChar = (char *) calloc(tamanho, sizeof(char));
+    verificaAlocacaoChar(vetorChar);
+    
+    return vetorChar;
+}
+
+void verificaAlocacaoChar(char *vetorAlocado) {
+    if (vetorAlocado == NULL) {
+        printf("Erro na alocação da memória do vetor char!\n");
+        exit(1);
+    }
+}
