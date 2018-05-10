@@ -28,6 +28,7 @@ void transfereContatosParaLista(FILE *contatos, No *lista) {
     }
 }
 
+
 void imprimeMenu(void) {
     printf("Menu");
     printf("\n");
@@ -43,6 +44,39 @@ void imprimeMenu(void) {
     printf("\n");
     printf("Opção: ");
 }
+
+void insereNovoRegistro(No *lista) {
+    char nomeCompleto[TAMANHONOMECOMPLETO];
+    char telefoneCelular[TAMANHOTELEFONECELULAR];
+    char endereco[TAMANHOENDERECO];
+    int cep;
+    char dataDeNascimento[TAMANHODATADENASCIMENTO];
+    
+    printf("Nome completo: ");
+    fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
+    
+    do {
+        printf("Telefone celular (55555-5555): ");
+        fgets(telefoneCelular, TAMANHOTELEFONECELULAR, stdin);
+        getchar();
+    } while (!validaCelular(telefoneCelular));
+    
+    printf("Endereço: ");
+    fgets(endereco, TAMANHOENDERECO, stdin);
+    printf("CEP (somente os números): ");
+    scanf("%d", &cep);
+    getchar();
+    
+    do {
+        printf("Data de nascimento (dd/mm/aaaa): ");
+        fgets(dataDeNascimento, TAMANHODATADENASCIMENTO, stdin);
+        getchar();
+    } while (!validaDataDeNacimento(dataDeNascimento));
+    
+    printf("\n");
+    insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+}
+
 
 int validaCelular(char telefoneCelular[]) {
     int eValido = 0;

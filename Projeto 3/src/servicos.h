@@ -13,7 +13,10 @@
 
 void verificaAlocacaoArquivo(FILE *nomeArquivo);
 void transfereContatosParaLista(FILE *contatos, No *lista);
+
 void imprimeMenu(void);
+void insereNovoRegistro(No *lista);
+
 int validaCelular(char telefoneCelular[]);
 int validaDataDeNacimento(char dataDeNascimento[]);
 int validaFormato(char dataDeNascimento[]);
