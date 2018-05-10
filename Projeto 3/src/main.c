@@ -42,15 +42,24 @@ int main(int argc, const char * argv[]) {
                     
                     printf("Nome completo: ");
                     fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
-                    printf("Telefone celular (55555-5555): ");
-                    fgets(telefoneCelular, TAMANHOTELEFONECELULAR, stdin);
+                    
+                    do {
+                        printf("Telefone celular (55555-5555): ");
+                        fgets(telefoneCelular, TAMANHOTELEFONECELULAR, stdin);
+                        getchar();
+                    } while (!validaCelular(telefoneCelular));
+                    
                     printf("Endereço: ");
                     fgets(endereco, TAMANHOENDERECO, stdin);
                     printf("CEP (somente os números): ");
                     scanf("%d", &cep);
                     getchar();
-                    printf("Data de nascimento (dd/mm/aaaa): ");
-                    fgets(dataDeNascimento, TAMANHODATADENASCIMENTO, stdin);
+                    
+                    do {
+                        printf("Data de nascimento (dd/mm/aaaa): ");
+                        fgets(dataDeNascimento, TAMANHODATADENASCIMENTO, stdin);
+                        getchar();
+                    } while (!validaDataDeNacimento(dataDeNascimento));
                         
                     printf("\n");
                     insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
