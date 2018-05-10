@@ -29,7 +29,7 @@ void transfereContatosParaLista(FILE *contatos, No *lista) {
 }
 
 
-void imprimeMenu(void) {
+void imprimeMenu(int *opcao) {
     printf("Menu");
     printf("\n");
     printf("1 - Inserir novo registro");
@@ -43,6 +43,9 @@ void imprimeMenu(void) {
     printf("0 - Sair");
     printf("\n");
     printf("Opção: ");
+    scanf("%d", opcao);
+    getchar();
+    printf("\n");
 }
 
 void insereNovoRegistro(No *lista) {

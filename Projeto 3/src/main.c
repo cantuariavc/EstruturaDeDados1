@@ -25,10 +25,7 @@ int main(int argc, const char * argv[]) {
     int opcao = 5;
     do {
         do {
-            imprimeMenu();
-            scanf("%d", &opcao);
-            getchar();
-            printf("\n");
+            imprimeMenu(&opcao);
         } while (opcao < 0 || opcao > 4);
         
         switch (opcao) {
