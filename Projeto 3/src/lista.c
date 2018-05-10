@@ -9,11 +9,11 @@
 #include "lista.h"
 
 struct no {
-    char nomeCompleto[101];
-    char celular[11];
-    char endereco[101];
-    char cep[9];
-    char dataDeNacimento[11];
+    char *nomeCompleto;
+    char *telefoneCelular;
+    char *endereco;
+    char *cep;
+    char *dataDeNascimento;
     struct no *anterior;
     struct no *proximo;
 };
@@ -22,5 +22,23 @@ No *criaLista(void) {
     No *novaLista = NULL;
     
     return novaLista;
+}
+
+No *criaNo(char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento, No *anterior, No *proximo) {
+    No *novoNo = (No *) calloc(1, sizeof(No));
+    if (novoNo == NULL) {
+        printf("Erro na alocação de memória do Nó!");
+        exit(1);
+    }
+    
+    novoNo->nomeCompleto = nomeCompleto;
+    novoNo->telefoneCelular = telefoneCelular;
+    novoNo->endereco = endereco;
+    novoNo->cep = cep;
+    novoNo->dataDeNascimento = dataDeNascimento;
+    novoNo->anterior = anterior;
+    novoNo->proximo = proximo;
+    
+    return novoNo;
 }
 

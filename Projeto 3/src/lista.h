@@ -14,5 +14,6 @@
 
 typedef struct no No;
 No *criaLista(void);
+No *criaNo(char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento, No *anterior, No *proximo);
 
 #endif /* lista_h */
