@@ -24,15 +24,37 @@ int main(int argc, const char * argv[]) {
     
     int opcao = 5;
     do {
-        while (opcao < 0 || opcao > 4) {
+        do {
             imprimeMenu();
             scanf("%d", &opcao);
+            getchar();
             printf("\n");
-        }
+        } while (opcao < 0 || opcao > 4);
         
         switch (opcao) {
             case 1:
-                // Inserir novo registro
+                {
+                    char nomeCompleto[TAMANHONOMECOMPLETO];
+                    char telefoneCelular[TAMANHOTELEFONECELULAR];
+                    char endereco[TAMANHOENDERECO];
+                    int cep;
+                    char dataDeNascimento[TAMANHODATADENASCIMENTO];
+                    
+                    printf("Nome completo: ");
+                    fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
+                    printf("Telefone celular (55555-5555): ");
+                    fgets(telefoneCelular, TAMANHOTELEFONECELULAR, stdin);
+                    printf("Endereço: ");
+                    fgets(endereco, TAMANHOENDERECO, stdin);
+                    printf("CEP (somente os números): ");
+                    scanf("%d", &cep);
+                    getchar();
+                    printf("Data de nascimento (dd/mm/aaaa): ");
+                    fgets(dataDeNascimento, TAMANHODATADENASCIMENTO, stdin);
+                        
+                    printf("\n");
+                    insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+                }
                 break;
             case 2:
                 // Remover registros que possuem certo nome
