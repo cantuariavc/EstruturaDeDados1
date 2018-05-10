@@ -8,16 +8,6 @@
 
 #include "lista.h"
 
-struct no {
-    char *nomeCompleto;
-    char *telefoneCelular;
-    char *endereco;
-    char *cep;
-    char *dataDeNascimento;
-    struct no *anterior;
-    struct no *proximo;
-};
-
 No *criaLista(void) {
     No *novaLista = NULL;
     

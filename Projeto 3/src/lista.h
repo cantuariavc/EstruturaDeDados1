@@ -12,7 +12,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct no No;
+typedef struct no {
+    char *nomeCompleto;
+    char *telefoneCelular;
+    char *endereco;
+    char *cep;
+    char *dataDeNascimento;
+    struct no *anterior;
+    struct no *proximo;
+} No;
+
 No *criaLista(void);
 No *criaNo(char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento, No *anterior, No *proximo);
 void insereNo(No *lista, char *nomeCompleto, char *telefoneCelular, char *endereco, char *cep, char *dataDeNascimento);
