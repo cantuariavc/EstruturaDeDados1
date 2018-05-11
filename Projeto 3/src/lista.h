@@ -12,7 +12,6 @@
 #include "no.h"
 #include "servicos.h"
 
-No *criaLista(void);
 No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]);
 void imprimeLista(No *lista);
 void imprimeNoPorNome(No *lista);

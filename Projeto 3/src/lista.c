@@ -8,8 +8,6 @@
 
 #include "lista.h"
 
-No *criaLista(void) {
-    No *novaLista = NULL;
     
     return novaLista;
 }

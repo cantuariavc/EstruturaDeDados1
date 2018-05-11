@@ -17,9 +17,8 @@ int main(int argc, const char * argv[]) {
     FILE *contatos = fopen(caminhoArquivo, "r");
     verificaAlocacaoArquivo(contatos);
     
-    No *lista = criaLista();
     
-    lista = transfereContatosParaLista(contatos, lista);
+    No *lista = transfereContatosParaLista(contatos);
     fclose(contatos);
     
     int opcao = 5;
