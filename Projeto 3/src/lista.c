@@ -68,17 +68,17 @@ void imprimeLista(No *lista) {
             printf("CEP: %d", aux->cep);
             printf("\n");
             printf("Data de nascimento: %s", aux->dataDeNascimento);
-            printf("\n");
-            printf("\n");
+            printf("\n\n");
         }
     } else {
         printf("Vazia!");
-        printf("\n");
-        printf("\n");
+        printf("\n\n");
     }
 }
 
 void imprimeNoPorNome(No *lista) {
+    int haNome = 0;
+
     if (lista != NULL) {
         char nomeCompleto[101];
         
@@ -103,14 +103,19 @@ void imprimeNoPorNome(No *lista) {
                 printf("CEP: %d", aux->cep);
                 printf("\n");
                 printf("Data de nascimento: %s", aux->dataDeNascimento);
-                printf("\n");
-                printf("\n");
+                printf("\n\n");
+                
+                haNome++;
             }
+        }
+        
+        if (haNome == 0) {
+            printf("Nada encontrado!");
+            printf("\n\n");
         }
     } else {
         printf("Lista Vazia!");
-        printf("\n");
-        printf("\n");
+        printf("\n\n");
     }
 }
 
@@ -162,13 +167,10 @@ No *excluiNosPorNome(No *lista) {
         } else {
             printf("Nada encontrado!");
         }
-        printf("\n");
-        printf("\n");
     } else {
         printf("Lista Vazia!");
-        printf("\n");
-        printf("\n");
     }
+    printf("\n\n");
     
     return lista;
 }
