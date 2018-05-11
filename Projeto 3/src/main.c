@@ -29,7 +29,7 @@ int main(int argc, const char * argv[]) {
                 insereNovoRegistro(lista);
                 break;
             case 2:
-                // Remover registros que possuem certo nome
+                lista = excluiNosPorNome(lista);
                 break;
             case 3:
                 imprimeNoPorNome(lista);

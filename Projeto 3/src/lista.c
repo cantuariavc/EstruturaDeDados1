@@ -28,7 +28,7 @@ No *transfereContatosParaLista(FILE *contatos) {
         fgetc(contatos);
         cifrao = fgetc(contatos);
         
-        lista = insereNo(NULL, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+        lista = insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
         
         if (fgetc(contatos) == EOF) {
             break;
@@ -82,7 +82,7 @@ void imprimeNoPorNome(No *lista) {
     if (lista != NULL) {
         char nomeCompleto[101];
         
-        printf("Nome completo: ");
+        printf("Nome para pesquisa: ");
         fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
         for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
             if (nomeCompleto[i] == '\n') {
@@ -112,4 +112,63 @@ void imprimeNoPorNome(No *lista) {
         printf("\n");
         printf("\n");
     }
+}
+
+No *excluiNosPorNome(No *lista) {
+    int haNome = 0;
+    
+    if (lista != NULL) {
+        char nomeCompleto[101];
+        
+        printf("Nome para exclusão: ");
+        fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
+        for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
+            if (nomeCompleto[i] == '\n') {
+                nomeCompleto[i] = '\0';
+                break;
+            }
+        }
+        printf("\n");
+        
+        for (No *aux = lista; aux != NULL; aux = aux->proximo) {
+            if (verificaNome(aux->nomeCompleto, nomeCompleto)) {
+                if (aux->proximo != NULL) {
+                    aux->proximo->anterior = aux->anterior;
+                }
+                
+                if (aux->anterior != NULL) {
+                    aux->anterior->proximo = aux->proximo;
+                } else {
+                    lista = aux->proximo;
+                }
+                
+                if (aux->anterior == NULL) {
+                    free(aux);
+                    aux = lista;
+                } else {
+                    No *aux2 = aux->anterior;
+                    free(aux);
+                    aux = aux2;
+                }
+                
+                haNome++;
+            }
+        }
+        
+        if (haNome == 1) {
+            printf("Exclusão ocorrída com sucesso!");
+        } else if (haNome > 1) {
+            printf("Exclusões ocorrídas com sucesso!");
+        } else {
+            printf("Nada encontrado!");
+        }
+        printf("\n");
+        printf("\n");
+    } else {
+        printf("Lista Vazia!");
+        printf("\n");
+        printf("\n");
+    }
+    
+    return lista;
 }
