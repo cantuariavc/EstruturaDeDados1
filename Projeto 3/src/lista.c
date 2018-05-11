@@ -8,8 +8,34 @@
 
 #include "lista.h"
 
+No *transfereContatosParaLista(FILE *contatos) {
+    No *lista = NULL;
+    char nomeCompleto[TAMANHONOMECOMPLETO];
+    char telefoneCelular[TAMANHOTELEFONECELULAR];
+    char endereco[TAMANHOENDERECO];
+    int cep = 0;
+    char dataDeNascimento[TAMANHODATADENASCIMENTO];
+    int cifrao;
     
-    return novaLista;
+    while (1) {
+        fgets(nomeCompleto, TAMANHONOMECOMPLETO, contatos);
+        fscanf(contatos, "%s", telefoneCelular);
+        fgetc(contatos);
+        fgets(endereco, TAMANHOENDERECO, contatos);
+        fscanf(contatos, "%d", &cep);
+        fgetc(contatos);
+        fscanf(contatos, "%s", dataDeNascimento);
+        fgetc(contatos);
+        cifrao = fgetc(contatos);
+        
+        lista = insereNo(NULL, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+        
+        if (fgetc(contatos) == EOF) {
+            break;
+        }
+    }
+    
+    return lista;
 }
 
 No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]) {

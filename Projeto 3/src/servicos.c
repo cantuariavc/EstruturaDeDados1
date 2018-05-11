@@ -8,42 +8,19 @@
 
 #include "servicos.h"
 
+FILE *abreArquivo(char caminhoArquivo[]) {
+    FILE *arquivo = fopen(caminhoArquivo, "r");
+    verificaAlocacaoArquivo(arquivo);
+    
+    return arquivo;
+}
+
 void verificaAlocacaoArquivo(FILE *nomeArquivo) {
     if (nomeArquivo == NULL) {
         printf("Erro na abertura da arquivo!\n");
         exit(1);
     }
 }
-
-No *transfereContatosParaLista(FILE *contatos, No *lista) {
-    char nomeCompleto[TAMANHONOMECOMPLETO];
-    char telefoneCelular[TAMANHOTELEFONECELULAR];
-    char endereco[TAMANHOENDERECO];
-    int cep = 0;
-    char dataDeNascimento[TAMANHODATADENASCIMENTO];
-    int cifrao;
-    
-    while (1) {
-        fgets(nomeCompleto, TAMANHONOMECOMPLETO, contatos);
-        fscanf(contatos, "%s", telefoneCelular);
-        fgetc(contatos);
-        fgets(endereco, TAMANHOENDERECO, contatos);
-        fscanf(contatos, "%d", &cep);
-        fgetc(contatos);
-        fscanf(contatos, "%s", dataDeNascimento);
-        fgetc(contatos);
-        cifrao = fgetc(contatos);
-
-        lista = insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
-        
-        if (fgetc(contatos) == EOF) {
-            break;
-        }
-    }
-    
-    return lista;
-}
-
 
 void imprimeMenu(int *opcao) {
     printf("Menu");

@@ -12,8 +12,8 @@
 #include "no.h"
 #include "lista.h"
 
+FILE *abreArquivo(char caminhoArquivo[]);
 void verificaAlocacaoArquivo(FILE *nomeArquivo);
-No *transfereContatosParaLista(FILE *contatos, No *lista);
 
 void imprimeMenu(int *opcao);
 void insereNovoRegistro(No *lista);

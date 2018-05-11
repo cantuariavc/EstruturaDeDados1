@@ -14,10 +14,7 @@
 
 int main(int argc, const char * argv[]) {
     char caminhoArquivo[] = "../contatos.txt\0";
-    FILE *contatos = fopen(caminhoArquivo, "r");
-    verificaAlocacaoArquivo(contatos);
-    
-    
+    FILE *contatos = abreArquivo(caminhoArquivo);
     No *lista = transfereContatosParaLista(contatos);
     fclose(contatos);
     
