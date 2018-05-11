@@ -29,7 +29,7 @@ typedef struct no {
 
 No *criaLista(void);
 No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[], No *anterior, No *proximo);
-void insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]);
+No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]);
 void imprimeLista(No *lista);
 
 #endif /* lista_h */

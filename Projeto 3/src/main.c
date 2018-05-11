@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
     
     No *lista = criaLista();
     
-    transfereContatosParaLista(contatos, lista);
+    lista = transfereContatosParaLista(contatos, lista);
     fclose(contatos);
     
     int opcao = 5;

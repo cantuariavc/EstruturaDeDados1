@@ -12,7 +12,7 @@
 #include "lista.h"
 
 void verificaAlocacaoArquivo(FILE *nomeArquivo);
-void transfereContatosParaLista(FILE *contatos, No *lista);
+No *transfereContatosParaLista(FILE *contatos, No *lista);
 
 void imprimeMenu(int *opcao);
 void insereNovoRegistro(No *lista);

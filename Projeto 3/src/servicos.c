@@ -15,7 +15,7 @@ void verificaAlocacaoArquivo(FILE *nomeArquivo) {
     }
 }
 
-void transfereContatosParaLista(FILE *contatos, No *lista) {
+No *transfereContatosParaLista(FILE *contatos, No *lista) {
     char nomeCompleto[TAMANHONOMECOMPLETO];
     char telefoneCelular[TAMANHOTELEFONECELULAR];
     char endereco[TAMANHOENDERECO];
@@ -26,6 +26,8 @@ void transfereContatosParaLista(FILE *contatos, No *lista) {
     while (fscanf(contatos, "%s\n%s\n%s\n%d\n%s\n%c", &nomeCompleto[0], &telefoneCelular[0], &endereco[0], &cep, &dataDeNascimento[0], &cifrao) != EOF) {
         insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
     }
+    
+    return lista;
 }
 
 

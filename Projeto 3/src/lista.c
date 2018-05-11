@@ -37,7 +37,7 @@ No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep
     return novoNo;
 }
 
-void insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]) {
+No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]) {
     No *novoNo = criaNo(nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento, NULL, NULL);
     
     if (lista != NULL) {
@@ -49,6 +49,8 @@ void insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char ender
     } else {
         lista = novoNo;
     }
+    
+    return lista;
 }
 
 void imprimeLista(No *lista) {
