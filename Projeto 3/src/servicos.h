@@ -9,6 +9,7 @@
 #ifndef servicos_h
 #define servicos_h
 
+#include "no.h"
 #include "lista.h"
 
 void verificaAlocacaoArquivo(FILE *nomeArquivo);
@@ -23,5 +24,6 @@ int validaFormato(char dataDeNascimento[]);
 int validaDia(int dia);
 int validaMes(int mes);
 int validaAno(int ano);
+int verificaNome(char nomeNo[], char nomePesquisa[]);
 
 #endif /* servicos_h */

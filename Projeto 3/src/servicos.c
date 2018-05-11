@@ -50,11 +50,11 @@ void imprimeMenu(int *opcao) {
     printf("\n");
     printf("1 - Inserir novo registro");
     printf("\n");
-    printf("2 - Remover registros que possuem certo nome");
+    printf("2 - Remover registros por nome");
     printf("\n");
-    printf("3 - Visualizar registro a partir do nome");
+    printf("3 - Visualizar registros por nome");
     printf("\n");
-    printf("4 - Visualizar todos os registros em ordem alfabética de acordo com o nome");
+    printf("4 - Visualizar todos os registros");
     printf("\n");
     printf("0 - Sair");
     printf("\n");
@@ -172,4 +172,29 @@ int validaAno(int ano) {
     }
     
     return eValido;
+}
+
+int verificaNome(char nomeNo[], char nomePesquisa[]) {
+    int tamanhoNomePesquisa = 0;
+    int letrasIguais = 0;
+    int saoIguais = 0;
+    
+    for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
+        if (nomePesquisa[i] == '\0') {
+            tamanhoNomePesquisa = i;
+            break;
+        }
+    }
+    
+    for (int i = 0; i < tamanhoNomePesquisa; i++) {
+        if (nomeNo[i] == nomePesquisa[i]) {
+            letrasIguais++;
+        }
+    }
+    
+    if (letrasIguais == tamanhoNomePesquisa) {
+        saoIguais = 1;
+    }
+    
+    return saoIguais;
 }

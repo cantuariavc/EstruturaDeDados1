@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
                 // Remover registros que possuem certo nome
                 break;
             case 3:
-                // Visualizar registro a partir do nome
+                imprimeNoPorNome(lista);
                 break;
             case 4:
                 imprimeLista(lista);
