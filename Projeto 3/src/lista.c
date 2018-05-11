@@ -22,13 +22,26 @@ No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep
     }
     
     for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
-        novoNo->nomeCompleto[i] = nomeCompleto[i];
-        novoNo->endereco[i] = endereco[i];
+        if (nomeCompleto[i] == '\n') {
+            novoNo->nomeCompleto[i] = '\0';
+        } else {
+            novoNo->nomeCompleto[i] = nomeCompleto[i];
+        }
+        
+        if (endereco[i] == '\n') {
+            novoNo->endereco[i] = '\0';
+        } else {
+            novoNo->endereco[i] = endereco[i];
+        }
     }
+    
     for (int i = 0; i < TAMANHOTELEFONECELULAR; i++) {
         novoNo->telefoneCelular[i] = telefoneCelular[i];
         novoNo->dataDeNascimento[i] = dataDeNascimento[i];
     }
+    novoNo->telefoneCelular[10] = '\0';
+    novoNo->dataDeNascimento[10] = '\0';
+    
     novoNo->cep = cep;
     
     novoNo->anterior = anterior;
@@ -71,7 +84,8 @@ void imprimeLista(No *lista) {
             printf("\n");
         }
     } else {
-        printf("Lista vazia!");
+        printf("Vazia!");
+        printf("\n");
         printf("\n");
     }
 }

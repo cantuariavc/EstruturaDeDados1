@@ -21,10 +21,24 @@ No *transfereContatosParaLista(FILE *contatos, No *lista) {
     char endereco[TAMANHOENDERECO];
     int cep = 0;
     char dataDeNascimento[TAMANHODATADENASCIMENTO];
-    char cifrao = '\0';
+    int cifrao;
     
-    while (fscanf(contatos, "%s\n%s\n%s\n%d\n%s\n%c", &nomeCompleto[0], &telefoneCelular[0], &endereco[0], &cep, &dataDeNascimento[0], &cifrao) != EOF) {
-        insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+    while (1) {
+        fgets(nomeCompleto, TAMANHONOMECOMPLETO, contatos);
+        fscanf(contatos, "%s", telefoneCelular);
+        fgetc(contatos);
+        fgets(endereco, TAMANHOENDERECO, contatos);
+        fscanf(contatos, "%d", &cep);
+        fgetc(contatos);
+        fscanf(contatos, "%s", dataDeNascimento);
+        fgetc(contatos);
+        cifrao = fgetc(contatos);
+
+        lista = insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+        
+        if (fgetc(contatos) == EOF) {
+            break;
+        }
     }
     
     return lista;

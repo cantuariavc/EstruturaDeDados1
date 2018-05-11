@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
                 // Visualizar registro a partir do nome
                 break;
             case 4:
-                // Visualizar todos os registros em ordem alfabética de acordo com o nome
+                imprimeLista(lista);
                 break;
             default:
                 break;
