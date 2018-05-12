@@ -39,7 +39,7 @@ void insereNovoRegistro(No *lista) {
     
     do {
         printf("Telefone celular (55555-5555): ");
-        fgets(telefoneCelular, TAMANHOTELEFONECELULAR, stdin);
+        scanf("%s", telefoneCelular);
         getchar();
     } while (!validaCelular(telefoneCelular));
     
@@ -66,7 +66,52 @@ void insereNovoRegistro(No *lista) {
 int validaCelular(char telefoneCelular[]) {
     int eValido = 0;
     
+    if (validaTamanhoCelular(telefoneCelular) && validaFormatoCelular(telefoneCelular) && validaCaracteresCelular(telefoneCelular)) {
+        eValido = 1;
+    }
+    
+    return eValido;
+}
+
+int validaTamanhoCelular(char telefoneCelular[]) {
+    int eValido = 0;
+    int tamanhoCelular = 0;
+
+    for (int i = 0; i < TAMANHOTELEFONECELULAR; i++) {
+        if (telefoneCelular[i] != '\0') {
+            tamanhoCelular++;
+        }
+    }
+    
+    if (tamanhoCelular == (TAMANHOTELEFONECELULAR - 1)) {
+        eValido = 1;
+    }
+    
+    return eValido;
+}
+
+int validaFormatoCelular(char telefoneCelular[]) {
+    int eValido = 0;
+
     if (telefoneCelular[5] == '-') {
+        eValido = 1;
+    }
+    
+    return eValido;
+}
+
+int validaCaracteresCelular(char telefoneCelular[]) {
+    int eValido = 0;
+    int numeros = 0;
+    
+    for (int i = 0; i < TAMANHOTELEFONECELULAR; i++) {
+        if (telefoneCelular[i] == '0' || telefoneCelular[i] == '1' || telefoneCelular[i] == '2' || telefoneCelular[i] == '3' || telefoneCelular[i] == '4' ||
+            telefoneCelular[i] == '5' || telefoneCelular[i] == '6' || telefoneCelular[i] == '7' || telefoneCelular[i] == '8' || telefoneCelular[i] == '9') {
+            numeros++;
+        }
+    }
+    
+    if (numeros == (TAMANHOTELEFONECELULAR - 2)) {
         eValido = 1;
     }
     
