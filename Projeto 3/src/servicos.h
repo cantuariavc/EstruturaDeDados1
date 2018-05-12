@@ -16,6 +16,9 @@ void imprimeMenu(int *opcao);
 void insereNovoRegistro(No *lista);
 
 int validaCelular(char telefoneCelular[]);
+
+int validaCEP(char cep[]);
+
 int validaDataDeNacimento(char dataDeNascimento[]);
 int validaFormato(char dataDeNascimento[]);
 int validaDia(int dia);

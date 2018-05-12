@@ -31,7 +31,7 @@ void insereNovoRegistro(No *lista) {
     char nomeCompleto[TAMANHONOMECOMPLETO];
     char telefoneCelular[TAMANHOTELEFONECELULAR];
     char endereco[TAMANHOENDERECO];
-    int cep;
+    char cep[TAMANHOCEP];
     char dataDeNascimento[TAMANHODATADENASCIMENTO];
     
     printf("Nome completo: ");
@@ -45,10 +45,13 @@ void insereNovoRegistro(No *lista) {
     
     printf("Endereço: ");
     fgets(endereco, TAMANHOENDERECO, stdin);
-    printf("CEP (somente os números): ");
-    scanf("%d", &cep);
-    getchar();
     
+    do {
+        printf("CEP (somente os números): ");
+        scanf("%s", cep);
+        getchar();
+    } while (!validaCEP(cep));
+
     do {
         printf("Data de nascimento (dd/mm/aaaa): ");
         fgets(dataDeNascimento, TAMANHODATADENASCIMENTO, stdin);
@@ -56,7 +59,7 @@ void insereNovoRegistro(No *lista) {
     } while (!validaDataDeNacimento(dataDeNascimento));
     
     printf("\n");
-    insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
+    insereNo(lista, nomeCompleto, telefoneCelular, endereco, atoi(cep), dataDeNascimento);
 }
 
 
@@ -69,6 +72,35 @@ int validaCelular(char telefoneCelular[]) {
     
     return eValido;
 }
+
+
+int validaCEP(char cep[]) {
+    int eValido = 0;
+    int tamanhoCEP = 0;
+    int numeros = 0;
+    
+    for (int i = 0; i < TAMANHOCEP; i++) {
+        if (cep[i] != '\0') {
+            tamanhoCEP++;
+        } else {
+            break;
+        }
+    }
+    
+    for (int i = 0; i < tamanhoCEP; i++) {
+        if (cep[i] == '0' || cep[i] == '1' || cep[i] == '2' || cep[i] == '3' || cep[i] == '4' ||
+            cep[i] == '5' || cep[i] == '6' || cep[i] == '7' || cep[i] == '8' || cep[i] == '9') {
+            numeros++;
+        }
+    }
+    
+    if (tamanhoCEP == numeros) {
+        eValido = 1;
+    }
+    
+    return eValido;
+}
+
 
 int validaDataDeNacimento(char dataDeNascimento[]) {
     int eValido = 0;
