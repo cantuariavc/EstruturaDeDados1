@@ -11,6 +11,7 @@
 
 #include "no.h"
 #include "servicos.h"
+#include "arquivo.h"
 
 No *transfereContatosParaLista(FILE *contatos);
 No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]);

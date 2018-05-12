@@ -8,38 +8,6 @@
 
 #include "servicos.h"
 
-int eArquivoExistente(char caminhoArquivo[]) {
-    int existe = 1;
-    
-    int errcode = access(caminhoArquivo, F_OK);
-    if (errcode == ENOENT) {
-        existe = 0;
-    }
-    
-    return existe;
-}
-
-FILE *abreArquivo(char caminhoArquivo[]) {
-    FILE *arquivo;
-    
-    if (eArquivoExistente(caminhoArquivo)) {
-        arquivo = fopen(caminhoArquivo, "r");
-        verificaAlocacaoArquivo(arquivo);
-    } else {
-        arquivo = fopen(caminhoArquivo, "w+");
-        verificaAlocacaoArquivo(arquivo);
-    }
-
-    return arquivo;
-}
-
-void verificaAlocacaoArquivo(FILE *nomeArquivo) {
-    if (nomeArquivo == NULL) {
-        printf("Erro na abertura da arquivo!\n");
-        exit(1);
-    }
-}
-
 void imprimeMenu(int *opcao) {
     printf("Menu");
     printf("\n");

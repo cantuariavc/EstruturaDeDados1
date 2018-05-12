@@ -38,6 +38,7 @@ int main(int argc, const char * argv[]) {
                 imprimeLista(lista);
                 break;
             default:
+                gravaListaNoArquivo(lista, caminhoArquivo);
                 break;
         }
     } while (opcao != 0);

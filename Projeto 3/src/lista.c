@@ -15,7 +15,7 @@ No *transfereContatosParaLista(FILE *contatos) {
     char endereco[TAMANHOENDERECO];
     int cep = 0;
     char dataDeNascimento[TAMANHODATADENASCIMENTO];
-    int cifrao;
+    int cifrao = 0;
     
     while (1) {
         fgets(nomeCompleto, TAMANHONOMECOMPLETO, contatos);

@@ -9,15 +9,8 @@
 #ifndef servicos_h
 #define servicos_h
 
-#include <unistd.h>
 #include "no.h"
 #include "lista.h"
-
-#define ENOENT -1
-
-int eArquivoExistente(char caminhoArquivo[]);
-FILE *abreArquivo(char caminhoArquivo[]);
-void verificaAlocacaoArquivo(FILE *nomeArquivo);
 
 void imprimeMenu(int *opcao);
 void insereNovoRegistro(No *lista);
