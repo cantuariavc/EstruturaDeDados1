@@ -22,11 +22,12 @@ int validaCaracteresCelular(char telefoneCelular[]);
 
 int validaCEP(char cep[]);
 
-int validaDataDeNacimento(char dataDeNascimento[]);
-int validaFormato(char dataDeNascimento[]);
+int validaDataDeNascimento(char dataDeNascimento[]);
+int validaFormatoDataDeNascimento(char dataDeNascimento[]);
 int validaDia(int dia);
 int validaMes(int mes);
 int validaAno(int ano);
+
 int verificaNome(char nomeNo[], char nomePesquisa[]);
 
 #endif /* servicos_h */

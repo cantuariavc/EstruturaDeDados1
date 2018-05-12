@@ -54,9 +54,9 @@ void insereNovoRegistro(No *lista) {
 
     do {
         printf("Data de nascimento (dd/mm/aaaa): ");
-        fgets(dataDeNascimento, TAMANHODATADENASCIMENTO, stdin);
+        scanf("%s", dataDeNascimento);
         getchar();
-    } while (!validaDataDeNacimento(dataDeNascimento));
+    } while (!validaDataDeNascimento(dataDeNascimento));
     
     printf("\n");
     insereNo(lista, nomeCompleto, telefoneCelular, endereco, atoi(cep), dataDeNascimento);
@@ -147,7 +147,7 @@ int validaCEP(char cep[]) {
 }
 
 
-int validaDataDeNacimento(char dataDeNascimento[]) {
+int validaDataDeNascimento(char dataDeNascimento[]) {
     int eValido = 0;
     
     char diaString[2];
@@ -167,14 +167,14 @@ int validaDataDeNacimento(char dataDeNascimento[]) {
     anoString[3] = dataDeNascimento[9];
     int ano = atoi(&anoString[0]);
     
-    if (validaFormato(dataDeNascimento) && validaDia(dia) && validaMes(mes) && validaAno(ano)) {
+    if (validaFormatoDataDeNascimento(dataDeNascimento) && validaDia(dia) && validaMes(mes) && validaAno(ano)) {
         eValido = 1;
     }
 
     return eValido;
 }
 
-int validaFormato(char dataDeNascimento[]) {
+int validaFormatoDataDeNascimento(char dataDeNascimento[]) {
     int eValido = 0;
 
     if (dataDeNascimento[2] == '/' && dataDeNascimento[5] == '/') {
@@ -213,6 +213,7 @@ int validaAno(int ano) {
     
     return eValido;
 }
+
 
 int verificaNome(char nomeNo[], char nomePesquisa[]) {
     int tamanhoNomePesquisa = 0;
