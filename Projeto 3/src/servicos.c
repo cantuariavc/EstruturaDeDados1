@@ -27,41 +27,6 @@ void imprimeMenu(int *opcao) {
     printf("\n");
 }
 
-void insereNovoRegistro(No *lista) {
-    char nomeCompleto[TAMANHONOMECOMPLETO];
-    char telefoneCelular[TAMANHOTELEFONECELULAR];
-    char endereco[TAMANHOENDERECO];
-    char cep[TAMANHOCEP];
-    char dataDeNascimento[TAMANHODATADENASCIMENTO];
-    
-    printf("Nome completo: ");
-    fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
-    
-    do {
-        printf("Telefone celular (55555-5555): ");
-        scanf("%s", telefoneCelular);
-        getchar();
-    } while (!validaCelular(telefoneCelular));
-    
-    printf("Endereço: ");
-    fgets(endereco, TAMANHOENDERECO, stdin);
-    
-    do {
-        printf("CEP (somente os números): ");
-        scanf("%s", cep);
-        getchar();
-    } while (!validaCEP(cep));
-
-    do {
-        printf("Data de nascimento (dd/mm/aaaa): ");
-        scanf("%s", dataDeNascimento);
-        getchar();
-    } while (!validaDataDeNascimento(dataDeNascimento));
-    
-    printf("\n");
-    insereNo(lista, nomeCompleto, telefoneCelular, endereco, atoi(cep), dataDeNascimento);
-}
-
 
 int validaCelular(char telefoneCelular[]) {
     int eValido = 0;

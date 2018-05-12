@@ -14,9 +14,13 @@
 #include "arquivo.h"
 
 No *transfereContatosParaLista(FILE *contatos);
+
+void insereNovoRegistro(No *lista);
 No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]);
+
 void imprimeLista(No *lista);
 void imprimeNoPorNome(No *lista);
+
 No *excluiNosPorNome(No *lista);
 
 #endif /* lista_h */

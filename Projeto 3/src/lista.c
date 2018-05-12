@@ -38,6 +38,43 @@ No *transfereContatosParaLista(FILE *contatos) {
     return lista;
 }
 
+
+void insereNovoRegistro(No *lista) {
+    char nomeCompleto[TAMANHONOMECOMPLETO];
+    char telefoneCelular[TAMANHOTELEFONECELULAR];
+    char endereco[TAMANHOENDERECO];
+    char cep[TAMANHOCEP];
+    char dataDeNascimento[TAMANHODATADENASCIMENTO];
+    
+    printf("Nome completo: ");
+    fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
+    
+    do {
+        printf("Telefone celular (55555-5555): ");
+        scanf("%s", telefoneCelular);
+        getchar();
+    } while (!validaCelular(telefoneCelular));
+    
+    printf("Endereço: ");
+    fgets(endereco, TAMANHOENDERECO, stdin);
+    
+    do {
+        printf("CEP (somente os números): ");
+        scanf("%s", cep);
+        getchar();
+    } while (!validaCEP(cep));
+    
+    do {
+        printf("Data de nascimento (dd/mm/aaaa): ");
+        scanf("%s", dataDeNascimento);
+        getchar();
+    } while (!validaDataDeNascimento(dataDeNascimento));
+    
+    printf("\n");
+    insereNo(lista, nomeCompleto, telefoneCelular, endereco, atoi(cep), dataDeNascimento);
+}
+
+
 No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]) {
     No *novoNo = criaNo(nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento, NULL, NULL);
     
@@ -53,6 +90,7 @@ No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endere
     
     return lista;
 }
+
 
 void imprimeLista(No *lista) {
     printf("Lista");
@@ -118,6 +156,7 @@ void imprimeNoPorNome(No *lista) {
         printf("\n\n");
     }
 }
+
 
 No *excluiNosPorNome(No *lista) {
     int haNome = 0;

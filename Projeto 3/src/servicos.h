@@ -10,10 +10,8 @@
 #define servicos_h
 
 #include "no.h"
-#include "lista.h"
 
 void imprimeMenu(int *opcao);
-void insereNovoRegistro(No *lista);
 
 int validaCelular(char telefoneCelular[]);
 int validaTamanhoCelular(char telefoneCelular[]);
