@@ -172,12 +172,7 @@ No *excluiNosPorNome(No *lista) {
         
         printf("Nome para exclusão: ");
         fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
-        for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
-            if (nomeCompleto[i] == '\n') {
-                nomeCompleto[i] = '\0';
-                break;
-            }
-        }
+        nomeCompleto[(strlen(nomeCompleto) - 1)] = '\0';
         printf("\n");
         
         for (No *aux = lista; aux != NULL; aux = aux->proximo) {
@@ -188,17 +183,18 @@ No *excluiNosPorNome(No *lista) {
                 
                 if (aux->anterior != NULL) {
                     aux->anterior->proximo = aux->proximo;
-                } else {
-                    lista = aux->proximo;
-                }
-                
-                if (aux->anterior == NULL) {
-                    free(aux);
-                    aux = lista;
-                } else {
                     No *aux2 = aux->anterior;
                     free(aux);
                     aux = aux2;
+                } else {
+                    lista = aux->proximo;
+                    free(aux);
+                    aux = lista;
+                }
+                
+                if (lista == NULL) {
+                    haNome++;
+                    break;
                 }
                 
                 haNome++;
