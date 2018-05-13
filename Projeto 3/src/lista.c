@@ -50,8 +50,11 @@ No *insereNovoRegistro(No *lista) {
     char cep[TAMANHOCEP];
     char dataDeNascimento[TAMANHODATADENASCIMENTO];
     
-    printf("Nome completo: ");
-    fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
+    do {
+        printf("Nome completo: ");
+        fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
+    } while (!validaCampoVazio(nomeCompleto));
+    
     
     do {
         printf("Telefone celular (55555-5555): ");
@@ -59,9 +62,11 @@ No *insereNovoRegistro(No *lista) {
         getchar();
     } while (!validaCelular(telefoneCelular));
     
-    printf("Endereço: ");
-    fgets(endereco, TAMANHOENDERECO, stdin);
-    
+    do {
+        printf("Endereço: ");
+        fgets(endereco, TAMANHOENDERECO, stdin);
+    } while (!validaCampoVazio(endereco));
+        
     do {
         printf("CEP (somente os números): ");
         scanf("%s", cep);

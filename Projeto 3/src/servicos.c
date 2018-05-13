@@ -28,6 +28,17 @@ void imprimeMenu(int *opcao) {
 }
 
 
+int validaCampoVazio(char string[]) {
+    int eValido = 0;
+    
+    if ((strlen(string) > 1) && string[0] != ' ') {
+        eValido = 1;
+    }
+    
+    return eValido;
+}
+
+
 int validaCelular(char telefoneCelular[]) {
     int eValido = 0;
     

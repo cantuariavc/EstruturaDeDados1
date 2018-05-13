@@ -14,6 +14,8 @@
 
 void imprimeMenu(int *opcao);
 
+int validaCampoVazio(char string[]);
+
 int validaCelular(char telefoneCelular[]);
 int validaTamanhoCelular(char telefoneCelular[]);
 int validaFormatoCelular(char telefoneCelular[]);
