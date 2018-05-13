@@ -165,16 +165,9 @@ int validaAno(int ano) {
 
 
 int verificaNome(char nomeNo[], char nomePesquisa[]) {
-    int letrasIguais = 0;
     int saoIguais = 0;
     
-    for (int i = 0; i < strlen(nomePesquisa); i++) {
-        if (nomeNo[i] == nomePesquisa[i]) {
-            letrasIguais++;
-        }
-    }
-    
-    if (letrasIguais == strlen(nomePesquisa)) {
+    if (strncmp(nomeNo, nomePesquisa, strlen(nomePesquisa)) == 0) {
         saoIguais = 1;
     }
     
