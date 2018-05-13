@@ -10,7 +10,6 @@
 #define servicos_h
 
 #include "no.h"
-#include <string.h>
 
 void imprimeMenu(int *opcao);
 

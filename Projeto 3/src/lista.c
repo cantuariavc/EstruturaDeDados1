@@ -133,12 +133,7 @@ void imprimeNoPorNome(No *lista) {
         
         printf("Nome para pesquisa: ");
         fgets(nomeCompleto, TAMANHONOMECOMPLETO, stdin);
-        for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
-            if (nomeCompleto[i] == '\n') {
-                nomeCompleto[i] = '\0';
-                break;
-            }
-        }
+        nomeCompleto[(strlen(nomeCompleto) - 1)] = '\0';
         printf("\n");
         
         for (No *aux = lista; aux != NULL; aux = aux->proximo) {

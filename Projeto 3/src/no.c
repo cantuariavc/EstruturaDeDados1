@@ -1,6 +1,6 @@
 //
 //  no.c
-//  src
+//  Projeto 3
 //
 //  Created by Vinícius Cantuária on 11/05/2018.
 //  Copyright © 2018 Vinícius Cantuária. All rights reserved.
@@ -15,28 +15,19 @@ No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep
         exit(1);
     }
     
-    for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
-        if (nomeCompleto[i] == '\n') {
-            novoNo->nomeCompleto[i] = '\0';
-        } else {
-            novoNo->nomeCompleto[i] = nomeCompleto[i];
-        }
-        
-        if (endereco[i] == '\n') {
-            novoNo->endereco[i] = '\0';
-        } else {
-            novoNo->endereco[i] = endereco[i];
-        }
-    }
+    strcpy(novoNo->nomeCompleto, nomeCompleto);
+    novoNo->nomeCompleto[(strlen(novoNo->nomeCompleto) - 1)] = '\0';
     
-    for (int i = 0; i < TAMANHOTELEFONECELULAR; i++) {
-        novoNo->telefoneCelular[i] = telefoneCelular[i];
-        novoNo->dataDeNascimento[i] = dataDeNascimento[i];
-    }
-    novoNo->telefoneCelular[10] = '\0';
-    novoNo->dataDeNascimento[10] = '\0';
+    strcpy(novoNo->telefoneCelular, telefoneCelular);
+    novoNo->telefoneCelular[(strlen(novoNo->telefoneCelular) - 1)] = '\0';
+    
+    strcpy(novoNo->endereco, endereco);
+    novoNo->endereco[(strlen(novoNo->endereco) - 1)] = '\0';
     
     novoNo->cep = cep;
+    
+    strcpy(novoNo->dataDeNascimento, dataDeNascimento);
+    novoNo->dataDeNascimento[(strlen(novoNo->dataDeNascimento) - 1)] = '\0';
     
     novoNo->anterior = anterior;
     novoNo->proximo = proximo;
