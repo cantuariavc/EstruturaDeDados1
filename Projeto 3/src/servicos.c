@@ -40,15 +40,8 @@ int validaCelular(char telefoneCelular[]) {
 
 int validaTamanhoCelular(char telefoneCelular[]) {
     int eValido = 0;
-    int tamanhoCelular = 0;
-
-    for (int i = 0; i < TAMANHOTELEFONECELULAR; i++) {
-        if (telefoneCelular[i] != '\0') {
-            tamanhoCelular++;
-        }
-    }
     
-    if (tamanhoCelular == (TAMANHOTELEFONECELULAR - 1)) {
+    if (strlen(telefoneCelular) == (TAMANHOTELEFONECELULAR - 1)) {
         eValido = 1;
     }
     
@@ -67,16 +60,16 @@ int validaFormatoCelular(char telefoneCelular[]) {
 
 int validaCaracteresCelular(char telefoneCelular[]) {
     int eValido = 0;
-    int numeros = 0;
+    int quantidadeDeNumeros = 0;
     
     for (int i = 0; i < TAMANHOTELEFONECELULAR; i++) {
         if (telefoneCelular[i] == '0' || telefoneCelular[i] == '1' || telefoneCelular[i] == '2' || telefoneCelular[i] == '3' || telefoneCelular[i] == '4' ||
             telefoneCelular[i] == '5' || telefoneCelular[i] == '6' || telefoneCelular[i] == '7' || telefoneCelular[i] == '8' || telefoneCelular[i] == '9') {
-            numeros++;
+            quantidadeDeNumeros++;
         }
     }
     
-    if (numeros == (TAMANHOTELEFONECELULAR - 2)) {
+    if (quantidadeDeNumeros == (TAMANHOTELEFONECELULAR - 2)) {
         eValido = 1;
     }
     
@@ -86,25 +79,16 @@ int validaCaracteresCelular(char telefoneCelular[]) {
 
 int validaCEP(char cep[]) {
     int eValido = 0;
-    int tamanhoCEP = 0;
-    int numeros = 0;
+    int quantidadeDeNumeros = 0;
     
-    for (int i = 0; i < TAMANHOCEP; i++) {
-        if (cep[i] != '\0') {
-            tamanhoCEP++;
-        } else {
-            break;
-        }
-    }
-    
-    for (int i = 0; i < tamanhoCEP; i++) {
+    for (int i = 0; i < strlen(cep); i++) {
         if (cep[i] == '0' || cep[i] == '1' || cep[i] == '2' || cep[i] == '3' || cep[i] == '4' ||
             cep[i] == '5' || cep[i] == '6' || cep[i] == '7' || cep[i] == '8' || cep[i] == '9') {
-            numeros++;
+            quantidadeDeNumeros++;
         }
     }
     
-    if (tamanhoCEP == numeros) {
+    if (strlen(cep) == quantidadeDeNumeros) {
         eValido = 1;
     }
     
@@ -181,24 +165,16 @@ int validaAno(int ano) {
 
 
 int verificaNome(char nomeNo[], char nomePesquisa[]) {
-    int tamanhoNomePesquisa = 0;
     int letrasIguais = 0;
     int saoIguais = 0;
     
-    for (int i = 0; i < TAMANHONOMECOMPLETO; i++) {
-        if (nomePesquisa[i] == '\0') {
-            tamanhoNomePesquisa = i;
-            break;
-        }
-    }
-    
-    for (int i = 0; i < tamanhoNomePesquisa; i++) {
+    for (int i = 0; i < strlen(nomePesquisa); i++) {
         if (nomeNo[i] == nomePesquisa[i]) {
             letrasIguais++;
         }
     }
     
-    if (letrasIguais == tamanhoNomePesquisa) {
+    if (letrasIguais == strlen(nomePesquisa)) {
         saoIguais = 1;
     }
     
