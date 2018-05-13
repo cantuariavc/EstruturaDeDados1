@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
         
         switch (opcao) {
             case 1:
-                insereNovoRegistro(lista);
+                lista = insereNovoRegistro(lista);
                 break;
             case 2:
                 lista = excluiNosPorNome(lista);

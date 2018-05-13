@@ -35,11 +35,15 @@ No *transfereContatosParaLista(FILE *contatos) {
         }
     }
     
+    if (cifrao == -1) {
+        lista = NULL;
+    }
+    
     return lista;
 }
 
 
-void insereNovoRegistro(No *lista) {
+No *insereNovoRegistro(No *lista) {
     char nomeCompleto[TAMANHONOMECOMPLETO];
     char telefoneCelular[TAMANHOTELEFONECELULAR];
     char endereco[TAMANHOENDERECO];
@@ -71,7 +75,9 @@ void insereNovoRegistro(No *lista) {
     } while (!validaDataDeNascimento(dataDeNascimento));
     
     printf("\n");
-    insereNo(lista, nomeCompleto, telefoneCelular, endereco, atoi(cep), dataDeNascimento);
+    lista = insereNo(lista, nomeCompleto, telefoneCelular, endereco, atoi(cep), dataDeNascimento);
+    
+    return lista;
 }
 
 

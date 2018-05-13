@@ -15,7 +15,7 @@
 
 No *transfereContatosParaLista(FILE *contatos);
 
-void insereNovoRegistro(No *lista);
+No *insereNovoRegistro(No *lista);
 No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endereco[], int cep, char dataDeNascimento[]);
 
 void imprimeLista(No *lista);
