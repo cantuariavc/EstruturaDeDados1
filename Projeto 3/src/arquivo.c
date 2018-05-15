@@ -49,9 +49,6 @@ void gravaListaNoArquivo(No *lista, char caminhoArquivo[]) {
         fprintf(arquivo, "%s\n", aux->endereco);
         fprintf(arquivo, "%d\n", aux->cep);
         fprintf(arquivo, "%s\n", aux->dataDeNascimento);
-        fprintf(arquivo, "%c", '$');
-        if (aux->proximo != NULL) {
-            fprintf(arquivo, "\n");
-        }
+        fprintf(arquivo, "%c\n", '$');
     }
 }

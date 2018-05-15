@@ -19,7 +19,7 @@ No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep
     novoNo->nomeCompleto[(strlen(novoNo->nomeCompleto) - 1)] = '\0';
     
     strcpy(novoNo->telefoneCelular, telefoneCelular);
-    novoNo->telefoneCelular[(strlen(novoNo->telefoneCelular) - 1)] = '\0';
+    novoNo->telefoneCelular[strlen(novoNo->telefoneCelular)] = '\0';
     
     strcpy(novoNo->endereco, endereco);
     novoNo->endereco[(strlen(novoNo->endereco) - 1)] = '\0';
@@ -27,7 +27,7 @@ No *criaNo(char nomeCompleto[], char telefoneCelular[], char endereco[], int cep
     novoNo->cep = cep;
     
     strcpy(novoNo->dataDeNascimento, dataDeNascimento);
-    novoNo->dataDeNascimento[(strlen(novoNo->dataDeNascimento) - 1)] = '\0';
+    novoNo->dataDeNascimento[strlen(novoNo->dataDeNascimento)] = '\0';
     
     novoNo->anterior = anterior;
     novoNo->proximo = proximo;

@@ -28,18 +28,14 @@ No *transfereContatosParaLista(FILE *contatos) {
         fgetc(contatos);
         cifrao = fgetc(contatos);
         
-        lista = insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
-        
         if (fgetc(contatos) == EOF) {
             break;
         }
+        
+        lista = insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
     }
-    
-    if (cifrao == -1) {
-        lista = NULL;
-    } else {
+
         lista = ordenaLista(lista);
-    }
     
     return lista;
 }
@@ -219,6 +215,7 @@ No *excluiNosPorNome(No *lista) {
     
     return lista;
 }
+
 
 No *ordenaLista(No *lista) {
     int tamanhoDaLista = 0;
