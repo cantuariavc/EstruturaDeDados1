@@ -23,4 +23,6 @@ void imprimeNoPorNome(No *lista);
 
 No *excluiNosPorNome(No *lista);
 
+No *ordenaLista(No *lista);
+
 #endif /* lista_h */

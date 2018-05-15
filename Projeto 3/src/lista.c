@@ -37,6 +37,8 @@ No *transfereContatosParaLista(FILE *contatos) {
     
     if (cifrao == -1) {
         lista = NULL;
+    } else {
+        lista = ordenaLista(lista);
     }
     
     return lista;
@@ -95,6 +97,8 @@ No *insereNo(No *lista, char nomeCompleto[], char telefoneCelular[], char endere
         
         aux->proximo = novoNo;
         novoNo->anterior = aux;
+        
+        lista = ordenaLista(lista);
     } else {
         lista = novoNo;
     }
@@ -213,5 +217,55 @@ No *excluiNosPorNome(No *lista) {
     }
     printf("\n\n");
     
+    return lista;
+}
+
+No *ordenaLista(No *lista) {
+    int tamanhoDaLista = 0;
+    No *aux = lista;
+    
+    while (aux != NULL) {
+        tamanhoDaLista++;
+        aux = aux->proximo;
+    }
+    
+    No *ptr1 = lista;
+    No *ptr2 = lista;
+    No *temp = NULL;
+    int i = 0;
+    int j = 0;
+
+    for (i = 0; i < tamanhoDaLista; i++) {
+        temp = (No *) calloc(1, sizeof(No));
+        
+        strcpy(temp->nomeCompleto, ptr1->nomeCompleto);
+        strcpy(temp->telefoneCelular, ptr1->telefoneCelular);
+        strcpy(temp->endereco, ptr1->endereco);
+        temp->cep = ptr1->cep;
+        strcpy(temp->dataDeNascimento, ptr1->dataDeNascimento);
+        
+        for (j = 0; j < i; j++)
+            ptr2 = ptr2->proximo;
+        for (j = i; j > 0 && strcmp(ptr2->anterior->nomeCompleto, temp->nomeCompleto) > 0; j--) {
+            strcpy(ptr2->nomeCompleto, ptr2->anterior->nomeCompleto);
+            strcpy(ptr2->telefoneCelular, ptr2->anterior->telefoneCelular);
+            strcpy(ptr2->endereco, ptr2->anterior->endereco);
+            ptr2->cep = ptr2->anterior->cep;
+            strcpy(ptr2->dataDeNascimento, ptr2->anterior->dataDeNascimento);
+            
+            ptr2 = ptr2->anterior;
+        }
+        memcpy(ptr2->nomeCompleto, temp->nomeCompleto, sizeof(temp->nomeCompleto));
+        memcpy(ptr2->telefoneCelular, temp->telefoneCelular, sizeof(temp->telefoneCelular));
+        memcpy(ptr2->endereco, temp->endereco, sizeof(temp->endereco));
+        ptr2->cep = temp->cep;
+        memcpy(ptr2->dataDeNascimento, temp->dataDeNascimento, sizeof(temp->dataDeNascimento));
+        
+        ptr2 = lista;
+        ptr1 = ptr1->proximo;
+        
+        free(temp);
+    }
+
     return lista;
 }
