@@ -33,9 +33,8 @@ No *transfereContatosParaLista(FILE *contatos) {
         }
         
         lista = insereNo(lista, nomeCompleto, telefoneCelular, endereco, cep, dataDeNascimento);
-    }
-
         lista = ordenaLista(lista);
+    }
     
     return lista;
 }
