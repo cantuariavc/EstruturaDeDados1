@@ -15,3 +15,15 @@ int geraNumeroAleatorio(int tamanhoMinimo, int tamanhoMaximo) {
     
     return numeroGerado;
 }
+
+int eNumeroExistente(int *vetor, int tamanho, int numeroGerado) {
+    int existe = 0;
+    
+    for (int i = 0; i < tamanho; i++) {
+        if (*(vetor + i) == numeroGerado) {
+            existe = 1;
+        }
+    }
+    
+    return existe;
+}
