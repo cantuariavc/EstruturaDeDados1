@@ -9,8 +9,6 @@
 #ifndef voo_h
 #define voo_h
 
-#include <stdio.h>
-
 typedef struct voo {
     char codigo[7];
     char status;
