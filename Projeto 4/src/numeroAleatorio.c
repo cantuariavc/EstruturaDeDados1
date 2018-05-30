@@ -28,8 +28,7 @@ int eNumeroExistente(int *vetor, int tamanho, int numeroGerado) {
     return existe;
 }
 
-int *geraVetorComNumerosAleatorios(int numeroMinimo, int NunumeroMaximo) {
-    int tamanhoVetor = geraNumeroAleatorio(numeroMinimo, NunumeroMaximo);
+int *geraVetorComNumerosAleatorios(int tamanhoVetor) {
     int *vetorNumerosAleatorios = alocaInt(tamanhoVetor);
     int numeroGerado = 0;
     
