@@ -35,3 +35,17 @@ void verificaAlocacaoEstruturaFila(Fila *estruturaFila) {
         exit(1);
     }
 }
+
+int *alocaInt(int tamanho) {
+    int *vetorInt = (int *) calloc(tamanho, sizeof(int));
+    verificaAlocacaoInt(vetorInt);
+    
+    return vetorInt;
+}
+
+void verificaAlocacaoInt(int *vetorAlocado) {
+    if (vetorAlocado == NULL) {
+        printf("Erro na alocação da memória do vetor int!\n");
+        exit(4);
+    }
+}
