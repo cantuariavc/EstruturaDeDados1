@@ -9,11 +9,15 @@
 #ifndef voo_h
 #define voo_h
 
+#include "memoria.h"
+
 typedef struct voo {
     char codigo[7];
     char status;
     int quantidadeDeCombustivel;
     struct voo *proximo;
 } Voo;
+
+Voo *criaNovoVoo(char codigo[], char status, int quantidadeDeCombustivel, Voo *proximo);
 
 #endif /* voo_h */
