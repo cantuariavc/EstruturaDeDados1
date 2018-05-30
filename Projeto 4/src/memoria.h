@@ -11,9 +11,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "voo.h"
+#include "fila.h"
 
 Voo *alocaEstruturaVoo(void);
 void verificaAlocacaoEstruturaVoo(Voo *estruturaVoo);
+Fila *alocaEstruturaFila(void);
+void verificaAlocacaoEstruturaFila(Fila *estruturaFila);
 
 #endif /* memoria_h */

@@ -17,7 +17,21 @@ Voo *alocaEstruturaVoo() {
 
 void verificaAlocacaoEstruturaVoo(Voo *estruturaVoo) {
     if (estruturaVoo == NULL) {
-        printf("Erro na alocação da memória do estrutura Voo!\n");
+        printf("Erro na alocação da memória da estrutura Voo!\n");
+        exit(1);
+    }
+}
+
+Fila *alocaEstruturaFila() {
+    Fila *estruturaFila = (Fila *) calloc(1, sizeof(Fila));
+    verificaAlocacaoEstruturaFila(estruturaFila);
+    
+    return estruturaFila;
+}
+
+void verificaAlocacaoEstruturaFila(Fila *estruturaFila) {
+    if (estruturaFila == NULL) {
+        printf("Erro na alocação da memória da estrutura Fila!\n");
         exit(1);
     }
 }
