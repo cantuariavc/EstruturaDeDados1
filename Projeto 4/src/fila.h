@@ -16,4 +16,6 @@ typedef struct fila {
     Voo *fim;
 } Fila;
 
+Fila *criaNovaFila(Voo *inicio, Voo *fim);
+
 #endif /* fila_h */
