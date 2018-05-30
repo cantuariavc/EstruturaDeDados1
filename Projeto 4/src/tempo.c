@@ -21,3 +21,11 @@ int incrementaHoras(int horas, int minutos, int quantidade) {
     
     return horas;
 }
+
+int incrementaMinutos(int minutos, int quantidade) {
+    int minutosIncrementais = quantidade * 5;
+    
+    minutos = ((minutos + minutosIncrementais) % 60) * 60;
+    
+    return minutos;
+}

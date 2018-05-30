@@ -11,5 +11,6 @@
 
 int tempoInicial(void);
 int incrementaHoras(int horas, int minutos, int quantidade);
+int incrementaMinutos(int minutos, int quantidade);
     
 #endif /* tempo_h */
