@@ -10,9 +10,10 @@
 
 Voo *criaNovoVoo(char codigo[], char status, int quantidadeDeCombustivel, Voo *proximo) {
     Voo *novoVoo = alocaEstruturaVoo();
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 6; i++) {
         novoVoo->codigo[i] = codigo[i];
     }
+    novoVoo->codigo[6] = '\0';
     novoVoo->status = status;
     novoVoo->quantidadeDeCombustivel = quantidadeDeCombustivel;
     novoVoo->proximo = proximo;
