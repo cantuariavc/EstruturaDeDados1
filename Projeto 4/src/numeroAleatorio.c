@@ -27,3 +27,19 @@ int eNumeroExistente(int *vetor, int tamanho, int numeroGerado) {
     
     return existe;
 }
+
+int *geraVetorComNumerosAleatorios(int numeroMinimo, int NunumeroMaximo) {
+    int tamanhoVetor = geraNumeroAleatorio(numeroMinimo, NunumeroMaximo);
+    int *vetorNumerosAleatorios = (int *) calloc(tamanhoVetor, sizeof(int));
+    int numeroGerado = 0;
+    
+    for (int i = 0; i < tamanhoVetor; i++) {
+        numeroGerado = geraNumeroAleatorio(1, 64);
+        while (eNumeroExistente(vetorNumerosAleatorios, i, numeroGerado)) {
+            numeroGerado = geraNumeroAleatorio(1, 64);
+        }
+        *(vetorNumerosAleatorios + i) = numeroGerado;
+    }
+    
+    return vetorNumerosAleatorios;
+}

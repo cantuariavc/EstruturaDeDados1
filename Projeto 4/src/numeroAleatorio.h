@@ -14,5 +14,6 @@
 
 int geraNumeroAleatorio(int tamanhoMinimo, int tamanhoMaximo);
 int eNumeroExistente(int *vetor, int tamanho, int numeroGerado);
+int *geraVetorComNumerosAleatorios(int numeroMinimo, int NunumeroMaximo);
 
 #endif /* numeroAleatorio_h */
