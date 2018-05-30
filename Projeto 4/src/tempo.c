@@ -13,3 +13,11 @@ int tempoInicial() {
     
     return horaInicial;
 }
+
+int incrementaHoras(int horas, int minutos, int quantidade) {
+    int minutosIncrementais = quantidade * 5;
+    
+    horas += (minutos + minutosIncrementais) / 60;
+    
+    return horas;
+}

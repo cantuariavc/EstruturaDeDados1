@@ -10,5 +10,6 @@
 #define tempo_h
 
 int tempoInicial(void);
-
+int incrementaHoras(int horas, int minutos, int quantidade);
+    
 #endif /* tempo_h */
