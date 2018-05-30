@@ -30,7 +30,7 @@ int eNumeroExistente(int *vetor, int tamanho, int numeroGerado) {
 
 int *geraVetorComNumerosAleatorios(int numeroMinimo, int NunumeroMaximo) {
     int tamanhoVetor = geraNumeroAleatorio(numeroMinimo, NunumeroMaximo);
-    int *vetorNumerosAleatorios = (int *) calloc(tamanhoVetor, sizeof(int));
+    int *vetorNumerosAleatorios = alocaInt(tamanhoVetor);
     int numeroGerado = 0;
     
     for (int i = 0; i < tamanhoVetor; i++) {

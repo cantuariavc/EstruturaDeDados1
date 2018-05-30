@@ -11,6 +11,7 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include "memoria.h"
 
 int geraNumeroAleatorio(int tamanhoMinimo, int tamanhoMaximo);
 int eNumeroExistente(int *vetor, int tamanho, int numeroGerado);
