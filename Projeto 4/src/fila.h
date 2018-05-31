@@ -10,6 +10,7 @@
 #define fila_h
 
 #include "voo.h"
+#include "numeroAleatorio.h"
 
 typedef struct fila {
     Voo *inicio;
@@ -21,5 +22,7 @@ void verificaAlocacaoEstruturaFila(Fila *estruturaFila);
 
 Fila *criaNovaFila(Voo *inicio, Voo *fim);
 Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo);
+
+Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAleatorios);
 
 #endif /* fila_h */
