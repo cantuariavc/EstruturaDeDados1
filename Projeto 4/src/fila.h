@@ -16,6 +16,8 @@ typedef struct fila {
     Voo *fim;
 } Fila;
 
+Fila *alocaEstruturaFila(void);
+void verificaAlocacaoEstruturaFila(Fila *estruturaFila);
 Fila *criaNovaFila(Voo *inicio, Voo *fim);
 
 #endif /* fila_h */

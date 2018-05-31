@@ -11,12 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "fila.h"
 
-Voo *alocaEstruturaVoo(void);
-void verificaAlocacaoEstruturaVoo(Voo *estruturaVoo);
-Fila *alocaEstruturaFila(void);
-void verificaAlocacaoEstruturaFila(Fila *estruturaFila);
 int *alocaInt(int tamanho);
 void verificaAlocacaoInt(int *vetorAlocado);
 

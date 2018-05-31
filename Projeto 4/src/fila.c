@@ -8,6 +8,20 @@
 
 #include "fila.h"
 
+Fila *alocaEstruturaFila() {
+    Fila *estruturaFila = (Fila *) calloc(1, sizeof(Fila));
+    verificaAlocacaoEstruturaFila(estruturaFila);
+    
+    return estruturaFila;
+}
+
+void verificaAlocacaoEstruturaFila(Fila *estruturaFila) {
+    if (estruturaFila == NULL) {
+        printf("Erro na alocação da memória da estrutura Fila!\n");
+        exit(1);
+    }
+}
+
 Fila *criaNovaFila(Voo *inicio, Voo *fim) {
     Fila *novaFila = alocaEstruturaFila();
     novaFila->inicio = inicio;

@@ -18,6 +18,8 @@ typedef struct voo {
     struct voo *proximo;
 } Voo;
 
+Voo *alocaEstruturaVoo(void);
+void verificaAlocacaoEstruturaVoo(Voo *estruturaVoo);
 Voo *criaNovoVoo(char codigo[], char status, int quantidadeDeCombustivel, Voo *proximo);
 
 #endif /* voo_h */
