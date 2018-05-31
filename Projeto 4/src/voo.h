@@ -11,6 +11,12 @@
 
 #include "memoria.h"
 
+#define QUANTIDADEMINIMAAPROXIMACOES 10
+#define QUANTIDADEMAXIMAAPROXIMACOES 32
+#define QUANTIDADEMINIMADECOLAGENS 10
+#define QUANTIDADEMAXIMADECOLAGENS 32
+#define NIVELMAXIMOCOMBUSTIVEL 12
+
 typedef struct voo {
     char codigo[7];
     char status;
