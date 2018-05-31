@@ -40,7 +40,7 @@ Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo) {
         fila->fim->proximo = novoVoo;
         fila->fim = novoVoo;
     } else {
-        while (aux->proximo->quantidadeDeCombustivel < novoVoo->quantidadeDeCombustivel) {
+        while (aux->proximo != NULL && aux->proximo->quantidadeDeCombustivel < novoVoo->quantidadeDeCombustivel) {
             aux = aux->proximo;
         }
         novoVoo->proximo = aux->proximo;
