@@ -19,6 +19,7 @@ typedef struct fila {
 
 Fila *alocaEstruturaFila(void);
 void verificaAlocacaoEstruturaFila(Fila *estruturaFila);
+void desalocaFila(Fila *fila);
 
 Fila *criaNovaFila(Voo *inicio, Voo *fim);
 Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo);

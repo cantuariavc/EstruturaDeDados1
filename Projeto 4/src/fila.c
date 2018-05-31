@@ -22,6 +22,17 @@ void verificaAlocacaoEstruturaFila(Fila *estruturaFila) {
     }
 }
 
+void desalocaFila(Fila *fila) {
+    Voo *aux = fila->inicio->proximo;
+    
+    while (aux != NULL) {
+        free(fila->inicio);
+        fila->inicio = aux;
+        aux = aux->proximo;
+    }
+    free(fila);
+}
+
 Fila *criaNovaFila(Voo *inicio, Voo *fim) {
     Fila *novaFila = alocaEstruturaFila();
     novaFila->inicio = inicio;
