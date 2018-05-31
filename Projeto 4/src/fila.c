@@ -29,3 +29,23 @@ Fila *criaNovaFila(Voo *inicio, Voo *fim) {
     
     return novaFila;
 }
+
+Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo) {
+    Voo *aux = fila->inicio;
+    
+    if (novoVoo->quantidadeDeCombustivel < fila->inicio->quantidadeDeCombustivel) {
+        novoVoo->proximo = fila->inicio;
+        fila->inicio = novoVoo;
+    } else if (novoVoo->quantidadeDeCombustivel > fila->fim->quantidadeDeCombustivel) {
+        fila->fim->proximo = novoVoo;
+        fila->fim = novoVoo;
+    } else {
+        while (aux->proximo->quantidadeDeCombustivel < novoVoo->quantidadeDeCombustivel) {
+            aux = aux->proximo;
+        }
+        novoVoo->proximo = aux->proximo;
+        aux->proximo = novoVoo;
+    }
+    
+    return fila;
+}
