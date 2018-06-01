@@ -11,7 +11,7 @@
 int geraNumeroAleatorio(int tamanhoMinimo, int tamanhoMaximo) {
     srand((unsigned int)time(NULL));
     
-    int numeroGerado = tamanhoMinimo + (rand() % tamanhoMaximo);
+    int numeroGerado = tamanhoMinimo + (rand() % ((tamanhoMaximo - tamanhoMinimo) + 1));
     
     return numeroGerado;
 }
