@@ -8,6 +8,7 @@
 
 #include "fila.h"
 #include "numeroAleatorio.h"
+#include "tempo.h"
 #include "voo.h"
 
 int main(int argc, const char * argv[]) {
@@ -18,6 +19,8 @@ int main(int argc, const char * argv[]) {
     Fila *filaAproximacoes = geraFilaAproximacoes(tamanhoVetorAproximacoes, vetorComNumerosAleatorios);
     Fila *filaDecolagens = geraFilaDecolagens(tamanhoVetorAproximacoes, tamanhoVetorDecolagens, vetorComNumerosAleatorios);
 
+    int horas = tempoInicial();
+    int minutos = 0;
     desalocaFila(filaAproximacoes);
     desalocaFila(filaDecolagens);
     
