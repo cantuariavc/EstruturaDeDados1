@@ -23,13 +23,14 @@ void verificaAlocacaoEstruturaFila(Fila *estruturaFila) {
 }
 
 void desalocaFila(Fila *fila) {
-    Voo *aux = fila->inicio->proximo;
+    Voo *aux = fila->inicio;
     
     while (aux != NULL) {
+        aux = aux->proximo;
         free(fila->inicio);
         fila->inicio = aux;
-        aux = aux->proximo;
     }
+    
     free(fila);
 }
 
