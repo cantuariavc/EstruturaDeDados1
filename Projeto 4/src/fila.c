@@ -44,13 +44,20 @@ Fila *criaNovaFila(Voo *inicio, Voo *fim) {
 
 Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo) {
     Voo *aux = fila->inicio;
-
-    while (aux->proximo != NULL) {
-        aux = aux->proximo;
+    
+    if (aux != NULL) {
+        while (aux->proximo != NULL) {
+            aux = aux->proximo;
+        }
+        
+        aux->proximo = novoVoo;
+        fila->fim = novoVoo;
+        fila->fim->proximo = NULL;
+    } else {
+        fila->inicio = novoVoo;
+        fila->fim = novoVoo;
+        fila->fim->proximo = NULL;
     }
-
-    aux->proximo = novoVoo;
-    fila->fim = novoVoo;
     
     return fila;
 }
