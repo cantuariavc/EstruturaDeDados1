@@ -153,21 +153,18 @@ void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila 
     } else {
         printf("Hora Inicial: %dh%d0\n", horas, minutos);
     }
-    printf("Fila de pedidos:\n");
+    printf("Fila de pedidos: [código do voo – P/D – prioridade]\n");
     while (va != NULL || vd != NULL) {
-        if (vd != NULL) {
-            printf("\t\t\t\t %s - %c - %d\n", vd->codigo, vd->status, prioridade);
-            vd = vd->proximo;
-            prioridadeAux++;
+        for (int i = 0; i < 2; i++) {
+            if (va != NULL) {
+                printf("\t\t\t\t %s - %c - %d\n", va->codigo, 'P', prioridade);
+                va = va->proximo;
+                prioridadeAux++;
+            }
         }
         if (vd != NULL) {
-            printf("\t\t\t\t %s - %c - %d\n", vd->codigo, vd->status, prioridade);
+            printf("\t\t\t\t %s - %c - %d\n", vd->codigo, 'D', prioridade);
             vd = vd->proximo;
-            prioridadeAux++;
-        }
-        if (va != NULL) {
-            printf("\t\t\t\t %s - %c - %d\n", va->codigo, va->status, prioridade);
-            va = va->proximo;
             prioridadeAux++;
         }
         if (prioridadeAux == 3) {
