@@ -102,7 +102,7 @@ Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagen
     
     Voo *novoVoo = criaNovoVoo(codigosVoos[*(vetorComNumerosAleatorios + tamanhoVetorAproximacoes)], 'D', -1, NULL);
     Fila *filaDecolagens = criaNovaFila(novoVoo, novoVoo);
-    for (int i = (tamanhoVetorAproximacoes + 1); i < tamanhoVetorDecolagens; i++) {
+    for (int i = (tamanhoVetorAproximacoes + 1); i < (tamanhoVetorAproximacoes + tamanhoVetorDecolagens); i++) {
         novoVoo = criaNovoVoo(codigosVoos[*(vetorComNumerosAleatorios + i)], 'D', -1, NULL);
         insereNovoVooNaFila(filaDecolagens, novoVoo);
     }
