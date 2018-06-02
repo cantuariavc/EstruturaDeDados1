@@ -45,6 +45,37 @@ int main(int argc, const char * argv[]) {
     free(filaAproximacoes);
     insereVoosNaFilaPistaTres(&filaDecolagens, &filaPistaTres);
     
+    int quantidadeTempo = 0;
+    while (filaPistaUm->inicio != NULL || filaPistaDois->inicio != NULL || filaPistaTres->inicio != NULL) {
+        imprimeEvento(filaPistaUm, 1, horas, minutos);
+        imprimeEvento(filaPistaDois, 2, horas, minutos);
+        imprimeEvento(filaPistaTres, 3, horas, minutos);
+        incrementaTempo(&horas, &minutos, 1);
+        quantidadeTempo++;
+        
+        incrementaTempo(&horas, &minutos, 1);
+        quantidadeTempo++;
+        removeVooDaFila(&filaPistaTres);
+        imprimeEvento(filaPistaTres, 3, horas, minutos);
+
+        if (quantidadeTempo == 10) {
+            diminueNivelCombustivel(filaPistaUm);
+            diminueNivelCombustivel(filaPistaDois);
+            quantidadeTempo = 0;
+        }
+        
+        incrementaTempo(&horas, &minutos, 2);
+        quantidadeTempo += 2;
+        removeVooDaFila(&filaPistaUm);
+        removeVooDaFila(&filaPistaDois);
+        removeVooDaFila(&filaPistaTres);
+
+        if (quantidadeTempo == 10) {
+            diminueNivelCombustivel(filaPistaUm);
+            diminueNivelCombustivel(filaPistaDois);
+            quantidadeTempo = 0;
+        }
+    }
     
     desalocaFila(filaPistaUm);
     desalocaFila(filaPistaDois);
