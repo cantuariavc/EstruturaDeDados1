@@ -21,6 +21,7 @@ int main(int argc, const char * argv[]) {
     
     Fila *filaPistaUm = alocaEstruturaFila();
     Fila *filaPistaDois = alocaEstruturaFila();
+    Fila *filaPistaTres = alocaEstruturaFila();
 
     while (1) {
         if (filaAproximacoes->inicio != NULL) {
@@ -36,13 +37,14 @@ int main(int argc, const char * argv[]) {
         }
     }
     free(filaAproximacoes);
+    insereVoosNaFilaPistaTres(&filaDecolagens, &filaPistaTres);
     
     int horas = tempoInicial();
     int minutos = 0;
-    desalocaFila(filaDecolagens);
     
     desalocaFila(filaPistaUm);
     desalocaFila(filaPistaDois);
+    desalocaFila(filaPistaTres);
     
     return 0;
 }

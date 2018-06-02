@@ -30,5 +30,6 @@ Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagen
 
 void insereVoosNaFilaPistaUm(Fila **filaAproximacoes, Fila **filaPistaUm);
 void insereVoosNaFilaPistaDois(Fila **filaAproximacoes, Fila **filaPistaDois);  
+void insereVoosNaFilaPistaTres(Fila **filaDecolagens, Fila **filaPistaTres);
 
 #endif /* fila_h */

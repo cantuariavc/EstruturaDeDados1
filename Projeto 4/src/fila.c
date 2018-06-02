@@ -121,3 +121,10 @@ void insereVoosNaFilaPistaDois(Fila **filaAproximacoes, Fila **filaPistaDois) {
     (*filaPistaDois) = insereNovoVooNaFila((*filaPistaDois), (*filaAproximacoes)->inicio);
     (*filaAproximacoes)->inicio = vooAux;
 }
+
+ void insereVoosNaFilaPistaTres(Fila **filaDecolagens, Fila **filaPistaTres) {
+     (*filaPistaTres)->inicio = (*filaDecolagens)->inicio;
+     (*filaPistaTres)->fim = (*filaDecolagens)->fim;
+     
+     free(*filaDecolagens);
+}
