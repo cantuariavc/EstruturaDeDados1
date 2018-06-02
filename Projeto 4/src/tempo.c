@@ -14,18 +14,19 @@ int tempoInicial() {
     return horaInicial;
 }
 
-int incrementaHoras(int horas, int minutos, int quantidade) {
+void incrementaHoras(int *horas, int minutos, int quantidade) {
     int minutosIncrementais = quantidade * 5;
     
-    horas += (minutos + minutosIncrementais) / 60;
-    
-    return horas;
+    *horas += (minutos + minutosIncrementais) / 60;
 }
 
-int incrementaMinutos(int minutos, int quantidade) {
+void incrementaMinutos(int *minutos, int quantidade) {
     int minutosIncrementais = quantidade * 5;
     
-    minutos = ((minutos + minutosIncrementais) % 60) * 60;
-    
-    return minutos;
+    *minutos = ((*minutos + minutosIncrementais) % 60) * 60;
+}
+
+void incrementaTempo(int *horas, int *minutos, int quantidade) {
+    incrementaHoras(horas, *minutos, quantidade);
+    incrementaMinutos(minutos, quantidade);
 }

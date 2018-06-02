@@ -10,7 +10,8 @@
 #define tempo_h
 
 int tempoInicial(void);
-int incrementaHoras(int horas, int minutos, int quantidade);
-int incrementaMinutos(int minutos, int quantidade);
-    
+void incrementaHoras(int *horas, int minutos, int quantidade);
+void incrementaMinutos(int *minutos, int quantidade);
+void incrementaTempo(int *horas, int *minutos, int quantidade);
+
 #endif /* tempo_h */
