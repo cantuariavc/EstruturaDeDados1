@@ -12,12 +12,17 @@
 #include "voo.h"
 
 int main(int argc, const char * argv[]) {
+    int horas = tempoInicial();
+    int minutos = 0;
+    
     int tamanhoVetorAproximacoes = geraNumeroAleatorio(QUANTIDADEMINIMAAPROXIMACOES, QUANTIDADEMAXIMAAPROXIMACOES);
     int tamanhoVetorDecolagens = geraNumeroAleatorio(QUANTIDADEMINIMADECOLAGENS, QUANTIDADEMAXIMADECOLAGENS);
     int *vetorComNumerosAleatorios = geraVetorComNumerosAleatorios(tamanhoVetorAproximacoes + tamanhoVetorDecolagens);
     
     Fila *filaAproximacoes = geraFilaAproximacoes(tamanhoVetorAproximacoes, vetorComNumerosAleatorios);
     Fila *filaDecolagens = geraFilaDecolagens(tamanhoVetorAproximacoes, tamanhoVetorDecolagens, vetorComNumerosAleatorios);
+    
+    imprimeRelatorioGeral(horas, minutos, filaAproximacoes, filaDecolagens, tamanhoVetorAproximacoes, tamanhoVetorDecolagens);
     
     Fila *filaPistaUm = alocaEstruturaFila();
     Fila *filaPistaDois = alocaEstruturaFila();
@@ -39,8 +44,6 @@ int main(int argc, const char * argv[]) {
     free(filaAproximacoes);
     insereVoosNaFilaPistaTres(&filaDecolagens, &filaPistaTres);
     
-    int horas = tempoInicial();
-    int minutos = 0;
     
     desalocaFila(filaPistaUm);
     desalocaFila(filaPistaDois);

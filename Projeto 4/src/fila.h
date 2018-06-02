@@ -34,4 +34,6 @@ void insereVoosNaFilaPistaTres(Fila **filaDecolagens, Fila **filaPistaTres);
 
 void diminueNivelCombustivel(Fila *fila);
 
+void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila *filaDecolagens, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens);
+
 #endif /* fila_h */

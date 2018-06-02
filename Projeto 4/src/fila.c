@@ -137,3 +137,50 @@ void diminueNivelCombustivel(Fila *fila) {
         voo = voo->proximo;
     }
 }
+
+void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila *filaDecolagens, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens) {
+    Voo *va = filaAproximacoes->inicio;
+    Voo *vd = filaDecolagens->inicio;
+    int prioridade = 1;
+    int prioridadeAux = 0;
+    
+    for (int i = 0; i < 51; i++) {
+        printf("-");
+    }
+    printf("\nAeroporto Internacional de Brasília\n");
+    if (minutos > 10) {
+        printf("Hora Inicial: %dh%d\n", horas, minutos);
+    } else {
+        printf("Hora Inicial: %dh%d0\n", horas, minutos);
+    }
+    printf("Fila de pedidos:\n");
+    while (va != NULL || vd != NULL) {
+        if (vd != NULL) {
+            printf("\t\t\t\t %s - %c - %d\n", vd->codigo, vd->status, prioridade);
+            vd = vd->proximo;
+            prioridadeAux++;
+        }
+        if (vd != NULL) {
+            printf("\t\t\t\t %s - %c - %d\n", vd->codigo, vd->status, prioridade);
+            vd = vd->proximo;
+            prioridadeAux++;
+        }
+        if (va != NULL) {
+            printf("\t\t\t\t %s - %c - %d\n", va->codigo, va->status, prioridade);
+            va = va->proximo;
+            prioridadeAux++;
+        }
+        if (prioridadeAux == 3) {
+            prioridade++;
+            prioridadeAux = 0;
+            printf("\n");
+        }
+    }
+    printf("Números de Voos: %d\n", (tamanhoVetorAproximacoes + tamanhoVetorDecolagens));
+    printf("Número de Aproximações: %d\n", tamanhoVetorAproximacoes);
+    printf("Número de Decolagens: %d\n", tamanhoVetorDecolagens);
+    for (int i = 0; i < 51; i++) {
+        printf("-");
+    }
+    printf("\nListagem de eventos:\n");
+}
