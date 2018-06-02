@@ -62,6 +62,15 @@ Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo) {
     return fila;
 }
 
+void removeVooDaFila(Fila **fila) {
+    Voo *aux = (*fila)->inicio;
+    
+    if (aux != NULL) {
+        (*fila)->inicio = (*fila)->inicio->proximo;
+        free(aux);
+    }
+}
+
 Fila *insereNovoVooNaFilaPorNivelCombustivel(Fila *fila, Voo *novoVoo) {
     Voo *aux = fila->inicio;
 

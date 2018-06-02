@@ -23,6 +23,7 @@ void desalocaFila(Fila *fila);
 
 Fila *criaNovaFila(Voo *inicio, Voo *fim);
 Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo);
+void removeVooDaFila(Fila **fila);
 Fila *insereNovoVooNaFilaPorNivelCombustivel(Fila *fila, Voo *novoVoo);
 
 Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAleatorios);
