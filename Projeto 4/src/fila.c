@@ -194,17 +194,19 @@ void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila 
     printf("\nListagem de eventos:\n");
 }
 
-void imprimeEvento(char codigoVoo[], char statusVoo, int horas, int minutos, int numeroPista) {
-    printf("\nCódigo do voo: %s\n", codigoVoo);
-    if (statusVoo == 'D') {
-        printf("Status: aeronave decolou\n");
-    } else {
-        printf("Status: aeronave pousou\n");
+void imprimeEvento(Fila *pista, int numeroPista, int horas, int minutos) {
+    if (pista->inicio != NULL) {
+        printf("\nCódigo do voo: %s\n", pista->inicio->codigo);
+        if (pista->inicio->status == 'D') {
+            printf("Status: aeronave decolou\n");
+        } else {
+            printf("Status: aeronave pousou\n");
+        }
+        if (minutos > 10) {
+            printf("Horário do início do procedimento: %dh%d\n", horas, minutos);
+        } else {
+            printf("Horário do início do procedimento: %dh0%d\n", horas, minutos);
+        }
+        printf("Número da pista: %d\n", numeroPista);
     }
-    if (minutos > 10) {
-        printf("Horário do início do procedimento: %dh%d\n", horas, minutos);
-    } else {
-        printf("Horário do início do procedimento: %dh0%d\n", horas, minutos);
-    }
-    printf("Número da pista: %d", numeroPista);
 }

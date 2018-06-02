@@ -36,6 +36,6 @@ void insereVoosNaFilaPistaTres(Fila **filaDecolagens, Fila **filaPistaTres);
 void diminueNivelCombustivel(Fila *fila);
 
 void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila *filaDecolagens, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens);
-void imprimeEvento(char codigoVoo[], char statusVoo, int horas, int minutos, int numeroPista);
+void imprimeEvento(Fila *pista, int numeroPista, int horas, int minutos);
 
 #endif /* fila_h */
