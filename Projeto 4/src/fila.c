@@ -91,7 +91,7 @@ Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAle
     for (int i = 1; i < tamanhoVetorAproximacoes; i++) {
         nivelDeCombustivel = geraNumeroAleatorio(0, NIVELMAXIMOCOMBUSTIVEL);
         novoVoo = criaNovoVoo(codigosVoos[*(vetorComNumerosAleatorios + i)], 'A', nivelDeCombustivel, NULL);
-        insereNovoVooNaFilaPorNivelCombustivel(filaAproximacoes, novoVoo);
+        insereNovoVooNaFila(filaAproximacoes, novoVoo);
     }
     
     return filaAproximacoes;
