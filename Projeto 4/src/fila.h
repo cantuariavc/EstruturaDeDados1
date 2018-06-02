@@ -29,5 +29,6 @@ Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAle
 Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens, int *vetorComNumerosAleatorios);
 
 void insereVoosNaFilaPistaUm(Fila **filaAproximacoes, Fila **filaPistaUm);
+void insereVoosNaFilaPistaDois(Fila **filaAproximacoes, Fila **filaPistaDois);  
 
 #endif /* fila_h */

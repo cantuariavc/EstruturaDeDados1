@@ -20,6 +20,7 @@ int main(int argc, const char * argv[]) {
     Fila *filaDecolagens = geraFilaDecolagens(tamanhoVetorAproximacoes, tamanhoVetorDecolagens, vetorComNumerosAleatorios);
     
     Fila *filaPistaUm = alocaEstruturaFila();
+    Fila *filaPistaDois = alocaEstruturaFila();
 
     while (1) {
         if (filaAproximacoes->inicio != NULL) {
@@ -27,13 +28,21 @@ int main(int argc, const char * argv[]) {
         } else {
             break;
         }
+        
+        if (filaAproximacoes->inicio != NULL) {
+            insereVoosNaFilaPistaDois(&filaAproximacoes, &filaPistaDois);
+        } else {
+            break;
+        }
     }
+    free(filaAproximacoes);
+    
     int horas = tempoInicial();
     int minutos = 0;
-    desalocaFila(filaAproximacoes);
     desalocaFila(filaDecolagens);
     
     desalocaFila(filaPistaUm);
+    desalocaFila(filaPistaDois);
     
     return 0;
 }
