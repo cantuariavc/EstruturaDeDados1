@@ -18,11 +18,22 @@ int main(int argc, const char * argv[]) {
     
     Fila *filaAproximacoes = geraFilaAproximacoes(tamanhoVetorAproximacoes, vetorComNumerosAleatorios);
     Fila *filaDecolagens = geraFilaDecolagens(tamanhoVetorAproximacoes, tamanhoVetorDecolagens, vetorComNumerosAleatorios);
+    
+    Fila *filaPistaUm = alocaEstruturaFila();
 
+    while (1) {
+        if (filaAproximacoes->inicio != NULL) {
+            insereVoosNaFilaPistaUm(&filaAproximacoes, &filaPistaUm);
+        } else {
+            break;
+        }
+    }
     int horas = tempoInicial();
     int minutos = 0;
     desalocaFila(filaAproximacoes);
     desalocaFila(filaDecolagens);
+    
+    desalocaFila(filaPistaUm);
     
     return 0;
 }

@@ -109,3 +109,9 @@ Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagen
     
     return filaDecolagens;
 }
+
+void insereVoosNaFilaPistaUm(Fila **filaAproximacoes, Fila **filaPistaUm) {
+    Voo *vooAux = (*filaAproximacoes)->inicio->proximo;
+    (*filaPistaUm) = insereNovoVooNaFila((*filaPistaUm), (*filaAproximacoes)->inicio);
+    (*filaAproximacoes)->inicio = vooAux;
+}

@@ -28,4 +28,6 @@ Fila *insereNovoVooNaFilaPorNivelCombustivel(Fila *fila, Voo *novoVoo);
 Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAleatorios);
 Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens, int *vetorComNumerosAleatorios);
 
+void insereVoosNaFilaPistaUm(Fila **filaAproximacoes, Fila **filaPistaUm);
+
 #endif /* fila_h */
