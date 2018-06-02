@@ -128,3 +128,12 @@ void insereVoosNaFilaPistaDois(Fila **filaAproximacoes, Fila **filaPistaDois) {
      
      free(*filaDecolagens);
 }
+
+void diminueNivelCombustivel(Fila *fila) {
+    Voo *voo = fila->inicio;
+    
+    while (voo != NULL) {
+        voo->quantidadeDeCombustivel -= 1;
+        voo = voo->proximo;
+    }
+}

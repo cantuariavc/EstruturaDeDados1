@@ -32,4 +32,6 @@ void insereVoosNaFilaPistaUm(Fila **filaAproximacoes, Fila **filaPistaUm);
 void insereVoosNaFilaPistaDois(Fila **filaAproximacoes, Fila **filaPistaDois);  
 void insereVoosNaFilaPistaTres(Fila **filaDecolagens, Fila **filaPistaTres);
 
+void diminueNivelCombustivel(Fila *fila);
+
 #endif /* fila_h */
