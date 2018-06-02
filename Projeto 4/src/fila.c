@@ -151,7 +151,7 @@ void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila 
     if (minutos > 10) {
         printf("Hora Inicial: %dh%d\n", horas, minutos);
     } else {
-        printf("Hora Inicial: %dh%d0\n", horas, minutos);
+        printf("Hora Inicial: %dh0%d\n", horas, minutos);
     }
     printf("Fila de pedidos: [código do voo – P/D – prioridade]\n");
     while (va != NULL || vd != NULL) {
@@ -180,4 +180,19 @@ void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila 
         printf("-");
     }
     printf("\nListagem de eventos:\n");
+}
+
+void imprimeEvento(char codigoVoo[], char statusVoo, int horas, int minutos, int numeroPista) {
+    printf("\nCódigo do voo: %s\n", codigoVoo);
+    if (statusVoo == 'D') {
+        printf("Status: aeronave decolou\n");
+    } else {
+        printf("Status: aeronave pousou\n");
+    }
+    if (minutos > 10) {
+        printf("Horário do início do procedimento: %dh%d\n", horas, minutos);
+    } else {
+        printf("Horário do início do procedimento: %dh0%d\n", horas, minutos);
+    }
+    printf("Número da pista: %d", numeroPista);
 }
