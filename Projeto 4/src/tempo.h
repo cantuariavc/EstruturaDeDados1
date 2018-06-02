@@ -9,6 +9,8 @@
 #ifndef tempo_h
 #define tempo_h
 
+#include <unistd.h>
+
 int tempoInicial(void);
 void incrementaHoras(int *horas, int minutos, int quantidade);
 void incrementaMinutos(int *minutos, int quantidade);
