@@ -67,6 +67,9 @@ void removeVooDaFila(Fila **fila) {
     
     if (aux != NULL) {
         (*fila)->inicio = (*fila)->inicio->proximo;
+        if ((*fila)->inicio == NULL) {
+            (*fila)->fim = NULL;
+        }
         free(aux);
     }
 }
