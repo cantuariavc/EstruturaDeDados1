@@ -33,9 +33,9 @@ int *geraVetorComNumerosAleatorios(int tamanhoVetor) {
     int numeroGerado = 0;
     
     for (int i = 0; i < tamanhoVetor; i++) {
-        numeroGerado = geraNumeroAleatorio(1, 64);
+        numeroGerado = geraNumeroAleatorio(0, 63);
         while (eNumeroExistente(vetorNumerosAleatorios, i, numeroGerado)) {
-            numeroGerado = geraNumeroAleatorio(1, 64);
+            numeroGerado = geraNumeroAleatorio(0, 63);
         }
         *(vetorNumerosAleatorios + i) = numeroGerado;
     }
