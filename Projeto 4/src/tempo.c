@@ -8,12 +8,6 @@
 
 #include "tempo.h"
 
-int tempoInicial() {
-    int horaInicial = 8;
-    
-    return horaInicial;
-}
-
 void incrementaTempo(int *horas, int *minutos, int quantidade) {
     int minutosIncrementais = quantidade * 5;
     

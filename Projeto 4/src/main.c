@@ -12,7 +12,7 @@
 #include "voo.h"
 
 int main(int argc, const char * argv[]) {
-    int horas = tempoInicial();
+    int horas = 8;
     int minutos = 0;
     
     int tamanhoVetorAproximacoes = geraNumeroAleatorio(QUANTIDADEMINIMAAPROXIMACOES, QUANTIDADEMAXIMAAPROXIMACOES);

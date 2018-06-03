@@ -11,7 +11,6 @@
 
 #include <unistd.h>
 
-int tempoInicial(void);
 void incrementaTempo(int *horas, int *minutos, int quantidade);
 
 #endif /* tempo_h */
