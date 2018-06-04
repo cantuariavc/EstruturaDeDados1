@@ -8,6 +8,12 @@
 
 #include "impressao.h"
 
+void imprimeTracos() {
+    for (int i = 0; i < 51; i++) {
+        printf("-");
+    }
+}
+
 void imprimeStatusVoo(char status) {
     if (status == 'D') {
         printf("Status: aeronave decolou\n");
@@ -30,9 +36,7 @@ void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila 
     int prioridade = 1;
     int prioridadeAux = 0;
     
-    for (int i = 0; i < 51; i++) {
-        printf("-");
-    }
+    imprimeTracos();
     printf("\nAeroporto Internacional de Brasília\n");
     imprimeTempo("Hora Inicial", horas, minutos);
     printf("Fila de pedidos: [código do voo – P/D – prioridade]\n");
@@ -58,9 +62,7 @@ void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila 
     printf("Números de Voos: %d\n", (tamanhoVetorAproximacoes + tamanhoVetorDecolagens));
     printf("Número de Aproximações: %d\n", tamanhoVetorAproximacoes);
     printf("Número de Decolagens: %d\n", tamanhoVetorDecolagens);
-    for (int i = 0; i < 51; i++) {
-        printf("-");
-    }
+    imprimeTracos();
     printf("\nListagem de eventos:\n");
 }
 
