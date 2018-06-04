@@ -150,6 +150,14 @@ void diminueNivelCombustivel(Fila *fila) {
     }
 }
 
+void imprimeTempo(char frase[], int horas, int minutos) {
+    if (minutos >= 10) {
+        printf("%s: %dh%d\n", frase, horas, minutos);
+    } else {
+        printf("%s: %dh0%d\n", frase, horas, minutos);
+    }
+}
+
 void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila *filaDecolagens, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens) {
     Voo *va = filaAproximacoes->inicio;
     Voo *vd = filaDecolagens->inicio;
@@ -160,11 +168,7 @@ void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila 
         printf("-");
     }
     printf("\nAeroporto Internacional de Brasília\n");
-    if (minutos > 10) {
-        printf("Hora Inicial: %dh%d\n", horas, minutos);
-    } else {
-        printf("Hora Inicial: %dh0%d\n", horas, minutos);
-    }
+    imprimeTempo("Hora Inicial", horas, minutos);
     printf("Fila de pedidos: [código do voo – P/D – prioridade]\n");
     while (va != NULL || vd != NULL) {
         for (int i = 0; i < 2; i++) {
@@ -202,11 +206,7 @@ void imprimeEvento(Fila *pista, int numeroPista, int horas, int minutos) {
         } else {
             printf("Status: aeronave pousou\n");
         }
-        if (minutos > 10) {
-            printf("Horário do início do procedimento: %dh%d\n", horas, minutos);
-        } else {
-            printf("Horário do início do procedimento: %dh0%d\n", horas, minutos);
-        }
+        imprimeTempo("Horário do início do procedimento", horas, minutos);
         printf("Número da pista: %d\n", numeroPista);
     }
 }
