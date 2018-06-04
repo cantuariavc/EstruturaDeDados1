@@ -7,6 +7,7 @@
 //
 
 #include "fila.h"
+#include "impressao.h"
 #include "numeroAleatorio.h"
 #include "tempo.h"
 #include "voo.h"
