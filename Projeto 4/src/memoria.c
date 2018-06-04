@@ -8,7 +8,6 @@
 
 #include "memoria.h"
 
-
 int *alocaInt(int tamanho) {
     int *vetorInt = (int *) calloc(tamanho, sizeof(int));
     verificaAlocacaoInt(vetorInt);
@@ -19,6 +18,6 @@ int *alocaInt(int tamanho) {
 void verificaAlocacaoInt(int *vetorAlocado) {
     if (vetorAlocado == NULL) {
         printf("Erro na alocação da memória do vetor int!\n");
-        exit(4);
+        exit(3);
     }
 }

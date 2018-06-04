@@ -18,7 +18,7 @@ Fila *alocaEstruturaFila() {
 void verificaAlocacaoEstruturaFila(Fila *estruturaFila) {
     if (estruturaFila == NULL) {
         printf("Erro na alocação da memória da estrutura Fila!\n");
-        exit(1);
+        exit(2);
     }
 }
 
