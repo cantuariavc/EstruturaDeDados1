@@ -33,21 +33,24 @@ void imprimeFilaDePedidos(Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPist
     printf("Fila de pedidos: [código do voo – P/D – prioridade]\n");
     while (vooPistaUm != NULL || vooPistaDois != NULL || vooPistaTres != NULL) {
         if (vooPistaUm != NULL) {
-            printCount += printf("\t\t\t\t %s - %c - %d\n", vooPistaUm->codigo, vooPistaUm->status, prioridade);
+            printf("\t\t\t\t %s - %c - %d\n", vooPistaUm->codigo, vooPistaUm->status, prioridade);
             vooPistaUm = vooPistaUm->proximo;
+            printCount++;
         }
         
         if (vooPistaDois != NULL) {
-            printCount += printf("\t\t\t\t %s - %c - %d\n", vooPistaDois->codigo, vooPistaDois->status, prioridade);
+            printf("\t\t\t\t %s - %c - %d\n", vooPistaDois->codigo, vooPistaDois->status, prioridade);
             vooPistaDois = vooPistaDois->proximo;
+            printCount++;
         }
         
         if (vooPistaTres != NULL) {
-            printCount += printf("\t\t\t\t %s - %c - %d\n", vooPistaTres->codigo, vooPistaTres->status, prioridade);
+            printf("\t\t\t\t %s - %c - %d\n", vooPistaTres->codigo, vooPistaTres->status, prioridade);
             vooPistaTres = vooPistaTres->proximo;
+            printCount++;
         }
         
-        if (printCount == 60) {
+        if (printCount == 3) {
             prioridade++;
             printCount = 0;
             printf("\n");
