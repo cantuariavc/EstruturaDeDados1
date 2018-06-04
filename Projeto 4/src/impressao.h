@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "fila.h"
+#include "tempo.h"
 
 void imprimeTracos(void);
 void imprimeTempo(char frase[], int horas, int minutos);
@@ -18,5 +19,6 @@ void imprimeFilaDePedidos(Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPist
 void imprimeStatusVoo(char status);
 void imprimeRelatorioGeral(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens);
 void imprimeEvento(Fila *pista, int numeroPista, int horas, int minutos);
+void imprimeRelatorioDeEventos(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres);
 
 #endif /* impressao_h */

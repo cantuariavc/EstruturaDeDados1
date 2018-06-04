@@ -83,3 +83,37 @@ void imprimeEvento(Fila *pista, int numeroPista, int horas, int minutos) {
         printf("Número da pista: %d\n", numeroPista);
     }
 }
+
+void imprimeRelatorioDeEventos(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres) {
+    int quantidadeDeTempoIncrementado = 0;
+    while (filaPistaUm->inicio != NULL || filaPistaDois->inicio != NULL || filaPistaTres->inicio != NULL) {
+        imprimeEvento(filaPistaUm, 1, horas, minutos);
+        imprimeEvento(filaPistaDois, 2, horas, minutos);
+        imprimeEvento(filaPistaTres, 3, horas, minutos);
+        incrementaTempo(&horas, &minutos, 1);
+        quantidadeDeTempoIncrementado++;
+        
+        incrementaTempo(&horas, &minutos, 1);
+        quantidadeDeTempoIncrementado++;
+        removeVooDaFila(&filaPistaTres);
+        imprimeEvento(filaPistaTres, 3, horas, minutos);
+        
+        if (quantidadeDeTempoIncrementado == 10) {
+            diminueNivelCombustivel(filaPistaUm);
+            diminueNivelCombustivel(filaPistaDois);
+            quantidadeDeTempoIncrementado = 0;
+        }
+        
+        incrementaTempo(&horas, &minutos, 2);
+        quantidadeDeTempoIncrementado += 2;
+        removeVooDaFila(&filaPistaUm);
+        removeVooDaFila(&filaPistaDois);
+        removeVooDaFila(&filaPistaTres);
+        
+        if (quantidadeDeTempoIncrementado == 10) {
+            diminueNivelCombustivel(filaPistaUm);
+            diminueNivelCombustivel(filaPistaDois);
+            quantidadeDeTempoIncrementado = 0;
+        }
+    }
+}
