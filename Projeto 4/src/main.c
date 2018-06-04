@@ -24,8 +24,6 @@ int main(int argc, const char * argv[]) {
     Fila *filaAproximacoes = geraFilaAproximacoes(tamanhoVetorAproximacoes, vetorComNumerosAleatorios);
     Fila *filaDecolagens = geraFilaDecolagens(tamanhoVetorAproximacoes, tamanhoVetorDecolagens, vetorComNumerosAleatorios);
     
-    imprimeRelatorioGeral(horas, minutos, filaAproximacoes, filaDecolagens, tamanhoVetorAproximacoes, tamanhoVetorDecolagens);
-    
     Fila *filaPistaUm = alocaEstruturaFila();
     Fila *filaPistaDois = alocaEstruturaFila();
     Fila *filaPistaTres = alocaEstruturaFila();
@@ -45,6 +43,8 @@ int main(int argc, const char * argv[]) {
     }
     free(filaAproximacoes);
     insereVoosNaFilaPistaTres(&filaDecolagens, &filaPistaTres);
+    
+    imprimeRelatorioGeral(horas, minutos, filaPistaUm, filaPistaDois, filaPistaTres, tamanhoVetorAproximacoes, tamanhoVetorDecolagens);
     
     int quantidadeTempo = 0;
     while (filaPistaUm->inicio != NULL || filaPistaDois->inicio != NULL || filaPistaTres->inicio != NULL) {

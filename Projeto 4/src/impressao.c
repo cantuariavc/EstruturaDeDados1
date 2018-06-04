@@ -14,14 +14,6 @@ void imprimeTracos() {
     }
 }
 
-void imprimeStatusVoo(char status) {
-    if (status == 'D') {
-        printf("Status: aeronave decolou\n");
-    } else {
-        printf("Status: aeronave pousou\n");
-    }
-}
-
 void imprimeTempo(char frase[], int horas, int minutos) {
     if (minutos >= 10) {
         printf("%s: %dh%d\n", frase, horas, minutos);
@@ -30,35 +22,52 @@ void imprimeTempo(char frase[], int horas, int minutos) {
     }
 }
 
-void imprimeRelatorioGeral(int horas, int minutos, Fila *filaAproximacoes, Fila *filaDecolagens, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens) {
-    Voo *va = filaAproximacoes->inicio;
-    Voo *vd = filaDecolagens->inicio;
-    int prioridade = 1;
-    int prioridadeAux = 0;
+void imprimeFilaDePedidos(Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres) {
+    Voo *vooPistaUm = filaPistaUm->inicio;
+    Voo *vooPistaDois = filaPistaDois->inicio;
+    Voo *vooPistaTres = filaPistaTres->inicio;
     
-    imprimeTracos();
-    printf("\nAeroporto Internacional de Brasília\n");
-    imprimeTempo("Hora Inicial", horas, minutos);
+    int prioridade = 1;
+    int printCount = 0;
+    
     printf("Fila de pedidos: [código do voo – P/D – prioridade]\n");
-    while (va != NULL || vd != NULL) {
-        for (int i = 0; i < 2; i++) {
-            if (va != NULL) {
-                printf("\t\t\t\t %s - %c - %d\n", va->codigo, 'P', prioridade);
-                va = va->proximo;
-                prioridadeAux++;
-            }
+    while (vooPistaUm != NULL || vooPistaDois != NULL || vooPistaTres != NULL) {
+        if (vooPistaUm != NULL) {
+            printCount += printf("\t\t\t\t %s - %c - %d\n", vooPistaUm->codigo, vooPistaUm->status, prioridade);
+            vooPistaUm = vooPistaUm->proximo;
         }
-        if (vd != NULL) {
-            printf("\t\t\t\t %s - %c - %d\n", vd->codigo, 'D', prioridade);
-            vd = vd->proximo;
-            prioridadeAux++;
+        
+        if (vooPistaDois != NULL) {
+            printCount += printf("\t\t\t\t %s - %c - %d\n", vooPistaDois->codigo, vooPistaDois->status, prioridade);
+            vooPistaDois = vooPistaDois->proximo;
         }
-        if (prioridadeAux == 3) {
+        
+        if (vooPistaTres != NULL) {
+            printCount += printf("\t\t\t\t %s - %c - %d\n", vooPistaTres->codigo, vooPistaTres->status, prioridade);
+            vooPistaTres = vooPistaTres->proximo;
+        }
+        
+        if (printCount == 60) {
             prioridade++;
-            prioridadeAux = 0;
+            printCount = 0;
             printf("\n");
         }
     }
+}
+
+void imprimeStatusVoo(char status) {
+    if (status == 'D') {
+        printf("Status: aeronave decolou\n");
+    } else {
+        printf("Status: aeronave pousou\n");
+    }
+}
+
+void imprimeRelatorioGeral(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens) {
+    imprimeTracos();
+    printf("\nAeroporto Internacional de Brasília\n");
+    imprimeTempo("Hora Inicial", horas, minutos);
+    imprimeFilaDePedidos(filaPistaUm, filaPistaDois, filaPistaTres);
     printf("Números de Voos: %d\n", (tamanhoVetorAproximacoes + tamanhoVetorDecolagens));
     printf("Número de Aproximações: %d\n", tamanhoVetorAproximacoes);
     printf("Número de Decolagens: %d\n", tamanhoVetorDecolagens);
