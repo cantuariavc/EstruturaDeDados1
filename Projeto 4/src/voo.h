@@ -9,7 +9,8 @@
 #ifndef voo_h
 #define voo_h
 
-#include "memoria.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define QUANTIDADEMINIMAAPROXIMACOES 10
 #define QUANTIDADEMAXIMAAPROXIMACOES 32
