@@ -137,12 +137,6 @@ void realocaVoosNaFilasDasPistas(Fila **filaAproximacoes, Fila **filaDecolagens,
         if (vooDecolagem != NULL) {
             voo = vooDecolagem;
             vooDecolagem = vooDecolagem->proximo;
-            insereNovoVooNaFila(filaPistaDois, voo);
-        }
-        
-        if (vooDecolagem != NULL) {
-            voo = vooDecolagem;
-            vooDecolagem = vooDecolagem->proximo;
             insereNovoVooNaFila(filaPistaTres, voo);
         }
     }
