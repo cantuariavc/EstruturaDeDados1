@@ -104,6 +104,7 @@ void imprimeRelatorioDeEventos(int horas, int minutos, Fila *filaPistaUm, Fila *
         incrementaTempo(&horas, &minutos, 1);
         quantidadeDeTempoIncrementado++;
         removeVooDaFila(&filaPistaTres);
+        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
         imprimeEvento(filaPistaTres, 3, horas, minutos);
         
         if (quantidadeDeTempoIncrementado == 10) {
@@ -115,8 +116,11 @@ void imprimeRelatorioDeEventos(int horas, int minutos, Fila *filaPistaUm, Fila *
         incrementaTempo(&horas, &minutos, 2);
         quantidadeDeTempoIncrementado += 2;
         removeVooDaFila(&filaPistaUm);
+        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
         removeVooDaFila(&filaPistaDois);
+        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
         removeVooDaFila(&filaPistaTres);
+        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
         
         if (quantidadeDeTempoIncrementado == 10) {
             diminueNivelCombustivel(filaPistaUm);

@@ -30,6 +30,7 @@ Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAle
 Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens, int *vetorComNumerosAleatorios);
 
 void realocaVoosNaFilasDasPistas(Fila **filaAproximacoes, Fila **filaDecolagens, Fila **filaPistaUm, Fila **filaPistaDois, Fila **filaPistaTres);
+void realocaVoosEmPistasVazias(Fila **filaPistaUm, Fila **filaPistaDois, Fila **filaPistaTres);
 
 void diminueNivelCombustivel(Fila *fila);
 

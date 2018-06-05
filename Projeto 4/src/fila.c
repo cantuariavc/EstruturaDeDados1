@@ -145,6 +145,46 @@ void realocaVoosNaFilasDasPistas(Fila **filaAproximacoes, Fila **filaDecolagens,
     free(*filaDecolagens);
 }
 
+void realocaVoosEmPistasVazias(Fila **filaPistaUm, Fila **filaPistaDois, Fila **filaPistaTres) {
+    Voo *voo = NULL;
+    
+    if ((*filaPistaUm)->inicio == NULL && (*filaPistaDois)->inicio != NULL) {
+        voo = (*filaPistaDois)->inicio;
+        (*filaPistaDois)->inicio = (*filaPistaDois)->inicio->proximo;
+        insereNovoVooNaFila(filaPistaUm, voo);
+    }
+    
+    if ((*filaPistaUm)->inicio == NULL && (*filaPistaTres)->inicio != NULL) {
+        voo = (*filaPistaTres)->inicio;
+        (*filaPistaTres)->inicio = (*filaPistaTres)->inicio->proximo;
+        insereNovoVooNaFila(filaPistaUm, voo);
+    }
+    
+    if ((*filaPistaDois)->inicio == NULL && (*filaPistaUm)->inicio != NULL) {
+        voo = (*filaPistaUm)->inicio;
+        (*filaPistaUm)->inicio = (*filaPistaUm)->inicio->proximo;
+        insereNovoVooNaFila(filaPistaDois, voo);
+    }
+    
+    if ((*filaPistaDois)->inicio == NULL && (*filaPistaTres)->inicio != NULL) {
+        voo = (*filaPistaTres)->inicio;
+        (*filaPistaTres)->inicio = (*filaPistaTres)->inicio->proximo;
+        insereNovoVooNaFila(filaPistaDois, voo);
+    }
+    
+    if ((*filaPistaTres)->inicio == NULL && (*filaPistaUm)->inicio != NULL) {
+        voo = (*filaPistaUm)->inicio;
+        (*filaPistaUm)->inicio = (*filaPistaUm)->inicio->proximo;
+        insereNovoVooNaFila(filaPistaTres, voo);
+    }
+    
+    if ((*filaPistaTres)->inicio == NULL && (*filaPistaDois)->inicio != NULL) {
+        voo = (*filaPistaDois)->inicio;
+        (*filaPistaDois)->inicio = (*filaPistaDois)->inicio->proximo;
+        insereNovoVooNaFila(filaPistaTres, voo);
+    }
+}
+
 void diminueNivelCombustivel(Fila *fila) {
     Voo *voo = fila->inicio;
     
