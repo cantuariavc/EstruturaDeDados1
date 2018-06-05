@@ -36,25 +36,30 @@ void imprimeFilaDePedidos(Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPist
             printf("\t\t\t\t %s - %c - %d\n", vooPistaUm->codigo, vooPistaUm->status, prioridade);
             vooPistaUm = vooPistaUm->proximo;
             printCount++;
+            aumentaPrioridade(&printCount, &prioridade);
         }
         
         if (vooPistaDois != NULL) {
             printf("\t\t\t\t %s - %c - %d\n", vooPistaDois->codigo, vooPistaDois->status, prioridade);
             vooPistaDois = vooPistaDois->proximo;
             printCount++;
+            aumentaPrioridade(&printCount, &prioridade);
         }
         
         if (vooPistaTres != NULL) {
             printf("\t\t\t\t %s - %c - %d\n", vooPistaTres->codigo, vooPistaTres->status, prioridade);
             vooPistaTres = vooPistaTres->proximo;
             printCount++;
+            aumentaPrioridade(&printCount, &prioridade);
         }
-        
-        if (printCount == 3) {
-            prioridade++;
-            printCount = 0;
-            printf("\n");
-        }
+    }
+}
+
+void aumentaPrioridade(int *printCount, int *prioridade) {
+    if (*printCount == 3) {
+        *prioridade += 1;
+        *printCount = 0;
+        printf("\n");
     }
 }
 

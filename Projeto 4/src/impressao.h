@@ -16,6 +16,7 @@
 void imprimeTracos(void);
 void imprimeTempo(char frase[], int horas, int minutos);
 void imprimeFilaDePedidos(Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres);
+void aumentaPrioridade(int *printCount, int *prioridade);
 void imprimeStatusVoo(char status);
 void imprimeRelatorioGeral(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens);
 void imprimeEvento(Fila *pista, int numeroPista, int horas, int minutos);
