@@ -27,22 +27,8 @@ int main(int argc, const char * argv[]) {
     Fila *filaPistaUm = alocaEstruturaFila();
     Fila *filaPistaDois = alocaEstruturaFila();
     Fila *filaPistaTres = alocaEstruturaFila();
-
-    while (1) {
-        if (filaAproximacoes->inicio != NULL) {
-            insereVoosNaFilaPistaUm(&filaAproximacoes, &filaPistaUm);
-        } else {
-            break;
-        }
-        
-        if (filaAproximacoes->inicio != NULL) {
-            insereVoosNaFilaPistaDois(&filaAproximacoes, &filaPistaDois);
-        } else {
-            break;
-        }
-    }
-    free(filaAproximacoes);
-    insereVoosNaFilaPistaTres(&filaDecolagens, &filaPistaTres);
+    
+    realocaVoosNaFilasDasPistas(&filaAproximacoes, &filaDecolagens, &filaPistaUm, &filaPistaDois, &filaPistaTres);
     
     imprimeRelatorioGeral(horas, minutos, filaPistaUm, filaPistaDois, filaPistaTres, tamanhoVetorAproximacoes, tamanhoVetorDecolagens);
     imprimeRelatorioDeEventos(horas, minutos, filaPistaUm, filaPistaDois, filaPistaTres);

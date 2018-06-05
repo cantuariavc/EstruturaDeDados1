@@ -22,16 +22,14 @@ void verificaAlocacaoEstruturaFila(Fila *estruturaFila);
 void desalocaFila(Fila *fila);
 
 Fila *criaNovaFila(Voo *inicio, Voo *fim);
-Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo);
+void insereNovoVooNaFila(Fila **fila, Voo *novoVoo);
 void removeVooDaFila(Fila **fila);
 Fila *insereNovoVooNaFilaPorNivelCombustivel(Fila *fila, Voo *novoVoo);
 
 Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAleatorios);
 Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens, int *vetorComNumerosAleatorios);
 
-void insereVoosNaFilaPistaUm(Fila **filaAproximacoes, Fila **filaPistaUm);
-void insereVoosNaFilaPistaDois(Fila **filaAproximacoes, Fila **filaPistaDois);  
-void insereVoosNaFilaPistaTres(Fila **filaDecolagens, Fila **filaPistaTres);
+void realocaVoosNaFilasDasPistas(Fila **filaAproximacoes, Fila **filaDecolagens, Fila **filaPistaUm, Fila **filaPistaDois, Fila **filaPistaTres);
 
 void diminueNivelCombustivel(Fila *fila);
 

@@ -42,8 +42,8 @@ Fila *criaNovaFila(Voo *inicio, Voo *fim) {
     return novaFila;
 }
 
-Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo) {
-    Voo *aux = fila->inicio;
+void insereNovoVooNaFila(Fila **fila, Voo *novoVoo) {
+    Voo *aux = (*fila)->inicio;
     
     if (aux != NULL) {
         while (aux->proximo != NULL) {
@@ -51,15 +51,13 @@ Fila *insereNovoVooNaFila(Fila *fila, Voo *novoVoo) {
         }
         
         aux->proximo = novoVoo;
-        fila->fim = novoVoo;
-        fila->fim->proximo = NULL;
+        (*fila)->fim = novoVoo;
     } else {
-        fila->inicio = novoVoo;
-        fila->fim = novoVoo;
-        fila->fim->proximo = NULL;
+        (*fila)->inicio = novoVoo;
+        (*fila)->fim = novoVoo;
     }
     
-    return fila;
+    (*fila)->fim->proximo = NULL;
 }
 
 void removeVooDaFila(Fila **fila) {
@@ -100,7 +98,7 @@ Fila *geraFilaAproximacoes(int tamanhoVetorAproximacoes, int *vetorComNumerosAle
     Fila *filaAproximacoes = alocaEstruturaFila();
     
     for (int i = 0; i < tamanhoVetorAproximacoes; i++) {
-        insereNovoVooNaFila(filaAproximacoes, criaNovoVoo(codigosVoos[*(vetorComNumerosAleatorios + i)], 'A', geraNumeroAleatorio(0, NIVELMAXIMOCOMBUSTIVEL), NULL));
+        insereNovoVooNaFila(&filaAproximacoes, criaNovoVoo(codigosVoos[*(vetorComNumerosAleatorios + i)], 'A', geraNumeroAleatorio(0, NIVELMAXIMOCOMBUSTIVEL), NULL));
     }
     
     return filaAproximacoes;
@@ -112,29 +110,45 @@ Fila *geraFilaDecolagens(int tamanhoVetorAproximacoes, int tamanhoVetorDecolagen
     Fila *filaDecolagens = alocaEstruturaFila();
     
     for (int i = tamanhoVetorAproximacoes; i < (tamanhoVetorAproximacoes + tamanhoVetorDecolagens); i++) {
-        insereNovoVooNaFila(filaDecolagens, criaNovoVoo(codigosVoos[*(vetorComNumerosAleatorios + i)], 'D', -1, NULL));
+        insereNovoVooNaFila(&filaDecolagens, criaNovoVoo(codigosVoos[*(vetorComNumerosAleatorios + i)], 'D', -1, NULL));
     }
     
     return filaDecolagens;
 }
 
-void insereVoosNaFilaPistaUm(Fila **filaAproximacoes, Fila **filaPistaUm) {
-    Voo *vooAux = (*filaAproximacoes)->inicio->proximo;
-    (*filaPistaUm) = insereNovoVooNaFila((*filaPistaUm), (*filaAproximacoes)->inicio);
-    (*filaAproximacoes)->inicio = vooAux;
-}
-
-void insereVoosNaFilaPistaDois(Fila **filaAproximacoes, Fila **filaPistaDois) {
-    Voo *vooAux = (*filaAproximacoes)->inicio->proximo;
-    (*filaPistaDois) = insereNovoVooNaFila((*filaPistaDois), (*filaAproximacoes)->inicio);
-    (*filaAproximacoes)->inicio = vooAux;
-}
-
- void insereVoosNaFilaPistaTres(Fila **filaDecolagens, Fila **filaPistaTres) {
-     (*filaPistaTres)->inicio = (*filaDecolagens)->inicio;
-     (*filaPistaTres)->fim = (*filaDecolagens)->fim;
-     
-     free(*filaDecolagens);
+void realocaVoosNaFilasDasPistas(Fila **filaAproximacoes, Fila **filaDecolagens, Fila **filaPistaUm, Fila **filaPistaDois, Fila **filaPistaTres) {
+    Voo *vooAproximacao = (*filaAproximacoes)->inicio;
+    Voo *vooDecolagem = (*filaDecolagens)->inicio;
+    Voo *voo = NULL;
+    
+    while (vooAproximacao != NULL || vooDecolagem != NULL) {
+        if (vooAproximacao != NULL) {
+            voo = vooAproximacao;
+            vooAproximacao = vooAproximacao->proximo;
+            insereNovoVooNaFila(filaPistaUm, voo);
+        }
+        
+        if (vooAproximacao != NULL) {
+            voo = vooAproximacao;
+            vooAproximacao = vooAproximacao->proximo;
+            insereNovoVooNaFila(filaPistaDois, voo);
+        }
+        
+        if (vooDecolagem != NULL) {
+            voo = vooDecolagem;
+            vooDecolagem = vooDecolagem->proximo;
+            insereNovoVooNaFila(filaPistaDois, voo);
+        }
+        
+        if (vooDecolagem != NULL) {
+            voo = vooDecolagem;
+            vooDecolagem = vooDecolagem->proximo;
+            insereNovoVooNaFila(filaPistaTres, voo);
+        }
+    }
+    
+    free(*filaAproximacoes);
+    free(*filaDecolagens);
 }
 
 void diminueNivelCombustivel(Fila *fila) {
