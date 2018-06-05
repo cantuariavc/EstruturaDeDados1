@@ -62,15 +62,6 @@ void aumentaPrioridade(int *printCount, int *prioridade) {
         printf("\n");
     }
 }
-
-void imprimeStatusVoo(char status) {
-    if (status == 'D') {
-        printf("Status: aeronave decolou\n");
-    } else {
-        printf("Status: aeronave pousou\n");
-    }
-}
-
 void imprimeRelatorioGeral(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens) {
     imprimeTracos();
     printf("\nAeroporto Internacional de Brasília\n");
@@ -89,43 +80,40 @@ void imprimeEvento(Fila *pista, int numeroPista, int horas, int minutos) {
         imprimeStatusVoo(pista->inicio->status);
         imprimeTempo("Horário do início do procedimento", horas, minutos);
         printf("Número da pista: %d\n", numeroPista);
+        removeVooDaFila(&pista);
+    }
+}
+
+void imprimeStatusVoo(char status) {
+    if (status == 'D') {
+        printf("Status: aeronave decolou\n");
+    } else {
+        printf("Status: aeronave pousou\n");
     }
 }
 
 void imprimeRelatorioDeEventos(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres) {
-    int quantidadeDeTempoIncrementado = 0;
     while (filaPistaUm->inicio != NULL || filaPistaDois->inicio != NULL || filaPistaTres->inicio != NULL) {
         imprimeEvento(filaPistaUm, 1, horas, minutos);
+        
         imprimeEvento(filaPistaDois, 2, horas, minutos);
+
         imprimeEvento(filaPistaTres, 3, horas, minutos);
-        incrementaTempo(&horas, &minutos, 1);
-        quantidadeDeTempoIncrementado++;
+
+        incrementaTempo(&horas, &minutos, 2);
         
-        incrementaTempo(&horas, &minutos, 1);
-        quantidadeDeTempoIncrementado++;
-        removeVooDaFila(&filaPistaTres);
-        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
-        imprimeEvento(filaPistaTres, 3, horas, minutos);
+        if (filaPistaUm->inicio != NULL && filaPistaUm->inicio->status == 'D') {
+            imprimeEvento(filaPistaUm, 1, horas, minutos);
+        }
         
-        if (quantidadeDeTempoIncrementado == 10) {
-            diminueNivelCombustivel(filaPistaUm);
-            diminueNivelCombustivel(filaPistaDois);
-            quantidadeDeTempoIncrementado = 0;
+        if (filaPistaDois->inicio != NULL && filaPistaDois->inicio->status == 'D') {
+            imprimeEvento(filaPistaDois, 2, horas, minutos);
+        }
+        
+        if (filaPistaTres->inicio != NULL && filaPistaTres->inicio->status == 'D') {
+            imprimeEvento(filaPistaTres, 3, horas, minutos);
         }
         
         incrementaTempo(&horas, &minutos, 2);
-        quantidadeDeTempoIncrementado += 2;
-        removeVooDaFila(&filaPistaUm);
-        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
-        removeVooDaFila(&filaPistaDois);
-        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
-        removeVooDaFila(&filaPistaTres);
-        realocaVoosEmPistasVazias(&filaPistaUm, &filaPistaDois, &filaPistaTres);
-        
-        if (quantidadeDeTempoIncrementado == 10) {
-            diminueNivelCombustivel(filaPistaUm);
-            diminueNivelCombustivel(filaPistaDois);
-            quantidadeDeTempoIncrementado = 0;
-        }
     }
 }
