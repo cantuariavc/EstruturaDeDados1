@@ -28,40 +28,35 @@ void imprimeFilaDePedidos(Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPist
     Voo *vooPistaTres = filaPistaTres->inicio;
     
     int prioridade = 1;
-    int printCount = 0;
     
     printf("Fila de pedidos: [código do voo – P/D – prioridade]\n");
     while (vooPistaUm != NULL || vooPistaDois != NULL || vooPistaTres != NULL) {
         if (vooPistaUm != NULL) {
             printf("\t\t\t\t %s - %c - %d\n", vooPistaUm->codigo, vooPistaUm->status, prioridade);
             vooPistaUm = vooPistaUm->proximo;
-            printCount++;
-            aumentaPrioridade(&printCount, &prioridade);
+            prioridade++;
         }
         
         if (vooPistaDois != NULL) {
             printf("\t\t\t\t %s - %c - %d\n", vooPistaDois->codigo, vooPistaDois->status, prioridade);
             vooPistaDois = vooPistaDois->proximo;
-            printCount++;
-            aumentaPrioridade(&printCount, &prioridade);
+            prioridade++;
         }
         
         if (vooPistaTres != NULL) {
             printf("\t\t\t\t %s - %c - %d\n", vooPistaTres->codigo, vooPistaTres->status, prioridade);
             vooPistaTres = vooPistaTres->proximo;
-            printCount++;
-            aumentaPrioridade(&printCount, &prioridade);
+            prioridade++;
+        }
+        
+        if (vooPistaTres != NULL) {
+            printf("\t\t\t\t %s - %c - %d\n", vooPistaTres->codigo, vooPistaTres->status, prioridade);
+            vooPistaTres = vooPistaTres->proximo;
+            prioridade++;
         }
     }
 }
 
-void aumentaPrioridade(int *printCount, int *prioridade) {
-    if (*printCount == 3) {
-        *prioridade += 1;
-        *printCount = 0;
-        printf("\n");
-    }
-}
 void imprimeRelatorioGeral(int horas, int minutos, Fila *filaPistaUm, Fila *filaPistaDois, Fila *filaPistaTres, int tamanhoVetorAproximacoes, int tamanhoVetorDecolagens) {
     imprimeTracos();
     printf("\nAeroporto Internacional de Brasília\n");
