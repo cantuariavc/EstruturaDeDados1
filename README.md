@@ -8,7 +8,7 @@ Projeto | Tema
 1 | Ponteiros
 2 | Alocação dinâmica
 3 | Listas duplamente encadeadas
-4 | Fila
+4 | Fila - Incompleto
  
 ### Execução do programa:
 Selecione o projeto desejado e execute o comando no terminal:
