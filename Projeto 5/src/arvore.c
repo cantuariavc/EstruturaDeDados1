@@ -15,9 +15,6 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
     
     for (int i = 0; i < QUANTIDADEDENUMEROS; i++) {
         fscanf(arquivo, "%d", (valor + i));
-    }
-    
-    for (int i = 0; i < QUANTIDADEDENUMEROS; i++) {
         insereNo(&raiz, valor[i]);
     }
     
