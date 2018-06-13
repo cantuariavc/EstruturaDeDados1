@@ -22,3 +22,17 @@ No *criaNo(int valor, No *esquerda, No *direita) {
     
     return novoNo;
 }
+
+void insereNo(No **raiz, int valor) {
+    if (*raiz != NULL) {
+        if (valor < (*raiz)->valor) {
+            insereNo(&(*raiz)->esquerda, valor);
+        } else {
+            insereNo(&(*raiz)->direita, valor);
+        }
+        
+    } else {
+        No *novoNo = criaNo(valor, NULL, NULL);
+        *raiz = novoNo;
+    }
+}

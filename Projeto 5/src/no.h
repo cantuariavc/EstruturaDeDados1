@@ -19,5 +19,6 @@ typedef struct no {
 } No;
 
 No *criaNo(int valor, No *esquerda, No *direita);
+void insereNo(No **raiz, int valor);
 
 #endif /* folha_h */
