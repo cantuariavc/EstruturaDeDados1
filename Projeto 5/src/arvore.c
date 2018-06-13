@@ -7,3 +7,19 @@
 //
 
 #include "arvore.h"
+
+No *loadTreeFromFile(char nomeDoArquivo[]) {
+    FILE *arquivo = abreArquivo(nomeDoArquivo);
+    No *raiz = NULL;
+    int valor[QUANTIDADEDENUMEROS];
+    
+    for (int i = 0; i < QUANTIDADEDENUMEROS; i++) {
+        fscanf(arquivo, "%d", (valor + i));
+    }
+    
+    for (int i = 0; i < QUANTIDADEDENUMEROS; i++) {
+        insereNo(&raiz, valor[i]);
+    }
+    
+    return raiz;
+}
