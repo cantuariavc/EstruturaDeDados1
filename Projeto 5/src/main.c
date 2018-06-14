@@ -9,12 +9,12 @@
 // Vinícius de Castro Cantuária - 14/0165169
 //
 
-#include <string.h>
-
 #include "arvore.h"
 #include "servicos.h"
 
 int main(int argc, const char * argv[]) {
+    char nomeArquivo[5];
+    char arquivo[] = {"../BSTs/\0\0\0\0.txt"};
     int opcao = 11;
     No *raiz = NULL;
     
@@ -25,7 +25,20 @@ int main(int argc, const char * argv[]) {
         
         switch (opcao) {
             case 1:
-//                raiz = loadTreeFromFile(arquivo);
+                printf("Nome do arquivo sem extensão: ");
+                fgets(nomeArquivo, 5, stdin);
+                
+                for (int i = 0; i < 4; i++) {
+                    arquivo[8 + i] = nomeArquivo[i];
+                }
+                
+                raiz = loadTreeFromFile(arquivo);
+                
+                if (raiz != NULL) {
+                    printf("\nÁrvore carregada com sucesso!\n\n");
+                } else {
+                    printf("\nÁrvore não carregada!\n\n");
+                }
                 break;
             case 2:
 //                showTree(raiz);

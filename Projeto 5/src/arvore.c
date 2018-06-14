@@ -10,6 +10,10 @@
 
 No *loadTreeFromFile(char nomeDoArquivo[]) {
     FILE *arquivo = abreArquivo(nomeDoArquivo);
+    if (arquivo == NULL) {
+        return NULL;
+    }
+    
     No *raiz = NULL;
     int valor[QUANTIDADEDENUMEROS];
     
