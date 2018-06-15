@@ -25,6 +25,10 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
     return raiz;
 }
 
+//void showTree(No *raiz);
+
+//void isFull(No *raiz);
+
 int searchValue(No *raiz, int valor) {
     int encontrado = 0;
     
@@ -37,7 +41,7 @@ int searchValue(No *raiz, int valor) {
             encontrado = searchValue(raiz->direita, valor);
         }
         
-        if (encontrado == 1) {
+        if (encontrado) {
             printf("Valor do pai: %d\n", raiz->valor);
             if (raiz->esquerda != NULL && valor == raiz->esquerda->valor && raiz->direita != NULL) {
                 printf("Valor do irmão a direita: %d\n", raiz->direita->valor);
@@ -55,6 +59,9 @@ int searchValue(No *raiz, int valor) {
     
     return encontrado;
 }
+
+//void getHeight(No *raiz);
+//void removeValue(No **raiz, int valor);
 
 void printInOrder(No *raiz) {
     if (raiz) {
@@ -79,3 +86,5 @@ void printPostOrder(No *raiz) {
         printf("%d\t", raiz->valor);
     }
 }
+
+//void balanceTree(No **raiz);

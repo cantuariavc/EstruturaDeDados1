@@ -48,10 +48,10 @@ int main(int argc, const char * argv[]) {
 //                isFull(raiz);
                 break;
             case 4:
-                printf("Valor a ser procurado na árvore: ");
-                scanf("%d", &valor);
-                
-                searchValue(raiz, valor);
+//                printf("Valor a ser procurado na árvore: ");
+//                scanf("%d", &valor);
+//                
+//                searchValue(raiz, valor);
                 break;
             case 5:
 //                getHeight(raiz);
