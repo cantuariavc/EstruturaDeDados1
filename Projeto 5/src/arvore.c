@@ -24,3 +24,36 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
     
     return raiz;
 }
+
+int searchValue(No *raiz, int valor) {
+    int encontrado = 0;
+    
+    if (raiz != NULL) {
+        if (raiz->valor == valor) {
+            return 1;
+        } else if (valor < raiz->valor && raiz->esquerda != NULL) {
+            encontrado = searchValue(raiz->esquerda, valor);
+        } else if (valor > raiz->valor && raiz->direita != NULL) {
+            encontrado = searchValue(raiz->direita, valor);
+        }
+        
+        if (encontrado == 1) {
+            printf("Valor do pai: %d\n", raiz->valor);
+            if (raiz->esquerda != NULL && valor == raiz->esquerda->valor && raiz->direita != NULL) {
+                printf("Valor do irmão a direita: %d\n", raiz->direita->valor);
+            } else if (raiz->direita != NULL && valor == raiz->direita->valor && raiz->esquerda != NULL) {
+                printf("Valor do irmão a esquerda: %d\n", raiz->esquerda->valor);
+            } else {
+                printf("Não possue irmão.\n");
+            }
+            
+            printf("\n");
+            
+            return 0;
+        }
+    } else {
+        printf("Valor não encontrado!\n\n");
+    }
+    
+    return encontrado;
+}

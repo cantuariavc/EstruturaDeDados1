@@ -20,7 +20,7 @@
 No *loadTreeFromFile(char nomeDoArquivo[]);
 void showTree(No *raiz);
 void isFull(No *raiz);
-void searchValue(No *raiz);
+int searchValue(No *raiz, int valor);
 void getHeight(No *raiz);
 void removeValue(No **raiz, int valor);
 void printInOrder(No *raiz);
