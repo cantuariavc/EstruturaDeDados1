@@ -68,7 +68,8 @@ int main(int argc, const char * argv[]) {
                 printPreOrder(raiz);
                 break;
             case 9:
-//                printPostOrder(raiz);
+                printf("Árvore em pós-ordem: ");
+                printPostOrder(raiz);
                 break;
             case 10:
 //                balanceTree(&raiz);

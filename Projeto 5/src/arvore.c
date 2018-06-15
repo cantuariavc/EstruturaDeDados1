@@ -71,3 +71,11 @@ void printPreOrder(No *raiz) {
         printPreOrder(raiz->direita);
     }
 }
+
+void printPostOrder(No *raiz) {
+    if (raiz != NULL) {
+        printPostOrder(raiz->esquerda);
+        printPostOrder(raiz->direita);
+        printf("%d\t", raiz->valor);
+    }
+}
