@@ -47,8 +47,6 @@ int searchValue(No *raiz, int valor) {
                 printf("Não possue irmão.\n");
             }
             
-            printf("\n");
-            
             return 0;
         }
     } else {
@@ -56,4 +54,12 @@ int searchValue(No *raiz, int valor) {
     }
     
     return encontrado;
+}
+
+void printInOrder(No *raiz) {
+    if (raiz != NULL) {
+        printInOrder(raiz->esquerda);
+        printf("%d\t", raiz->valor);
+        printInOrder(raiz->direita);
+    }
 }
