@@ -63,3 +63,11 @@ void printInOrder(No *raiz) {
         printInOrder(raiz->direita);
     }
 }
+
+void printPreOrder(No *raiz) {
+    if (raiz != NULL) {
+        printf("%d\t", raiz->valor);
+        printPreOrder(raiz->esquerda);
+        printPreOrder(raiz->direita);
+    }
+}

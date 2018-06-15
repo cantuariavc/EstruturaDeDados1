@@ -64,7 +64,8 @@ int main(int argc, const char * argv[]) {
                 printInOrder(raiz);
                 break;
             case 8:
-//                printPreOrder(raiz);
+                printf("Árvore em pré-ordem: ");
+                printPreOrder(raiz);
                 break;
             case 9:
 //                printPostOrder(raiz);
@@ -75,6 +76,7 @@ int main(int argc, const char * argv[]) {
             default:
                 break;
         }
+        printf("\n\n");
     } while (opcao != 0);
     
     return 0;
