@@ -35,7 +35,7 @@ int main(int argc, const char * argv[]) {
                 
                 raiz = loadTreeFromFile(arquivo);
                 
-                if (raiz != NULL) {
+                if (raiz) {
                     printf("\nÁrvore carregada com sucesso!");
                 } else {
                     printf("\nÁrvore não carregada!");
@@ -60,16 +60,28 @@ int main(int argc, const char * argv[]) {
 //                removeValue(&raiz, valor);
                 break;
             case 7:
-                printf("Árvore em ordem: ");
-                printInOrder(raiz);
+                if (raiz) {
+                    printf("Árvore em ordem: ");
+                    printInOrder(raiz);
+                } else {
+                    printf("Árvore vazia!");
+                }
                 break;
             case 8:
-                printf("Árvore em pré-ordem: ");
-                printPreOrder(raiz);
+                if (raiz) {
+                    printf("Árvore em pré-ordem: ");
+                    printPreOrder(raiz);
+                } else {
+                    printf("Árvore vazia!");
+                }
                 break;
             case 9:
-                printf("Árvore em pós-ordem: ");
-                printPostOrder(raiz);
+                if (raiz) {
+                    printf("Árvore em pós-ordem: ");
+                    printPostOrder(raiz);
+                } else {
+                    printf("Árvore vazia!");
+                }
                 break;
             case 10:
 //                balanceTree(&raiz);

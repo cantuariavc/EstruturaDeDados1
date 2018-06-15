@@ -10,7 +10,7 @@
 
 No *loadTreeFromFile(char nomeDoArquivo[]) {
     FILE *arquivo = abreArquivo(nomeDoArquivo);
-    if (arquivo == NULL) {
+    if (!arquivo) {
         return NULL;
     }
     
@@ -28,7 +28,7 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
 int searchValue(No *raiz, int valor) {
     int encontrado = 0;
     
-    if (raiz != NULL) {
+    if (raiz) {
         if (raiz->valor == valor) {
             return 1;
         } else if (valor < raiz->valor && raiz->esquerda != NULL) {
@@ -57,7 +57,7 @@ int searchValue(No *raiz, int valor) {
 }
 
 void printInOrder(No *raiz) {
-    if (raiz != NULL) {
+    if (raiz) {
         printInOrder(raiz->esquerda);
         printf("%d\t", raiz->valor);
         printInOrder(raiz->direita);
@@ -65,7 +65,7 @@ void printInOrder(No *raiz) {
 }
 
 void printPreOrder(No *raiz) {
-    if (raiz != NULL) {
+    if (raiz) {
         printf("%d\t", raiz->valor);
         printPreOrder(raiz->esquerda);
         printPreOrder(raiz->direita);
@@ -73,7 +73,7 @@ void printPreOrder(No *raiz) {
 }
 
 void printPostOrder(No *raiz) {
-    if (raiz != NULL) {
+    if (raiz) {
         printPostOrder(raiz->esquerda);
         printPostOrder(raiz->direita);
         printf("%d\t", raiz->valor);
