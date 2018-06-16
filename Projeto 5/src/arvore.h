@@ -28,4 +28,6 @@ void printPreOrder(No *raiz);
 void printPostOrder(No *raiz);
 void balanceTree(No **raiz);
 
+void printGivenLevel(No* raiz, int nivel);
+
 #endif /* arvore_h */

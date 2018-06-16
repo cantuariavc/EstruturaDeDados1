@@ -11,7 +11,7 @@
 void imprimeMenu(int *opcao) {
     printf("Menu\n");
     printf("1 - Carregar árvore no arquivo\n");
-//    printf("2 - Imprimir árvore\n");
+    printf("2 - Imprimir árvore\n");
 //    printf("3 - Mostrar se árvore está cheia\n");
 //    printf("4 - Procurar valor na árvore\n");
     printf("5 - Mostrar altura da árvore\n");

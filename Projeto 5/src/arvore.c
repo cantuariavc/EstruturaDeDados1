@@ -25,7 +25,13 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
     return raiz;
 }
 
-//void showTree(No *raiz);
+void showTree(No *raiz) {
+    int h = getHeight(raiz);
+    for (int i = 0; i <= h; i++) {
+        printGivenLevel(raiz, i);
+        printf("\n");
+    }
+}
 
 //void isFull(No *raiz);
 
@@ -42,6 +48,8 @@ int searchValue(No *raiz, int valor) {
         }
         
         if (encontrado) {
+//            printf("Nível do nó: %d", );
+            
             printf("Valor do pai: %d\n", raiz->valor);
             if (raiz->esquerda != NULL && valor == raiz->esquerda->valor && raiz->direita != NULL) {
                 printf("Valor do irmão a direita: %d\n", raiz->direita->valor);
@@ -102,3 +110,17 @@ void printPostOrder(No *raiz) {
 }
 
 //void balanceTree(No **raiz);
+
+
+void printGivenLevel(No* raiz, int nivel) {
+    if (!raiz) {
+        printf("* ");
+    } else {
+        if (nivel == 0) {
+            printf("%d ", raiz->valor);
+        } else if (nivel > 0) {
+            printGivenLevel(raiz->esquerda, nivel-1);
+            printGivenLevel(raiz->direita, nivel-1);
+        }
+    }
+}
