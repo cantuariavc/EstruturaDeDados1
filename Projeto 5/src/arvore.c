@@ -13,15 +13,15 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
     if (!arquivo) {
         return NULL;
     }
-    
+
     No *raiz = NULL;
     int valor[QUANTIDADEDENUMEROS];
-    
+
     for (int i = 0; i < QUANTIDADEDENUMEROS; i++) {
         fscanf(arquivo, "%d", (valor + i));
         insereNo(&raiz, valor[i]);
     }
-    
+
     return raiz;
 }
 
@@ -37,7 +37,7 @@ void showTree(No *raiz) {
 
 int searchValue(No *raiz, int valor) {
     int encontrado = 0;
-    
+
     if (raiz) {
         if (raiz->valor == valor) {
             return 1;
@@ -46,10 +46,10 @@ int searchValue(No *raiz, int valor) {
         } else if (valor > raiz->valor && raiz->direita != NULL) {
             encontrado = searchValue(raiz->direita, valor);
         }
-        
+
         if (encontrado) {
 //            printf("Nível do nó: %d", );
-            
+
             printf("Valor do pai: %d\n", raiz->valor);
             if (raiz->esquerda != NULL && valor == raiz->esquerda->valor && raiz->direita != NULL) {
                 printf("Valor do irmão a direita: %d\n", raiz->direita->valor);
@@ -58,13 +58,13 @@ int searchValue(No *raiz, int valor) {
             } else {
                 printf("Não possue irmão.\n");
             }
-            
+
             return 0;
         }
     } else {
         printf("Valor não encontrado!\n\n");
     }
-    
+
     return encontrado;
 }
 
@@ -74,7 +74,7 @@ int getHeight(No *raiz) {
     } else {
         int esquerda = getHeight(raiz->esquerda);
         int direita = getHeight(raiz->direita);
-        
+
         if (esquerda > direita) {
             return esquerda + 1;
         } else {
@@ -83,7 +83,71 @@ int getHeight(No *raiz) {
     }
 }
 
-//void removeValue(No **raiz, int valor);
+No *MaiorDireita(No **no) {
+    if((*no)->direita != NULL)
+       return MaiorDireita(&(*no)->direita);
+    else{
+       No *aux = *no;
+       if((*no)->esquerda != NULL)
+          *no = (*no)->esquerda;
+       else
+          *no = NULL;
+       return aux;
+       }
+}
+
+No *MenorEsquerda(No **no) {
+    if((*no)->esquerda != NULL)
+       return MenorEsquerda(&(*no)->esquerda);
+    else{
+       No *aux = *no;
+       if((*no)->direita != NULL)
+          *no = (*no)->direita;
+       else
+          *no = NULL;
+       return aux;
+       }
+}
+
+void removeValue(No **raiz, int valor) {
+  if(*raiz == NULL){
+      printf("Este valor não existe na árvore");
+      return;
+   }
+   if(valor < (*raiz)->valor)
+      removeValue(&(*raiz)->esquerda, valor);
+   else
+      if(valor > (*raiz)->valor)
+         removeValue(&(*raiz)->direita, valor);
+      else{
+         No *pAux = *raiz;
+         if (((*raiz)->esquerda == NULL) && ((*raiz)->direita == NULL)){
+               free(pAux);
+               (*raiz) = NULL;
+              }
+         else{
+            if ((*raiz)->esquerda == NULL){
+               (*raiz) = (*raiz)->direita;
+               pAux->direita = NULL;
+               free(pAux); pAux = NULL;
+               }
+            else{
+               if ((*raiz)->direita == NULL){
+                   (*raiz) = (*raiz)->esquerda;
+                   pAux->esquerda = NULL;
+                   free(pAux); pAux = NULL;
+                   }
+               else{
+                  pAux = MaiorDireita(&(*raiz)->esquerda);
+                  pAux->esquerda = (*raiz)->esquerda;
+                  pAux->direita = (*raiz)->direita;
+                  (*raiz)->esquerda = (*raiz)->direita = NULL;
+                  free((*raiz));  *raiz = pAux;  pAux = NULL;
+                  }
+               }
+            }
+         }
+}
 
 void printInOrder(No *raiz) {
     if (raiz) {

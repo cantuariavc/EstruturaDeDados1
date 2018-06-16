@@ -18,23 +18,23 @@ int main(int argc, const char * argv[]) {
     int opcao = 11;
     No *raiz = NULL;
     int valor = 0;
-    
+
     do {
         do {
             imprimeMenu(&opcao);
         } while (opcao < 0 || opcao > 10);
-        
+
         switch (opcao) {
             case 1:
                 printf("Nome do arquivo sem extensão: ");
                 fgets(nomeArquivo, 5, stdin);
-                
+
                 for (int i = 0; i < 4; i++) {
                     arquivo[8 + i] = nomeArquivo[i];
                 }
-                
+
                 raiz = loadTreeFromFile(arquivo);
-                
+
                 if (raiz) {
                     printf("\nÁrvore carregada com sucesso!");
                 } else {
@@ -48,16 +48,18 @@ int main(int argc, const char * argv[]) {
 //                isFull(raiz);
                 break;
             case 4:
-//                printf("Valor a ser procurado na árvore: ");
-//                scanf("%d", &valor);
-//                
-//                searchValue(raiz, valor);
+               printf("Valor a ser procurado na árvore: ");
+               scanf("%d", &valor);
+
+               searchValue(raiz, valor);
                 break;
             case 5:
                 printf("Altura da árvore: %d", getHeight(raiz));
                 break;
             case 6:
-//                removeValue(&raiz, valor);
+              printf("Escolha o valor a ser removido da arvore: ");
+              scanf("%d", &valor);
+               removeValue(&raiz, valor);
                 break;
             case 7:
                 if (raiz) {
@@ -91,6 +93,6 @@ int main(int argc, const char * argv[]) {
         }
         printf("\n\n");
     } while (opcao != 0);
-    
+
     return 0;
 }
