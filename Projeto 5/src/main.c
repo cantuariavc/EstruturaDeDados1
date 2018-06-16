@@ -54,7 +54,7 @@ int main(int argc, const char * argv[]) {
 //                searchValue(raiz, valor);
                 break;
             case 5:
-//                getHeight(raiz);
+                printf("Altura da árvore: %d", getHeight(raiz));
                 break;
             case 6:
 //                removeValue(&raiz, valor);

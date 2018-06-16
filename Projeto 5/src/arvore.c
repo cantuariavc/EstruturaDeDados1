@@ -60,7 +60,21 @@ int searchValue(No *raiz, int valor) {
     return encontrado;
 }
 
-//void getHeight(No *raiz);
+int getHeight(No *raiz) {
+    if (!raiz) {
+        return -1;
+    } else {
+        int esquerda = getHeight(raiz->esquerda);
+        int direita = getHeight(raiz->direita);
+        
+        if (esquerda > direita) {
+            return esquerda + 1;
+        } else {
+            return direita + 1;
+        }
+    }
+}
+
 //void removeValue(No **raiz, int valor);
 
 void printInOrder(No *raiz) {
