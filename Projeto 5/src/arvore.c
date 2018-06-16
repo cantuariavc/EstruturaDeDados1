@@ -88,7 +88,7 @@ No *MaiorDireita(No **no) {
        return MaiorDireita(&(*no)->direita);
     else{
        No *aux = *no;
-       if((*no)->esquerda != NULL) // se nao houver essa verificacao, esse nó vai perder todos os seus filhos da esquerda!
+       if((*no)->esquerda != NULL)
           *no = (*no)->esquerda;
        else
           *no = NULL;
@@ -101,7 +101,7 @@ No *MenorEsquerda(No **no) {
        return MenorEsquerda(&(*no)->esquerda);
     else{
        No *aux = *no;
-       if((*no)->direita != NULL) // se nao houver essa verificacao, esse nó vai perder todos os seus filhos da direita!
+       if((*no)->direita != NULL)
           *no = (*no)->direita;
        else
           *no = NULL;
@@ -110,7 +110,7 @@ No *MenorEsquerda(No **no) {
 }
 
 void removeValue(No **raiz, int valor) {
-  if(*raiz == NULL){   // esta verificacao serve para caso o valor nao exista na arvore.
+  if(*raiz == NULL){
       printf("Este valor não existe na árvore");
       return;
    }
@@ -119,27 +119,27 @@ void removeValue(No **raiz, int valor) {
    else
       if(valor > (*raiz)->valor)
          removeValue(&(*raiz)->direita, valor);
-      else{    // se nao eh menor nem maior, logo, eh o valor que estou procurando! :)
-         No *pAux = *raiz;     // quem programar no Embarcadero vai ter que declarar o pAux no inicio do void! :[
-         if (((*raiz)->esquerda == NULL) && ((*raiz)->direita == NULL)){         // se nao houver filhos...
+      else{
+         No *pAux = *raiz;
+         if (((*raiz)->esquerda == NULL) && ((*raiz)->direita == NULL)){
                free(pAux);
                (*raiz) = NULL;
               }
-         else{     // so tem o filho da direita
+         else{
             if ((*raiz)->esquerda == NULL){
                (*raiz) = (*raiz)->direita;
                pAux->direita = NULL;
                free(pAux); pAux = NULL;
                }
-            else{            //so tem filho da esquerda
+            else{
                if ((*raiz)->direita == NULL){
                    (*raiz) = (*raiz)->esquerda;
                    pAux->esquerda = NULL;
                    free(pAux); pAux = NULL;
                    }
-               else{       //Escolhi fazer o maior filho direito da subarvore esquerda.
-                  pAux = MaiorDireita(&(*raiz)->esquerda); //se vc quiser usar o Menor da esquerda, so o que mudaria seria isso:
-                  pAux->esquerda = (*raiz)->esquerda;          //        pAux = MenorEsquerda(&(*raiz)->direita);
+               else{
+                  pAux = MaiorDireita(&(*raiz)->esquerda);
+                  pAux->esquerda = (*raiz)->esquerda;
                   pAux->direita = (*raiz)->direita;
                   (*raiz)->esquerda = (*raiz)->direita = NULL;
                   free((*raiz));  *raiz = pAux;  pAux = NULL;
