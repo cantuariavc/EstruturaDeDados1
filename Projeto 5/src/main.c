@@ -45,7 +45,10 @@ int main(int argc, const char * argv[]) {
 //                showTree(raiz);
                 break;
             case 3:
-//                isFull(raiz);
+               if (isFull == 0)
+                  printf("A árvore esta cheia!\n");
+              else
+                  printf("A árvore não esta cheia!\n");
                 break;
             case 4:
                printf("Valor a ser procurado na árvore: ");

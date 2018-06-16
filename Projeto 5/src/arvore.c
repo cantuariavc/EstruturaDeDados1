@@ -33,7 +33,18 @@ void showTree(No *raiz) {
     }
 }
 
-//void isFull(No *raiz);
+int isFull(No *raiz) {
+    if (raiz == NULL){
+        return 1;
+      }
+    if (raiz->esquerda == NULL && raiz->direita == NULL){
+        return 1;
+      }
+    if ((raiz->esquerda) && (raiz->direita)){
+        return (isFull(raiz->esquerda) && isFull(raiz->direita));
+      }
+    return 0;
+}
 
 int searchValue(No *raiz, int valor) {
     int encontrado = 0;
