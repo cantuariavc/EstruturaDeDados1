@@ -27,5 +27,7 @@ void printPostOrder(No *raiz);
 void balanceTree(No **raiz);
 
 void printGivenLevel(No* raiz, int nivel);
+No *MaiorDireita(No **no);
+No *MenorEsquerda(No **no);
 
 #endif /* arvore_h */

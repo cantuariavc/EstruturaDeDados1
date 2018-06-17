@@ -93,32 +93,6 @@ int getHeight(No *raiz) {
     }
 }
 
-No *MaiorDireita(No **no) {
-    if((*no)->direita != NULL)
-       return MaiorDireita(&(*no)->direita);
-    else{
-       No *aux = *no;
-       if((*no)->esquerda != NULL)
-          *no = (*no)->esquerda;
-       else
-          *no = NULL;
-       return aux;
-       }
-}
-
-No *MenorEsquerda(No **no) {
-    if((*no)->esquerda != NULL)
-       return MenorEsquerda(&(*no)->esquerda);
-    else{
-       No *aux = *no;
-       if((*no)->direita != NULL)
-          *no = (*no)->direita;
-       else
-          *no = NULL;
-       return aux;
-       }
-}
-
 void removeValue(No **raiz, int valor) {
   if(*raiz == NULL){
       printf("Este valor não existe na árvore!");
@@ -196,5 +170,31 @@ void printGivenLevel(No* raiz, int nivel) {
             printGivenLevel(raiz->esquerda, nivel-1);
             printGivenLevel(raiz->direita, nivel-1);
         }
+    }
+}
+
+No *MaiorDireita(No **no) {
+    if((*no)->direita != NULL)
+        return MaiorDireita(&(*no)->direita);
+    else{
+        No *aux = *no;
+        if((*no)->esquerda != NULL)
+            *no = (*no)->esquerda;
+        else
+            *no = NULL;
+        return aux;
+    }
+}
+
+No *MenorEsquerda(No **no) {
+    if((*no)->esquerda != NULL)
+        return MenorEsquerda(&(*no)->esquerda);
+    else{
+        No *aux = *no;
+        if((*no)->direita != NULL)
+            *no = (*no)->direita;
+        else
+            *no = NULL;
+        return aux;
     }
 }
