@@ -55,6 +55,8 @@ int searchValue(No *raiz, int valor) {
             encontrado = searchValue(raiz->esquerda, valor);
         } else if (valor > raiz->valor && raiz->direita != NULL) {
             encontrado = searchValue(raiz->direita, valor);
+        } else {
+            printf("Valor não encontrado!\n\n");
         }
 
         if (encontrado) {
@@ -71,8 +73,6 @@ int searchValue(No *raiz, int valor) {
 
             return 0;
         }
-    } else {
-        printf("Valor não encontrado!\n\n");
     }
 
     return encontrado;
@@ -121,7 +121,7 @@ No *MenorEsquerda(No **no) {
 
 void removeValue(No **raiz, int valor) {
   if(*raiz == NULL){
-      printf("Este valor não existe na árvore");
+      printf("Este valor não existe na árvore!");
       return;
    }
    if(valor < (*raiz)->valor)
