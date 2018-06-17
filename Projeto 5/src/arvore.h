@@ -15,8 +15,6 @@
 #include "arquivo.h"
 #include "no.h"
 
-#define QUANTIDADEDENUMEROS 10
-
 No *loadTreeFromFile(char nomeDoArquivo[]);
 void showTree(No *raiz);
 int isFull(No *raiz);
