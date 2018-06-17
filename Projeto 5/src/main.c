@@ -42,27 +42,27 @@ int main(int argc, const char * argv[]) {
                 }
                 break;
             case 2:
-//                showTree(raiz);
+                showTree(raiz);
                 break;
             case 3:
-               if (isFull == 0)
-                  printf("A árvore esta cheia!\n");
-              else
-                  printf("A árvore não esta cheia!\n");
+                if (isFull(raiz)) {
+                    printf("A árvore esta cheia!\n");
+                } else {
+                    printf("A árvore não esta cheia!\n");
+                }
                 break;
             case 4:
-               printf("Valor a ser procurado na árvore: ");
-               scanf("%d", &valor);
-
-               searchValue(raiz, valor);
+                printf("Valor a ser procurado na árvore: ");
+                scanf("%d", &valor);
+                searchValue(raiz, valor);
                 break;
             case 5:
                 printf("Altura da árvore: %d", getHeight(raiz));
                 break;
             case 6:
-              printf("Escolha o valor a ser removido da arvore: ");
-              scanf("%d", &valor);
-               removeValue(&raiz, valor);
+                printf("Escolha o valor a ser removido da arvore: ");
+                scanf("%d", &valor);
+                removeValue(&raiz, valor);
                 break;
             case 7:
                 if (raiz) {
