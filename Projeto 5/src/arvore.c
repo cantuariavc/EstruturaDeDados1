@@ -32,16 +32,28 @@ void showTree(No *raiz) {
     }
 }
 
+void printGivenLevel(No* raiz, int nivel) {
+    if (!raiz) {
+        printf("* ");
+    } else {
+        if (nivel == 0) {
+            printf("%d ", raiz->valor);
+        } else if (nivel > 0) {
+            printGivenLevel(raiz->esquerda, nivel-1);
+            printGivenLevel(raiz->direita, nivel-1);
+        }
+    }
+}
+
 int isFull(No *raiz) {
-    if (raiz == NULL){
+    if (!raiz) {
         return 1;
-      }
-    if (raiz->esquerda == NULL && raiz->direita == NULL){
+    } else if (!raiz->esquerda && !raiz->direita) {
         return 1;
-      }
-    if ((raiz->esquerda) && (raiz->direita)){
+    } else if (raiz->esquerda && raiz->direita) {
         return (isFull(raiz->esquerda) && isFull(raiz->direita));
-      }
+    }
+
     return 0;
 }
 
@@ -94,43 +106,77 @@ int getHeight(No *raiz) {
 }
 
 void removeValue(No **raiz, int valor) {
-  if(*raiz == NULL){
-      printf("Este valor não existe na árvore!");
-      return;
-   }
-   if(valor < (*raiz)->valor)
-      removeValue(&(*raiz)->esquerda, valor);
-   else
-      if(valor > (*raiz)->valor)
-         removeValue(&(*raiz)->direita, valor);
-      else{
-         No *pAux = *raiz;
-         if (((*raiz)->esquerda == NULL) && ((*raiz)->direita == NULL)){
-               free(pAux);
-               (*raiz) = NULL;
-              }
-         else{
-            if ((*raiz)->esquerda == NULL){
-               (*raiz) = (*raiz)->direita;
-               pAux->direita = NULL;
-               free(pAux); pAux = NULL;
-               }
-            else{
-               if ((*raiz)->direita == NULL){
-                   (*raiz) = (*raiz)->esquerda;
-                   pAux->esquerda = NULL;
-                   free(pAux); pAux = NULL;
-                   }
-               else{
-                  pAux = MaiorDireita(&(*raiz)->esquerda);
-                  pAux->esquerda = (*raiz)->esquerda;
-                  pAux->direita = (*raiz)->direita;
-                  (*raiz)->esquerda = (*raiz)->direita = NULL;
-                  free((*raiz));  *raiz = pAux;  pAux = NULL;
-                  }
-               }
+    if (!(*raiz)) {
+        printf("Este valor não existe na árvore!");
+
+        return;
+    }
+
+    if (valor < (*raiz)->valor) {
+        removeValue(&(*raiz)->esquerda, valor);
+    } else {
+        if (valor > (*raiz)->valor) {
+            removeValue(&(*raiz)->direita, valor);
+        } else {
+            No *pAux = *raiz;
+            if (!(*raiz)->esquerda && !(*raiz)->direita) {
+                free(pAux);
+                (*raiz) = NULL;
+            } else {
+                if ((*raiz)->esquerda == NULL) {
+                    (*raiz) = (*raiz)->direita;
+                    pAux->direita = NULL;
+                    free(pAux);
+                    pAux = NULL;
+                } else {
+                    if (!(*raiz)->direita) {
+                        (*raiz) = (*raiz)->esquerda;
+                        pAux->esquerda = NULL;
+                        free(pAux);
+                        pAux = NULL;
+                    } else {
+                        pAux = MaiorDireita(&(*raiz)->esquerda);
+                        pAux->esquerda = (*raiz)->esquerda;
+                        pAux->direita = (*raiz)->direita;
+                        (*raiz)->esquerda = (*raiz)->direita = NULL;
+                        free((*raiz));
+                        *raiz = pAux;
+                        pAux = NULL;
+                    }
+                }
             }
-         }
+        }
+    }
+}
+
+No *MaiorDireita(No **no) {
+    if ((*no)->direita) {
+        return MaiorDireita(&(*no)->direita);
+    } else {
+        No *aux = *no;
+        if ((*no)->esquerda) {
+            *no = (*no)->esquerda;
+        } else {
+            *no = NULL;
+        }
+
+        return aux;
+    }
+}
+
+No *MenorEsquerda(No **no) {
+    if ((*no)->esquerda) {
+        return MenorEsquerda(&(*no)->esquerda);
+    } else {
+        No *aux = *no;
+        if ((*no)->direita) {
+            *no = (*no)->direita;
+        } else {
+            *no = NULL;
+        }
+
+        return aux;
+    }
 }
 
 void printInOrder(No *raiz) {
@@ -158,43 +204,3 @@ void printPostOrder(No *raiz) {
 }
 
 //void balanceTree(No **raiz);
-
-
-void printGivenLevel(No* raiz, int nivel) {
-    if (!raiz) {
-        printf("* ");
-    } else {
-        if (nivel == 0) {
-            printf("%d ", raiz->valor);
-        } else if (nivel > 0) {
-            printGivenLevel(raiz->esquerda, nivel-1);
-            printGivenLevel(raiz->direita, nivel-1);
-        }
-    }
-}
-
-No *MaiorDireita(No **no) {
-    if((*no)->direita != NULL)
-        return MaiorDireita(&(*no)->direita);
-    else{
-        No *aux = *no;
-        if((*no)->esquerda != NULL)
-            *no = (*no)->esquerda;
-        else
-            *no = NULL;
-        return aux;
-    }
-}
-
-No *MenorEsquerda(No **no) {
-    if((*no)->esquerda != NULL)
-        return MenorEsquerda(&(*no)->esquerda);
-    else{
-        No *aux = *no;
-        if((*no)->direita != NULL)
-            *no = (*no)->direita;
-        else
-            *no = NULL;
-        return aux;
-    }
-}
