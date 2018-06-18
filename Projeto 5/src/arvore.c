@@ -8,6 +8,8 @@
 
 #include "arvore.h"
 
+int nivel = 0;
+
 No *loadTreeFromFile(char nomeDoArquivo[]) {
     FILE *arquivo = abreArquivo(nomeDoArquivo);
     if (!arquivo) {
@@ -62,18 +64,21 @@ int searchValue(No *raiz, int valor) {
 
     if (raiz) {
         if (raiz->valor == valor) {
+            printf("Nível do nó: %d\n", nivel);
+            nivel = 0;
+            
             return 1;
         } else if (valor < raiz->valor && raiz->esquerda != NULL) {
+            nivel++;
             encontrado = searchValue(raiz->esquerda, valor);
         } else if (valor > raiz->valor && raiz->direita != NULL) {
+            nivel++;
             encontrado = searchValue(raiz->direita, valor);
         } else {
             printf("Valor não encontrado!\n\n");
         }
 
         if (encontrado) {
-//            printf("Nível do nó: %d", );
-
             printf("Valor do pai: %d\n", raiz->valor);
             if (raiz->esquerda != NULL && valor == raiz->esquerda->valor && raiz->direita != NULL) {
                 printf("Valor do irmão a direita: %d\n", raiz->direita->valor);
