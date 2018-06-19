@@ -89,7 +89,7 @@ int main(int argc, const char * argv[]) {
                 }
                 break;
             case 10:
-//                balanceTree(&raiz);
+               balanceTree(raiz);
                 break;
             default:
                 printf("Opção inválida!");

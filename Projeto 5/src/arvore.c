@@ -66,7 +66,7 @@ int searchValue(No *raiz, int valor) {
         if (raiz->valor == valor) {
             printf("Nível do nó: %d\n", nivel);
             nivel = 0;
-            
+
             return 1;
         } else if (valor < raiz->valor && raiz->esquerda != NULL) {
             nivel++;
@@ -208,4 +208,134 @@ void printPostOrder(No *raiz) {
     }
 }
 
-//void balanceTree(No **raiz);
+
+void balanceTree(No *raiz) {
+
+  No *novaRota = NULL;
+
+
+  switch(checkIfTreeIsBalanced(raiz)) {
+    case 0:
+      printf("Balanceando Arvore");
+      novaRota = balanceNode(raiz);
+      if(novaRota != raiz) {
+        raiz = novaRota;
+      }
+    break;
+    case 1:
+      printf("Arvore já esta Balanceada");
+    break;
+    case 2:
+      printf("Arvore Vazia");
+    break;
+  }
+}
+
+int checkIfTreeIsBalanced(No *raiz) {
+  int value;
+
+  if (raiz == NULL) {
+    return 2;
+  }
+  value = abs(getHeight(raiz->esquerda) - getHeight(raiz->direita)) <= 1;
+  if(checkIfTreeIsBalanced(raiz->esquerda) == 0 && checkIfTreeIsBalanced(raiz->direita) == 0) {
+    value = 0;
+  }
+  return value;
+}
+
+int calculateBalanceFactor(No *raiz) {
+  int balanceFactor = 0;
+
+  if(raiz->esquerda) {
+    balanceFactor += getHeight(raiz->esquerda);
+  }
+  if(raiz->direita) {
+    balanceFactor -= getHeight(raiz->direita);
+  }
+
+  return balanceFactor;
+}
+
+No* balanceNode(No *raiz) {
+  No *novaRota = NULL;
+
+  if(raiz->esquerda) {
+    raiz->esquerda  = balanceNode(raiz->esquerda);
+  }
+
+  if(raiz->direita) {
+    raiz->direita = balanceNode(raiz->direita);
+  }
+
+  int balanceFactor = calculateBalanceFactor(raiz);
+
+  if(balanceFactor >= 2) {
+    if(calculateBalanceFactor(raiz->esquerda) <= -1) {
+      novaRota = rotateLeftRight(raiz);
+    }
+    else{
+      novaRota = rotateLeftLeft(raiz);
+    }
+  }
+  else if(balanceFactor <= -2) {
+
+    if(calculateBalanceFactor(raiz->direita) >= 1) {
+      novaRota = rotateRightLeft(raiz);
+    }
+    else{
+      novaRota = rotateRightRight(raiz);
+    }
+  }
+  else {
+    novaRota = raiz;
+  }
+
+  return novaRota;
+}
+
+No* rotateLeftLeft(No *raiz) {
+  No *aux1 = raiz;
+  No *aux2 = aux1->esquerda;
+
+	aux1->esquerda = aux2->direita;
+	aux2->direita = aux1;
+
+	return aux2;
+}
+
+No* rotateLeftRight(No *raiz) {
+  No *aux1 = raiz;
+  No *aux2 = aux1->esquerda;
+  No *aux3 = aux2->direita;
+
+	aux1->esquerda = aux3->direita;
+	aux2->direita = aux3->esquerda;
+	aux3->esquerda = aux2;
+	aux3->direita = aux1;
+
+	return aux3;
+}
+
+No* rotateRightLeft(No *raiz) {
+  No *aux1 = raiz;
+  No *aux2 = aux1->direita;
+  No *aux3 = aux2->esquerda;
+
+	aux1->direita = aux3->esquerda;
+	aux2->esquerda = aux3->direita;
+	aux3->direita = aux2;
+	aux3->esquerda = aux1;
+
+	return aux3;
+}
+
+No* rotateRightRight(No *raiz) {
+  No *aux1 = raiz;
+  No *aux2 = aux1->direita;
+
+	aux1->direita = aux2->esquerda;
+	aux2->esquerda = aux1;
+
+	return aux2;
+}

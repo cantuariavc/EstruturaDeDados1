@@ -19,7 +19,7 @@ void imprimeMenu(int *opcao) {
     printf("7 - Imprimir valores da árvore em ordem\n");
     printf("8 - Imprimir valores da árvore pré-ordem\n");
     printf("9 - Imprimir valores da árvore pós-ordem\n");
-//    printf("10 - Balancear árvore\n");
+    printf("10 - Balancear árvore\n");
     printf("0 - Sair\n");
     printf("Opção: ");
     scanf("%d", opcao);

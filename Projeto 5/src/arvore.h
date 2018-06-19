@@ -24,7 +24,15 @@ void removeValue(No **raiz, int valor);
 void printInOrder(No *raiz);
 void printPreOrder(No *raiz);
 void printPostOrder(No *raiz);
-void balanceTree(No **raiz);
+void balanceTree(No *raiz);
+int checkIfTreeIsBalanced(No *raiz);
+int calculateBalanceFactor(No *raiz);
+No* balanceNode(No *raiz);
+No* rotateLeftLeft(No *raiz);
+No* rotateLeftRight(No *raiz);
+No* rotateRightLeft(No *raiz);
+No* rotateRightRight(No *raiz);
+
 
 void printGivenLevel(No* raiz, int nivel);
 No *MaiorDireita(No **no);
