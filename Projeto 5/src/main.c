@@ -20,11 +20,11 @@ int main(int argc, const char * argv[]) {
     int valor = 0;
 
     do {
-        do {
-            imprimeMenu(&opcao);
-        } while (opcao < 0 || opcao > 10);
+        imprimeMenu(&opcao);
 
         switch (opcao) {
+            case 0:
+                break;
             case 1:
                 printf("Nome do arquivo sem extensão: ");
                 fgets(nomeArquivo, 5, stdin);
@@ -92,6 +92,7 @@ int main(int argc, const char * argv[]) {
 //                balanceTree(&raiz);
                 break;
             default:
+                printf("Opção inválida!");
                 break;
         }
         printf("\n\n");
