@@ -10,10 +10,10 @@
 
 FILE *abreArquivo(char caminhoArquivo[]) {
     FILE *arquivo = fopen(caminhoArquivo, "r");
-    
+
     if (arquivo == NULL) {
         printf("Erro na abertura da arquivo!\n");
     }
-    
+
     return arquivo;
 }

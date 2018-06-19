@@ -16,26 +16,29 @@
 #include "no.h"
 
 No *loadTreeFromFile(char nomeDoArquivo[]);
+
 void showTree(No *raiz);
+void printGivenLevel(No* raiz, int nivel);
+
 int isFull(No *raiz);
 int searchValue(No *raiz, int valor);
 int getHeight(No *raiz);
+
 void removeValue(No **raiz, int valor);
+No *MaiorDireita(No **no);
+No *MenorEsquerda(No **no);
+
 void printInOrder(No *raiz);
 void printPreOrder(No *raiz);
 void printPostOrder(No *raiz);
+
 void balanceTree(No *raiz);
 int checkIfTreeIsBalanced(No *raiz);
 int calculateBalanceFactor(No *raiz);
-No* balanceNode(No *raiz);
-No* rotateLeftLeft(No *raiz);
-No* rotateLeftRight(No *raiz);
-No* rotateRightLeft(No *raiz);
-No* rotateRightRight(No *raiz);
-
-
-void printGivenLevel(No* raiz, int nivel);
-No *MaiorDireita(No **no);
-No *MenorEsquerda(No **no);
+No *balanceNode(No *raiz);
+No *rotateLeftLeft(No *raiz);
+No *rotateLeftRight(No *raiz);
+No *rotateRightLeft(No *raiz);
+No *rotateRightRight(No *raiz);
 
 #endif /* arvore_h */

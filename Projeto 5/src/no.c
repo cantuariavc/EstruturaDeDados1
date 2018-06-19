@@ -10,16 +10,16 @@
 
 No *criaNo(int valor, No *esquerda, No *direita) {
     No *novoNo = (No *) calloc(1, sizeof(No));
-    
+
     if (!novoNo) {
         printf("Erro na alocação de memória do Nó!");
         exit(2);
     }
-    
+
     novoNo->valor = valor;
     novoNo->esquerda = esquerda;
     novoNo->direita = direita;
-    
+
     return novoNo;
 }
 
@@ -30,7 +30,7 @@ void insereNo(No **raiz, int valor) {
         } else {
             insereNo(&(*raiz)->direita, valor);
         }
-        
+
     } else {
         No *novoNo = criaNo(valor, NULL, NULL);
         *raiz = novoNo;
