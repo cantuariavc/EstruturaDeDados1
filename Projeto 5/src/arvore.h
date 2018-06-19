@@ -16,10 +16,7 @@
 #include "no.h"
 
 No *loadTreeFromFile(char nomeDoArquivo[]);
-
-void showTree(No *raiz);
-void printGivenLevel(No* raiz, int nivel);
-
+void showTree(No *raiz, int profundidade);
 int isFull(No *raiz);
 int searchValue(No *raiz, int valor);
 int getHeight(No *raiz);

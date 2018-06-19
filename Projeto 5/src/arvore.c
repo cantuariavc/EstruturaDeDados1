@@ -25,27 +25,29 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
 
     return raiz;
 }
+int rec[1000006];
+void showTree(No* raiz,int profundidade) {
+    int i;
 
-void showTree(No *raiz) {
-    int h = getHeight(raiz);
-    for (int i = 0; i <= h; i++) {
-        printGivenLevel(raiz, i);
-        printf("\n");
+    if (raiz==NULL) {
+        return;
     }
+
+    printf("\t");
+    for(i=0; i<profundidade; i++) {
+        if (i==profundidade-1)
+            printf("%s\u2014\u2014\u2014",rec[profundidade-1]?"\u0371":"\u221F");
+        else
+            printf("%s   ",rec[i]?"\u23B8":"  ");
+    }
+
+    printf("%d\n",raiz->valor);
+    rec[profundidade]=1;
+    showTree(raiz->esquerda,profundidade+1);
+    rec[profundidade]=0;
+    showTree(raiz->direita,profundidade+1);
 }
 
-void printGivenLevel(No *raiz, int nivel) {
-    if (!raiz) {
-        printf("* ");
-    } else {
-        if (nivel == 0) {
-            printf("%d ", raiz->valor);
-        } else if (nivel > 0) {
-            printGivenLevel(raiz->esquerda, nivel-1);
-            printGivenLevel(raiz->direita, nivel-1);
-        }
-    }
-}
 
 int isFull(No *raiz) {
     if (!raiz) {

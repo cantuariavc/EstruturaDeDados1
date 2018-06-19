@@ -18,6 +18,7 @@ int main(int argc, const char * argv[]) {
     int opcao = 11;
     No *raiz = NULL;
     int valor = 0;
+    int profundidade = 0;
 
     do {
         imprimeMenu(&opcao);
@@ -42,7 +43,7 @@ int main(int argc, const char * argv[]) {
                 }
                 break;
             case 2:
-                showTree(raiz);
+                showTree(raiz, profundidade);
                 break;
             case 3:
                 if (isFull(raiz)) {
