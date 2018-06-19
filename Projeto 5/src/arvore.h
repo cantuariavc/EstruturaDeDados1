@@ -16,7 +16,7 @@
 #include "no.h"
 
 No *loadTreeFromFile(char nomeDoArquivo[]);
-void showTree(No *raiz, int profundidade);
+// void showTree(No *raiz, int profundidade);
 int isFull(No *raiz);
 int searchValue(No *raiz, int valor);
 int getHeight(No *raiz);
@@ -37,5 +37,8 @@ No *rotateLeftLeft(No *raiz);
 No *rotateLeftRight(No *raiz);
 No *rotateRightLeft(No *raiz);
 No *rotateRightRight(No *raiz);
+
+void showTreeHoriz(No *raiz, int profundidade, char *caminho, int direita);
+void showTree(No *raiz);
 
 #endif /* arvore_h */

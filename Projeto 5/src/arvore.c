@@ -8,6 +8,7 @@
 
 #include "arvore.h"
 
+#define espaco 5
 int nivel = 0;
 
 No *loadTreeFromFile(char nomeDoArquivo[]) {
@@ -25,28 +26,97 @@ No *loadTreeFromFile(char nomeDoArquivo[]) {
 
     return raiz;
 }
-int rec[1000006];
-void showTree(No* raiz,int profundidade) {
-    int i;
+// int rec[1000006];
+// void showTree(No* raiz,int profundidade) {
+//     int i;
+//
+//     if (raiz==NULL) {
+//         return;
+//     }
+//
+//     printf("\t");
+//     for(i=0; i<profundidade; i++) {
+//         if (i==profundidade-1)
+//             printf("%s\u2014\u2014\u2014",rec[profundidade-1]?"\u0371":"\u221F");
+//         else
+//             printf("%s   ",rec[i]?"\u23B8":"  ");
+//     }
+//
+//     printf("%d\n",raiz->valor);
+//     rec[profundidade]=1;
+//     showTree(raiz->esquerda,profundidade+1);
+//     rec[profundidade]=0;
+//     showTree(raiz->direita,profundidade+1);
+// }
 
-    if (raiz==NULL) {
+
+
+
+
+void showTreeHoriz(No *raiz, int profundidade, char *caminho, int direita)
+{
+    if (raiz== NULL)
         return;
+
+    profundidade++;
+
+    showTreeHoriz(raiz->direita, profundidade, caminho, 1);
+
+    caminho[profundidade-2] = 0;
+
+    if(direita)
+        caminho[profundidade-2] = 1;
+
+    if(raiz->esquerda)
+        caminho[profundidade-1] = 1;
+
+    printf("\n");
+
+    for(int i=0; i<profundidade-1; i++)
+    {
+      if(i == profundidade-2)
+          printf("+");
+      else if(caminho[i])
+          printf("|");
+      else
+          printf(" ");
+
+      for(int j=1; j<espaco; j++)
+      if(i < profundidade-2)
+          printf(" ");
+      else
+          printf("-");
     }
 
-    printf("\t");
-    for(i=0; i<profundidade; i++) {
-        if (i==profundidade-1)
-            printf("%s\u2014\u2014\u2014",rec[profundidade-1]?"\u0371":"\u221F");
-        else
-            printf("%s   ",rec[i]?"\u23B8":"  ");
+    printf("%d\n", raiz->valor);
+
+    for(int i=0; i<profundidade; i++)
+    {
+      if(caminho[i])
+          printf("|");
+      else
+          printf(" ");
+
+      for(int j=1; j<espaco; j++)
+          printf(" ");
     }
 
-    printf("%d\n",raiz->valor);
-    rec[profundidade]=1;
-    showTree(raiz->esquerda,profundidade+1);
-    rec[profundidade]=0;
-    showTree(raiz->direita,profundidade+1);
+    showTreeHoriz(raiz->esquerda, profundidade, caminho, 0);
 }
+
+void showTree(No *raiz)
+{
+    char caminho[255] = {};
+
+    showTreeHoriz(raiz, 0, caminho, 0);
+}
+
+
+
+
+
+
+
 
 
 int isFull(No *raiz) {

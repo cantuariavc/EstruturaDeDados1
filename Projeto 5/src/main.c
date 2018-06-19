@@ -43,7 +43,7 @@ int main(int argc, const char * argv[]) {
                 }
                 break;
             case 2:
-                showTree(raiz, profundidade);
+                showTree(raiz);
                 break;
             case 3:
                 if (isFull(raiz)) {
